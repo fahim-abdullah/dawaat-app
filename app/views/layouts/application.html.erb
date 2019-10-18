@@ -2,13 +2,22 @@
 <html>
   <head>
     <title>Dawaat</title>
+
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <%= yield :head -%>
 
+  </head>
+<!--- ▀█▀ ░█▄─░█ ▀▀█▀▀ ░█▀▀█ ░█─░█ ░█▀▀▄ ░█▀▀▀ ░█▀▀█ █ █ █ 
+      ░█─ ░█░█░█ ─░█── ░█▄▄▀ ░█─░█ ░█─░█ ░█▀▀▀ ░█▄▄▀ ▀ ▀ ▀ 
+      ▄█▄ ░█──▀█ ─░█── ░█─░█ ─▀▄▄▀ ░█▄▄▀ ░█▄▄▄ ░█─░█ ▄ ▄ ▄ 
+
+      Just kidding but hey, you code Ruby? Email us at fahim@dawaat.co and let's change how people thinks food!
+ -->
   <body>
     <%= yield %>
   </body>
