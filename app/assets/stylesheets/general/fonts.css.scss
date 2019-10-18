@@ -1,0 +1,27 @@
+@font-face {
+	font-family: 'Semi';
+	src: url('Gilroy-SemiBold.ttf') format('truetype');
+
+}
+
+@font-face {
+	font-family: 'Medium';
+	src: url('Gilroy-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Regular';
+	src: url('Gilroy-Regular.ttf') format('truetype');
+}
+
+.semi {
+	font-family: "Semi";
+}
+
+.medium {
+	font-family: "Medium";
+}
+
+.regular {
+	font-family: "Regular";
+}
