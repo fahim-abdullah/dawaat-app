@@ -1,0 +1,47 @@
+.navbar {
+	background-color: white;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	box-shadow: 0 1px 5px 0 rgba(0,0,0,.08);
+	height: 80px;
+	width: 100%;
+	z-index: 99;
+	transition: 1s;
+}
+
+#collapsibleNavbar {
+	background-color: white;
+}
+
+.navbar-toggler {
+	padding: 0;
+	margin: 0;
+}
+
+.navbar-toggler:focus, .navbar-toggler:active  {
+	outline: none;
+}
+
+.nav-item {
+	font-family: "Semi";
+	font-size: 16px;
+	margin-left: 20px;
+}
+
+.nav-link {
+	color: black;
+	transition: 0.1s;
+}
+
+.nav-link:hover {
+	color: #ffdd00;
+}
+
+@media only screen and (max-width: 600px) {
+	.nav-item {
+		margin-left: 0px;
+	}
+	#collapsibleNavbar {
+		margin-top: 20px;
+	}
+}

@@ -1,5 +1,52 @@
-#coming_soon {
+#coming-soon {
 	height: 100vh;
-	background-color: #ffe200;
+	background-color: #ffdd00;
 }
 
+.cs-holder {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.cs-text {
+	font-size: 24px;
+	color: white;
+	line-height: 1;
+	text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.cs {
+	color: black;
+	text-shadow: none;
+}
+
+.social-holder {
+	position: absolute;
+	top: 85%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.social-holder i {
+	font-size: 24px;
+	margin: 0 20px;
+	color: white;
+	text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	transition: 0.4s;
+}
+
+.social-holder i:hover {
+	transform: scale(1.2);
+	text-shadow: 0 2px 3px rgba(0,0,0,0.15);
+}
+
+@media only screen and (max-width: 600px) {
+    .cs_text {
+        font-size: 14px;
+    }
+    .social-holder i {
+		margin: 0 15px;
+    }
+}
