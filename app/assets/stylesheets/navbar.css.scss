@@ -1,16 +1,20 @@
 .navbar {
-	background-color: white;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	box-shadow: 0 1px 5px 0 rgba(0,0,0,.08);
-	height: 80px;
+	background-color: rgba(255,255,255,0);
+	padding-top: 40px;
+	padding-bottom: 0px;
+	/*box-shadow: 0 1px 5px 0 rgba(0,0,0,.08);*/
 	width: 100%;
 	z-index: 99;
-	transition: 1s;
+	transition: 0.3s;
 }
 
-#collapsibleNavbar {
-	background-color: white;
+/*After Scroll*/
+.scrolled-nav {
+	background-color: rgba(255,255,255,1);
+	box-shadow: 0 1px 5px 0 rgba(0,0,0,.08);
+	padding-top: 20px;
+	padding-bottom: 20px;
+	height: 80px;
 }
 
 .navbar-toggler {
@@ -29,19 +33,33 @@
 }
 
 .nav-link {
-	color: black;
-	transition: 0.1s;
+	color: white;
 }
 
 .nav-link:hover {
 	color: #ffdd00;
 }
 
+.nav-item {
+	font-family: "Semi";
+	font-size: 16px;
+	margin-left: 20px;
+}
+
 @media only screen and (max-width: 600px) {
 	.nav-item {
 		margin-left: 0px;
 	}
-	#collapsibleNavbar {
-		margin-top: 20px;
+
+	.navbar-toggler, #logo {
+		margin-bottom: 20px;
+	}
+
+	.logo {
+		width: 120px;
+	}
+
+	.scrolled-nav {
+		padding-bottom: 0px;
 	}
 }
