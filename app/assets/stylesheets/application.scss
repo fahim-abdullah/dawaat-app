@@ -15,8 +15,20 @@
 @import "bootstrap";
 @import 'general/*';
 @import 'navbar.css';
+@import 'style.css';
+@import 'responsive.css';
 
 
 body {
 	font-family: "Medium";
+}
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('/assets/img/loader.svg') 50% 40% no-repeat rgb(255,255,255);
 }

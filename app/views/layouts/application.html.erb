@@ -19,7 +19,6 @@
     </script>
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
   </head>
 <!--- ▀█▀ ░█▄─░█ ▀▀█▀▀ ░█▀▀█ ░█─░█ ░█▀▀▄ ░█▀▀▀ ░█▀▀█ █ █ █ 
       ░█─ ░█░█░█ ─░█── ░█▄▄▀ ░█─░█ ░█─░█ ░█▀▀▀ ░█▄▄▀ ▀ ▀ ▀ 
@@ -28,8 +27,11 @@
       Just kidding but hey, you code Ruby? Email us at fahim@dawaat.co and let's change how people thinks food!
  -->
   <body>
+    
     <%= render 'layouts/navbar' %>
 
     <%= yield %>
+
+    <div class="loader"></div>
   </body>
 </html>

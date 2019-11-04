@@ -1,0 +1,72 @@
+@media (min-width: 576px){ 
+    .promo-banner {
+        margin-top: calc(2.5% + 76px);
+    }
+}
+
+/* responsively apply fixed position */
+@media (max-width: 576px){
+    .semi {
+        font-family: "Medium";
+    }
+    
+    .left {
+        height: 80vh;
+    }
+    
+    .right {
+        margin-top: 80vh;
+        padding: 0;
+    }
+    
+    .right-holder {
+        padding: 4%;
+    }
+    
+    .logo-web {
+        display: none;
+    }
+    
+    .navbar {
+        width: calc(100% - 8%);
+        position: fixed;
+        top: 3%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    
+    .navbar-brand {
+        display: block;
+    }
+    
+    .nav-link {
+        text-align: right;
+        margin-right: 0;
+    }
+    
+    .menu-header {
+        font-size: 24px;
+        margin: 6% 0 4% 0;
+        font-family: "Semi";
+    }
+    
+    .card {
+        margin-bottom: 5%;
+    }
+    
+    .item-title {
+        font-size: 18px;
+    }
+    
+    .social-list li {
+        padding: 5px;
+        height: 30px;
+        width: 30px;
+        font-size: 12px;
+    }
+    
+    .credits {
+        font-size: 12px;
+    }
+    
+}
