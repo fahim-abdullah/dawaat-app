@@ -1,3 +1,12 @@
+.btn-1 {
+    background-color: #111111;
+    color: white;
+    padding: 3%;
+    border: none;
+    border-radius: 5px;
+    font-family: "Regular";
+}
+
 .left {
     height: 100vh;
     position: fixed;
@@ -120,6 +129,83 @@ footer {
     color: black;
 }
 
+
+/*Modal*/
+
+.modal-content {
+    padding: 6%;
+    border-radius: 15px;
+    box-shadow: 0px 10px 40px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    padding: 0;
+    padding: 2% 0;
+    border-bottom: none;
+    border-bottom: 1px solid #E9EBF0;
+}
+
+.modal-title {
+    font-family: "Semi";
+    font-size: 24px;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.modal-form {
+    padding: 4% 0;
+    overflow-x: hidden;
+}
+
+.modal-form p {
+    margin: 0;
+    font-size: 14px;
+    font-family: "Semi";
+}
+
+.modal-form .form-group {
+    margin-bottom: 2%;
+}
+
+.modal-form .form-control {
+    border: none;
+    border: 1px solid #E9EBF0;
+    border-radius: 3px;
+    font-family: "Regular";
+}
+
+.modal-card {
+    background-image: linear-gradient(to right, #FFA805, #ffdd00);
+    padding: 5%;
+    border-radius: 10px;
+    width: 100%;
+    color: white;
+    margin: 2% 0 4% 0;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+}
+
+.card-hr {
+    margin: 2% 0;
+    border: 0.5px solid rgba(255,255,255,0.3);
+}
+
+.sub {
+    font-size: 24px;
+    font-family: "Semi";
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cod-text {
+    text-align: center;
+    padding: 2% 0 0 0;
+}
+
+.modal-form .btn-1 {
+    box-shadow: 0 3px 12px rgba(0,0,0,0.16);
+}
 
 
 
