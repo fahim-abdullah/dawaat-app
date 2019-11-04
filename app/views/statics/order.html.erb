@@ -30,15 +30,15 @@
 
                                         <!--Counter-->
                                         <div class="col-5 pl-0 my-auto">
-                                            <div class="input-counter input-group">
+                                            <div class="input-group">
                                                 <div class="input-group-prepend">
-                                                    <button type="button" class="btn counter-btn counter-btn-right">
+                                                    <button type="button" class="btn counter-btn" id="minus-1">
                                                         <img src="http://bit.ly/2r1QXWq" width="20px" />
                                                     </button>
                                                 </div>
-                                                <input type="text" class="form-control counter">
+                                                <input type="text" class="form-control counter" value="0" min="0" id="quantity-1">
                                                 <div class="input-group-append">
-                                                    <button type="button" class="btn counter-btn counter-btn-right">
+                                                    <button type="button" class="btn counter-btn" id="plus-1">
                                                         <img src="http://bit.ly/2PIIUbC" width="20px" />
                                                     </button>
                                                 </div>
@@ -62,16 +62,16 @@
 
                                         <!--Counter-->
                                         <div class="col-5 pl-0 my-auto">
-                                            <div class="input-counter input-group">
+                                            <div class="input-group">
                                                 <div class="input-group-prepend">
-                                                    <button type="button" class="btn counter-btn counter-btn-right">
-                                                        <img src="assets/img/minus3.png" width="20px" />
+                                                    <button type="button" class="btn counter-btn" id="minus-2">
+                                                        <img src="http://bit.ly/2r1QXWq" width="20px" />
                                                     </button>
                                                 </div>
-                                                <input type="text" class="form-control counter">
+                                                <input type="text" class="form-control counter" value="0" min="0" id="quantity-2">
                                                 <div class="input-group-append">
-                                                    <button type="button" class="btn counter-btn counter-btn-right">
-                                                        <img src="assets/img/plus3.png" width="20px" />
+                                                    <button type="button" class="btn counter-btn" id="plus-2">
+                                                        <img src="http://bit.ly/2PIIUbC" width="20px" />
                                                     </button>
                                                 </div>
                                             </div>
@@ -94,16 +94,16 @@
 
                                         <!--Counter-->
                                         <div class="col-5 pl-0 my-auto">
-                                            <div class="input-counter input-group">
+                                            <div class="input-group">
                                                 <div class="input-group-prepend">
-                                                    <button type="button" class="btn counter-btn counter-btn-right">
-                                                        <img src="assets/img/minus3.png" width="20px" />
+                                                    <button type="button" class="btn counter-btn" id="minus-3">
+                                                        <img src="http://bit.ly/2r1QXWq" width="20px" />
                                                     </button>
                                                 </div>
-                                                <input type="text" class="form-control counter">
+                                                <input type="text" class="form-control counter" value="0" min="0" id="quantity-3">
                                                 <div class="input-group-append">
-                                                    <button type="button" class="btn counter-btn counter-btn-right">
-                                                        <img src="assets/img/plus3.png" width="20px" />
+                                                    <button type="button" class="btn counter-btn" id="plus-3">
+                                                        <img src="http://bit.ly/2PIIUbC" width="20px" />
                                                     </button>
                                                 </div>
                                             </div>
@@ -126,16 +126,16 @@
 
                                         <!--Counter-->
                                         <div class="col-5 pl-0 my-auto">
-                                            <div class="input-counter input-group">
+                                            <div class="input-group">
                                                 <div class="input-group-prepend">
-                                                    <button type="button" class="btn counter-btn counter-btn-right">
-                                                        <img src="assets/img/minus3.png" width="20px" />
+                                                    <button type="button" class="btn counter-btn" id="minus-4">
+                                                        <img src="http://bit.ly/2r1QXWq" width="20px" />
                                                     </button>
                                                 </div>
-                                                <input type="text" class="form-control counter">
+                                                <input type="text" class="form-control counter" value="0" min="0" id="quantity-4">
                                                 <div class="input-group-append">
-                                                    <button type="button" class="btn counter-btn counter-btn-right">
-                                                        <img src="assets/img/plus3.png" width="20px" />
+                                                    <button type="button" class="btn counter-btn" id="plus-4">
+                                                        <img src="http://bit.ly/2PIIUbC" width="20px" />
                                                     </button>
                                                 </div>
                                             </div>
@@ -242,6 +242,8 @@
                                     </div>
 <!--                                            <p class="cod-text">**We accept Cash on Delivery only.</p>-->
                                 </div>
+
+                                <input type="number" id="subtotal" class="form-control" value="0">
                                     
                                 <div class="row">
                                     <div class="form-group col-12">

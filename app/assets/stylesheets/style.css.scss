@@ -97,7 +97,6 @@ footer {
     background-color: #f2f2f2;
     padding: 5% 4%;
     font-size: 18px;
-    margin-bottom: calc(4% + 18px);
 }
 
 .social-list li {
@@ -135,6 +134,7 @@ footer {
 
 .modal-content {
     padding: 6%;
+    border: none;
     border-radius: 15px;
     box-shadow: 0px 10px 40px rgba(0,0,0,0.3);
 }
@@ -180,7 +180,7 @@ footer {
 .modal-card {
     background-image: linear-gradient(to right, #FFA805, #ffdd00);
     padding: 5%;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 100%;
     color: white;
     margin: 2% 0 4% 0;
