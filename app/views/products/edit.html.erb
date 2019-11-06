@@ -1,0 +1,24 @@
+<%= form_for @product do |f| %>
+	<div class="form-inline">
+		<label>Name</label>
+		<%= f.text_field :name, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Old Price</label>
+		<%= f.text_field :old_price, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Price</label>
+		<%= f.text_field :price, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Status</label>
+		<%= f.text_field :status, class: "col-md-2 col form-control"%>
+	</div>
+	
+    <%= f.submit class: "btn btn-success btn-sm" %>
+    <%= link_to "Back", products_path, :class => "btn btn-outline-primary btn-sm" %>
+<% end %>

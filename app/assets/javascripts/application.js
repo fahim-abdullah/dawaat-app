@@ -25,3 +25,22 @@ $(function(){
     });
   });
 });
+
+// document.onkeydown = function(e) {
+
+//   if(event.keyCode == 123) {
+//      return false;
+//   }
+//   if((e.ctrlKey || event.keyCode === 91) && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(event.keyCode == 93 && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if((e.ctrlKey || event.keyCode === 91) && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if((e.ctrlKey || event.keyCode === 91) && e.keyCode == 'U'.charCodeAt(0)) {
+//      return false;
+//   }
+// }
