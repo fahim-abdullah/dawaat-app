@@ -1,0 +1,49 @@
+<%= form_for @order do |f| %>
+	<div class="form-inline">
+		<label>Name</label>
+		<%= f.text_field :fullname, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Phone</label>
+		<%= f.text_field :phone, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Address</label>
+		<%= f.text_field :address, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Flat / House</label>
+		<%= f.text_field :flathouse, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Road</label>
+		<%= f.text_field :road, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Lat/Lng</label>
+		<%= f.text_field :latlng, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Subtotal</label>
+		<%= f.text_field :subtotal, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Existing</label>
+		<%= f.text_field :existing, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Status</label>
+		<%= f.text_field :status, class: "col-md-2 col form-control"%>
+	</div>
+	
+    <%= f.submit class: "btn btn-success btn-sm" %>
+    <%= link_to "Back", orders_path, :class => "btn btn-outline-primary btn-sm" %>
+<% end %>

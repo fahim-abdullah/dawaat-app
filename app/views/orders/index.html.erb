@@ -1,0 +1,27 @@
+<%= link_to "New", new_order_path, :class => "btn btn-outline-success" %>
+
+<% @orders.each do |order| %>
+	<div class="jumbotron p-4">
+		<div class="card">
+			<ul>
+				<li><%= order.fullname %></li>
+				<li><%= order.phone %></li>
+				<li><%= order.address %></li>
+				<li><%= order.flathouse %></li>
+				<li><%= order.road %></li>
+				<li><%= order.latlng %></li>
+				<li><%= order.subtotal %></li>
+				<li><%= order.itemquantity %></li>
+				<li><%= order.existing %></li>
+				<li><%= order.status %></li>
+				<li><%= order.ontheway_time %></li>
+				<li><%= order.delivery_time %></li>
+			</ul>
+		</div>
+		<%= link_to 'Edit', edit_order_path(order), class: 'btn btn-warning' %>
+		<%= link_to "Back", orders_path, :class => "btn btn-outline-primary" %>
+		<a href="https://www.google.com/maps/?q=<%= order.latlng %>">Navigate</a>
+	</div>
+
+<% end %>
+

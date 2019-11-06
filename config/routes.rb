@@ -5,5 +5,9 @@ Rails.application.routes.draw do
 	get 'coming_soon', to: 'statics#coming_soon'
 
 	resources :products
+	
+	resources :orders do
+		get 'assign', 'deliver'
+	end
 
 end

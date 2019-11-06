@@ -18,7 +18,7 @@
 //= require bootstrap
 //= require_tree .
 
-$(function(){ 
+$(document).on('turbolinks:load', function() {
   $(window).on("load", function(){
     $('.loader').fadeOut('fast', function() {
       $(this).remove();
