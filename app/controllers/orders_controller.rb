@@ -10,6 +10,11 @@ class OrdersController < ApplicationController
 	end
 
 	def new
+		@beef_tehari = Product.where(:name => "Signature Tehari")[0]
+		@chicken_tehari = Product.where(:name => "Chicken Tehari")[0]
+		@polao_roast = Product.where(:name => "Polao & Roast")[0]
+		@firni_reg = Product.where(:name => "Firni (Regular)")[0]
+		@firni_lg = Product.where(:name => "Firni (Large)")[0]
 		@order = Order.new
 	end
 

@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 
 	def user_check
 		Order.all.each do |order|
-			if self.phone == order.phone 
+			if self.phone.last(11) == order.phone.last(11)
 				self.existing = "Returning User"
 			else
 				self.existing = "New User"

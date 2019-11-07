@@ -11,7 +11,7 @@
     height: 100vh;
     position: fixed;
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.25)),
-                url("/assets/img/bg.jpg");
+                url("https://rebrand.ly/gl5os9");
     background-size: cover;
     background-position: 30% 30%;
 }
@@ -58,6 +58,7 @@
 
 .card-img {
     border-radius: 10px 10px 0px 0px;
+    width: 100%;
 }
 
 .item-details * {
