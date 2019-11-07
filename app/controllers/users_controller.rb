@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
 	private
 	def user_params 
-		params.require(:user).permit(:username, :name)
+		params.require(:user).permit(:username, :name, :password)
 	end
 	def set_timezone
 		Time.zone = "Dhaka"
