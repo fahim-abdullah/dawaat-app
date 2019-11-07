@@ -1,0 +1,10 @@
+<%= link_to "New", new_user_path, :class => "btn btn-outline-success" %>
+
+<% @users.each do |user| %>
+	<div class="card bg-light">
+		<ul>
+			<li><%= user.username %></li>
+			<li><%= user.name %></li>
+		</ul>
+	</div>
+<% end %>

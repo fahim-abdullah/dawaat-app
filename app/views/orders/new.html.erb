@@ -43,6 +43,11 @@
 		<label>Status</label>
 		<%= f.text_field :status, class: "col-md-2 col form-control"%>
 	</div>
+
+	<div class="form-inline">
+		<label>User ID</label>
+		<%= f.text_field :user_id, class: "col-md-2 col form-control", value: "1" %>
+	</div>
 	
     <%= f.submit class: "btn btn-success btn-sm" %>
     <%= link_to "Back", orders_path, :class => "btn btn-outline-primary btn-sm" %>

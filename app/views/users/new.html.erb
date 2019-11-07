@@ -1,0 +1,14 @@
+<%= form_for @user do |f| %>
+	<div class="form-inline">
+		<label>Userame</label>
+		<%= f.text_field :username, class: "col-md-2 col form-control"%>
+	</div>
+
+	<div class="form-inline">
+		<label>Name</label>
+		<%= f.text_field :name, class: "col-md-2 col form-control"%>
+	</div>
+	
+    <%= f.submit class: "btn btn-success btn-sm" %>
+    <%= link_to "Back", users_path, :class => "btn btn-outline-primary btn-sm" %>
+<% end %>
