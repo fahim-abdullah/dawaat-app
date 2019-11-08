@@ -9,11 +9,14 @@
 if Rails.env.development?
   puts ''
   puts 'Runnning db/seed.rb'
+
   Product.create(name: 'Signature Tehari', price: 120, status: 'Available')
   Product.create(name: 'Chicken Tehari', price: 100, status: 'Available')
   Product.create(name: 'Polao & Roast', price: 110, status: 'Available')
   Product.create(name: 'Firni (Regular)', price: 130, status: 'Available')
   Product.create(name: 'Firni (Large)', price: 150, status: 'Available')
+  
+  User.create(name: 'User', username: 'user', password: '123')
   puts 'Completed seed data'
   puts ''
 else
