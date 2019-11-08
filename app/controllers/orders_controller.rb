@@ -17,6 +17,10 @@ class OrdersController < ApplicationController
 		@order = Order.find(params[:order_id])
 	end
 
+	def deliver 
+		@order = Order.find(params[:order_id])
+	end
+
 	def new
 		@disable_footer = true
 

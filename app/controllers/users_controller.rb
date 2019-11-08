@@ -5,6 +5,11 @@ class UsersController < ApplicationController
 		@users = User.all
 	end
 
+	def myorders
+		@user = User.find(session[:user_id]) if session[:user_id]
+		@myorders = @user.orders
+	end
+
 	def edit
 		@user = User.find(params[:id])
 	end

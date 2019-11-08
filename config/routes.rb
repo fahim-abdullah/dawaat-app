@@ -13,5 +13,11 @@ Rails.application.routes.draw do
 	end
 
 	get 'ongoing', to: 'orders#ongoing'
+	
+	get 'myorders', to: 'users#myorders'
+
+	get 'login', to: 'sessions#new'
+	post 'login', to: 'sessions#create'
+	delete 'logout', to: 'sessions#destroy'
 
 end

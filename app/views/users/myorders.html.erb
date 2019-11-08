@@ -1,0 +1,49 @@
+<div class="container table-container">
+	<div class="row">
+		<div class="col-12 py-4">
+			<h1 class="semi">My Orders</h1>
+			<hr>
+		</div>
+		<hr>
+		<div class="col-12">
+			<table id="all-orders-table" class="display">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Address</th>
+						<th>Order Details</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @myorders.each do |order| %>
+					<tr>
+						<td><%= order.fullname %> <span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
+						
+						<td>
+							Address : <%= order.address %><br> 
+							Flat/House : <%= order.flathouse %><br>
+							Road : <%= order.road %>
+						</td>
+						<td>
+							<% order.itemquantity.split("-").each do |i| %>
+								<p class="mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
+							<% end %>
+							<hr class="my-1">
+							<p class="semi m-0">Subtotal : <%= order.subtotal %></p>
+						</td>
+						<td>
+							<%= link_to 'Call', "tel:#{order.phone}", class: 'btn btn-sm btn-warning' %>
+	                        
+	                        <% if order.latlng.present? %>
+		                        <a class="btn btn-sm btn-primary" href="https://www.google.com/maps/?q=<%= order.latlng %>">Navigate</a>
+		                    <% end %>
+		                    <%= link_to 'Deliver', order_deliver_path(order), class: 'btn btn-sm btn-success' %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

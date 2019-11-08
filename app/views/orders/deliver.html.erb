@@ -1,0 +1,76 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12 py-4">
+			<h1 class="semi">Deliver Order</h1>
+			<hr>
+		</div>
+		<hr>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<div class="jumbotron bg-dark py-4">
+				<h4 class="semi text-white">Order Details</h4>
+				<div class="jumbtron bg-light p-4 rounded">
+					<p class="mb-0">Name : <%= @order.fullname %></p>
+					<p class="mb-0">Phone : <%= @order.phone %></p>
+					<hr class="my-1">
+					Items Ordered
+					<ul class="mb-2">
+						<% @order.itemquantity.split("-").each do |i| %>
+						<li class="mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></li>
+						<% end %>	
+					</ul>
+					
+					<p class="mb-0"><span class="semi">Subtotal :</span> <%= @order.subtotal %></p>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-5 col-12">
+			<%= form_for @order do |f| %>
+
+				<div class="form-group row">
+					<label class="col-2 col-form-label">Status</label>
+					<div class="col-10">
+						<%= f.text_field :status, class: "form-control", list: "otw-status", :required => true, value: "" %>
+			            <datalist id="otw-status">
+							<option value="Delivered">Delivered</option>
+			            </datalist>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="custom-control custom-switch">
+						<input type="checkbox" class="custom-control-input" id="cashcollect">
+						<label class="custom-control-label" for="cashcollect">Cash Collected</label>
+					</div>
+				</div>
+
+				<div class="form-group row" style="display: none">
+					<label class="col-2 col-form-label">D.Time</label>
+					<div class="col-10">
+						<%= f.text_field :delivery_time, class: "form-control", list: "otw-status", :id => "delivery_time" %>
+					</div>
+				</div>
+
+				<%= f.submit class: "btn btn-success btn-sm" %>
+
+			<% end %>	
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).on('turbolinks:load', function() {
+		$("#cashcollect").click(function(){
+			$("#delivery_time").val(("<%= Time.now %>"));
+		})
+	});
+</script>
+
+
+
