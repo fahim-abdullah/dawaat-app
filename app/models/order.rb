@@ -1,13 +1,13 @@
 class Order < ApplicationRecord
 	belongs_to :user
-	before_save :user_check, :status_fill
+	before_create :user_check, :status_fill
 
 	def user_check
 		Order.all.each do |order|
 			if self.phone.last(11) == order.phone.last(11)
-				self.existing = "Returning User"
+				self.existing = "Returning"
 			else
-				self.existing = "New User"
+				self.existing = "New"
 			end
 		end
 	end

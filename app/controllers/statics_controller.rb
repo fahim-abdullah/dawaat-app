@@ -5,4 +5,7 @@ class StaticsController < ApplicationController
 	def order
 	end
 
+	def ourstory
+	end
+
 end

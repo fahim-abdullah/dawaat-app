@@ -10,6 +10,8 @@ class OrdersController < ApplicationController
 	end
 
 	def new
+		@disable_footer = true
+
 		@beef_tehari = Product.where(:name => "Signature Tehari")[0]
 		@chicken_tehari = Product.where(:name => "Chicken Tehari")[0]
 		@polao_roast = Product.where(:name => "Polao & Roast")[0]

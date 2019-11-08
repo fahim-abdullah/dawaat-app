@@ -49,26 +49,7 @@
                 </div>
             </div>
 
-            <footer>
-                <div class="row">
-                    <div class="col-7" align="left">
-                        <ul class="social-list p-0 m-0">
-                            <a href="#">
-                                <li><i class="fab fa-facebook-f"></i></li>
-                            </a>
-                            <a href="#">
-                                <li><i class="fab fa-instagram"></i></li>
-                            </a>
-                            <a href="#">
-                                <li><i class="fab fa-linkedin-in"></i></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="col-5" align="right">
-                        <p class="semi m-0 py-2 credits">dawaat &copy; 2019</p>
-                    </div>
-                </div>
-            </footer>
+            <%= render 'layouts/footer'%>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModalCenter">
@@ -123,7 +104,7 @@
                                     	<%= f.text_field :user_id, class: "col-md-2 col form-control", value: "1" %>
                                     	<%= f.text_field :latlng, class: "form-control", :id => "latlng", placeholder: "lat/lng" %>
                                     	<%= f.text_field :itemquantity, id:"itemquantity", class: "form-control", placeholder: "item/quantity"%>
-                                    	<%= f.number_field :subtotal, :id => "subtotal-field", class: "form-control", value: "0", min: "1", placeholder: "subtotal", disabled: true %>
+                                    	<%= f.text_field :subtotal, :id => "subtotal-field", class: "form-control", value: "0", min: "1", placeholder: "subtotal" %>
                                     </div>
                                 </div>
 

@@ -1,27 +1,47 @@
-<%= link_to "New", new_order_path, :class => "btn btn-outline-success" %>
-
-<% @orders.each do |order| %>
-	<div class="jumbotron p-4">
-		<div class="card">
-			<ul>
-				<li><%= order.fullname %></li>
-				<li><%= order.phone %></li>
-				<li><%= order.address %></li>
-				<li><%= order.flathouse %></li>
-				<li><%= order.road %></li>
-				<li><%= order.latlng %></li>
-				<li><%= order.subtotal %></li>
-				<li><%= order.itemquantity %></li>
-				<li><%= order.existing %></li>
-				<li><%= order.status %></li>
-				<li><%= order.ontheway_time %></li>
-				<li><%= order.delivery_time %></li>
-			</ul>
+<div class="container table-container">
+	<div class="row">
+		<div class="col-12 py-4">
+			<h1 class="semi">All Orders</h1>
+			<hr>
 		</div>
-		<%= link_to 'Edit', edit_order_path(order), class: 'btn btn-warning' %>
-		<%= link_to "Back", orders_path, :class => "btn btn-outline-primary" %>
-		<a href="https://www.google.com/maps/?q=<%= order.latlng %>">Navigate</a>
+		<hr>
+		<div class="col-12">
+			<table id="all-orders-table" class="display">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Phone</th>
+						<th>Address</th>
+						<th>Order Details</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @orders.each do |order| %>
+					<tr>
+						<td><%= order.fullname %> <span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
+						<td><%= order.phone %></td>
+						<td><%= order.address %></td>
+						<td>
+							<% order.itemquantity.split("-").each do |i| %>
+								<p class="mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
+							<% end %>
+							<hr class="my-1">
+							<p class="semi m-0">Subtotal : <%= order.subtotal %></p>
+						</td>
+						<td><%= order.status %></td>
+						<td>
+							<%= link_to 'Edit', edit_order_path(order), class: 'btn btn-sm btn-warning' %>
+	                        <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger disabled' %>
+	                        <a class="btn btn-sm btn-success" href="https://www.google.com/maps/?q=<%= order.latlng %>">Navigate</a>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 	</div>
+</div>
 
-<% end %>
-
+<%= render 'layouts/footer'%>

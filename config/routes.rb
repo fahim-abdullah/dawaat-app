@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 	root 'statics#order'
 	get 'coming_soon', to: 'statics#coming_soon'
+	get 'ourstory', to: 'statics#ourstory'
 
 	resources :products
 	resources :users
