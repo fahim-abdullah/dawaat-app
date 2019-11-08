@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
 	belongs_to :user
-	before_save :user_check
+	before_save :user_check, :status_fill
 
 	def user_check
 		Order.all.each do |order|
@@ -10,6 +10,10 @@ class Order < ApplicationRecord
 				self.existing = "New User"
 			end
 		end
+	end
+
+	def status_fill
+		self.status = "Pending"
 	end
 
 end

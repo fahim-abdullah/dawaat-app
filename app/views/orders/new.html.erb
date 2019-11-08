@@ -1,58 +1,3 @@
-<%= form_for @order do |f| %>
-	<div class="form-inline">
-		<label>Name</label>
-		<%= f.text_field :fullname, class: "col-md-2 col form-control"%>
-	</div>
-
-	<div class="form-inline">
-		<label>Phone</label>
-		<%= f.text_field :phone, class: "col-md-2 col form-control"%>
-	</div>
-
-	<div class="form-inline">
-		<label>Address</label>
-		<%= f.text_field :address, class: "col-md-2 col form-control"%>
-	</div>
-
-	<div class="form-inline">
-		<label>Flat / House</label>
-		<%= f.text_field :flathouse, class: "col-md-2 col form-control"%>
-	</div>
-
-	<div class="form-inline">
-		<label>Road</label>
-		<%= f.text_field :road, class: "col-md-2 col form-control"%>
-	</div>
-
-	<div class="form-inline">
-		<label>Lat/Lng</label>
-		<%= f.text_field :latlng, class: "col-md-2 col form-control"%>
-	</div>
-
-	<div class="form-inline">
-		<label>Subtotal</label>
-		<%= f.text_field :subtotal, class: "col-md-2 col form-control"%>
-	</div>
-
-	<div class="form-inline">
-		<label>Existing</label>
-		<%= f.text_field :existing, class: "col-md-2 col form-control"%>
-	</div>
-
-	<div class="form-inline">
-		<label>Status</label>
-		<%= f.text_field :status, class: "col-md-2 col form-control"%>
-	</div>
-
-	<div class="form-inline">
-		<label>User ID</label>
-		<%= f.text_field :user_id, class: "col-md-2 col form-control", value: "1" %>
-	</div>
-	
-    <%= f.submit class: "btn btn-success btn-sm" %>
-    <%= link_to "Back", orders_path, :class => "btn btn-outline-primary btn-sm" %>
-<% end %>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-5 col-12 bg-warning left">
@@ -137,81 +82,87 @@
                         </div>
 
                         <div class="modal-body px-0">
+                        	<%= form_for @order do |f| %>
                             <div class="modal-form">
                                 <div class="row">
+                                	
                                     <div class="form-group col-12">
                                         <p>Full Name</p>
-                                        <input class="form-control" />
+                                        <%= f.text_field :fullname, class: "form-control", :required => true %>
                                     </div>
                                     <div class="form-group col-12">
                                         <p>Phone</p>
-                                        <input class="form-control" />
+                                        <%= f.text_field :phone, class: "form-control", :required => true %>
                                     </div>
 
                                     <div class="form-group col-12">
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch1" style="transform: scale(2);">
-                                            <label class="medium custom-control-label m-0 p-0" for="customSwitch1">Get Current Location</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-12">
-                                        <p>Address</p>
-                                        <input class="form-control" />
+                                        <p>Address <span class="text-danger regular">(Delivery to only Niketon, Gulshan, Banani)</span></p>
+                                        <%= f.text_field :address, class: "form-control", :required => true, :onclick => "getLocation()" %>
                                     </div>
 
                                     <div class="form-group col-12 m-0">
                                         <div class="row">
                                             <div class="form-group col-6">
                                                 <p>Flat/House No.</p>
-                                                <input class="form-control" />
+                                                <%= f.text_field :flathouse, class: "form-control", placeholder: "optional" %>
                                             </div>
                                             <div class="form-group col-6">
                                                 <p>Road No.</p>
-                                                <input class="form-control" />
+                                                <%= f.text_field :road, class: "form-control", placeholder: "optional" %>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group col-12">
                                         <p>Additional Location Instruction</p>
-                                        <textarea class="form-control"></textarea>
+                                        <%= f.text_area :instructions, class: "form-control", placeholder: "eg : come to block D and give me a call" %>
+                                    </div>
+
+                                    <div class="form-group col-12" style="display: block">
+                                    	<hr>
+                                    	<%= f.text_field :user_id, class: "col-md-2 col form-control", value: "1" %>
+                                    	<%= f.text_field :latlng, class: "form-control", :id => "latlng", placeholder: "lat/lng" %>
+                                    	<%= f.text_field :itemquantity, id:"itemquantity", class: "form-control", placeholder: "item/quantity"%>
+                                    	<%= f.number_field :subtotal, :id => "subtotal-field", class: "form-control", value: "0", min: "1", placeholder: "subtotal", disabled: true %>
                                     </div>
                                 </div>
 
                                 <div class="modal-card">
-                                    <div class="row" id="product-1">
+                                    <div class="row" id="modal-product-1">
                                         <div class="col-7 text-left">Signature Tehari</div>
-                                        <div class="col-5 text-right"><span id="mq-1"></span> x 180TK</div>
+                                        <div class="col-5 text-right"><span id="mq-1"></span> x <%= @beef_tehari.price %></div>
                                     </div>
-                                    <div class="row" id="product-2">
-                                        <div class="col-7 text-left">Polao &amp; Roast</div>
-                                        <div class="col-5 text-right"><span id="mq-2"></span> x 220TK</div>
+                                    <div class="row" id="modal-product-2">
+                                        <div class="col-7 text-left">Chicken Tehari</div>
+                                        <div class="col-5 text-right"><span id="mq-2"></span> x <%= @chicken_tehari.price %></div>
                                     </div>
-                                    <div class="row" id="product-3">
-                                        <div class="col-7 text-left">Shahi Firni (for 2)</div>
-                                        <div class="col-5 text-right"><span id="mq-3"></span> x 160TK</div>
+                                    <div class="row" id="modal-product-3">
+                                        <div class="col-7 text-left">Polao & Roast</div>
+                                        <div class="col-5 text-right"><span id="mq-3"></span> x <%= @polao_roast.price %></div>
                                     </div>
-                                    <div class="row" id="product-4">
-                                        <div class="col-7 text-left">Shahi Firni (for 4)</div>
-                                        <div class="col-5 text-right"><span id="mq-4"></span> x 300TK</div>
+                                    <div class="row" id="modal-product-4">
+                                        <div class="col-7 text-left">Shahi Firni (Regular)</div>
+                                        <div class="col-5 text-right"><span id="mq-4"></span> x <%= @firni_reg.price %></div>
+                                    </div>
+                                    <div class="row" id="modal-product-5">
+                                        <div class="col-7 text-left">Shahi Firni (Large)</div>
+                                        <div class="col-5 text-right"><span id="mq-5"></span> x <%= @firni_lg.price %></div>
                                     </div>
                                     <hr class="card-hr">
                                     <div class="row">
                                         <div class="col-7 text-left sub">Subtotal</div>
-                                        <div class="col-5 text-right sub"><span id="subtotal"></span> TK.</div>
+                                        <div class="col-5 text-right sub">TK <span id="subtotal"></span></div>
                                     </div>
 <!--                                            <p class="cod-text">**We accept Cash on Delivery only.</p>-->
                                 </div>
 
-                                <input type="number" id="subtotal-field" class="form-control" value="0">
-
                                 <div class="row">
                                     <div class="form-group col-12">
-                                        <button class="btn-1 col-12">Confirm</button>
+                                        <%= f.submit class: "btn-1 col-12", value: "Confirm Order" %>
                                     </div>
                                 </div>    
                             </div>
+                            <% end %>
                         </div>
                     </div>
                 </div>

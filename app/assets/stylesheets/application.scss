@@ -32,3 +32,7 @@ body {
     z-index: 9999;
     background: url('/assets/img/loader.svg') 50% 40% no-repeat rgb(255,255,255);
 }
+
+::-webkit-input-placeholder {
+  color: red;
+}

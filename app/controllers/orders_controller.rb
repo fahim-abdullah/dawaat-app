@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
 
 	private
 	def order_params 
-		params.require(:order).permit(:fullname, :phone, :address, :flathouse, :road, :latlng, :subtotal, :itemquantity, :existing, :status, :ontheway_time, :delivery_time, :user_id)
+		params.require(:order).permit(:fullname, :phone, :address, :flathouse, :road, :latlng, :subtotal, :itemquantity, :existing, :status, :ontheway_time, :delivery_time, :instructions, :user_id)
 	end
 	def set_timezone
 		Time.zone = "Dhaka"
