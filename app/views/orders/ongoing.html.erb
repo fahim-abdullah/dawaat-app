@@ -1,7 +1,7 @@
 <div class="container table-container">
 	<div class="row">
 		<div class="col-12 py-4">
-			<h1 class="semi">All Orders</h1>
+			<h1 class="semi">Ongoing Orders</h1>
 			<hr>
 		</div>
 		<hr>
@@ -19,6 +19,8 @@
 				</thead>
 				<tbody>
 					<% @orders.each do |order| %>
+
+					<% if order.status != "Delivered" %>
 					<tr>
 						<td><%= order.fullname %> <span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
 						<td><%= order.phone %></td>
@@ -34,9 +36,9 @@
 						<td>
 							<%= link_to 'Assign', order_assign_path(order), class: 'btn btn-sm btn-warning' %>
 	                        <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger disabled' %>
-	                        <a class="btn btn-sm btn-success" href="https://www.google.com/maps/?q=<%= order.latlng %>">Navigate</a>
 						</td>
 					</tr>
+					<% end %>
 					<% end %>
 				</tbody>
 			</table>

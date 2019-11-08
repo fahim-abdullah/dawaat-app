@@ -35,7 +35,18 @@
 			                <% end %>
 			            </datalist>
 					</div>
-					
+
+
+				</div>
+
+				<div class="form-group row">
+					<label class="col-2 col-form-label">Status</label>
+					<div class="col-10">
+						<%= f.text_field :status, class: "form-control", list: "otw-status", :required => true, value: "" %>
+			            <datalist id="otw-status">
+							<option value="On The Way">On The Way</option>
+			            </datalist>
+					</div>
 				</div>
 
 				<%= f.submit class: "btn btn-success btn-sm" %>

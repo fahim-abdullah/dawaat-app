@@ -5,8 +5,16 @@ class OrdersController < ApplicationController
 		@orders = Order.all
 	end
 
+	def ongoing
+		@orders = Order.all
+	end
+
 	def edit
 		@order = Order.find(params[:id])
+	end
+
+	def assign
+		@order = Order.find(params[:order_id])
 	end
 
 	def new
