@@ -11,20 +11,26 @@
 					<tr>
 						<th>Name</th>
 						<th>Phone</th>
-						<th>Address</th>
+						<th>Location</th>
 						<th>Order Details</th>
 						<th>Status</th>
+						<th>Create Time</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<% @orders.each do |order| %>
 
-					<% if order.status != "Delivered" %>
+					<% if order.status != "Delivered" || order.status != "Cancelled" %>
 					<tr>
 						<td><%= order.fullname %> <span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
 						<td><%= order.phone %></td>
-						<td><%= order.address %></td>
+						<td>
+							Address : <%= order.address %><br> 
+							Flat/House : <%= order.flathouse %><br>
+							Road : <%= order.road %> <br>
+							Instruction : <%= order.instructions %>
+						</td>
 						<td>
 							<% order.itemquantity.split("-").each do |i| %>
 								<p class="mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
@@ -33,9 +39,10 @@
 							<p class="semi m-0">Subtotal : <%= order.subtotal %></p>
 						</td>
 						<td><%= order.status %></td>
+						<td><%= order.created_at.strftime("%I:%M %p") %></td>
 						<td>
 							<%= link_to 'Assign', order_assign_path(order), class: 'btn btn-sm btn-warning' %>
-	                        <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger disabled' %>
+	                        <%= link_to 'Cancel', order_cancel_path(order), class: 'btn btn-sm btn-danger' %>
 						</td>
 					</tr>
 					<% end %>

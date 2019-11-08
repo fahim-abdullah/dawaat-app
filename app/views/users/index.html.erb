@@ -1,11 +1,35 @@
-<%= link_to "New", new_user_path, :class => "btn btn-outline-success" %>
-
-<% @users.each do |user| %>
-	<div class="card bg-light">
-		<ul>
-			<li><%= user.username %></li>
-			<li><%= user.name %></li>
-			<li><%= user.password %></li>
-		</ul>
+<div class="container table-container">
+	<div class="row">
+		<div class="col-12 py-4">
+			<h1 class="semi">All Users</h1>
+			<%= link_to "Create New User", new_user_path, :class => "btn btn-outline-success" %>
+			<hr>
+		</div>
+		<hr>
+		<div class="col-12">
+			<table id="all-orders-table" class="display">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Username</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @users.each do |user| %>
+					<tr>
+						<td><%= user.id %></td>
+						<td><%= user.name %></td>
+						<td><%= user.username %></td>
+						<td>
+							<%= link_to 'Edit', edit_user_path(user), class: 'btn btn-sm btn-warning' %>
+	                        <%= link_to 'Delete', user_path(user), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger disabled' %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 	</div>
-<% end %>
+</div>

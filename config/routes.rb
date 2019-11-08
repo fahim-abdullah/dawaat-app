@@ -9,11 +9,11 @@ Rails.application.routes.draw do
 	resources :users
 	
 	resources :orders do
-		get 'assign', 'deliver'
+		get 'assign', 'deliver', 'cancel'
 	end
 
 	get 'ongoing', to: 'orders#ongoing'
-	
+
 	get 'myorders', to: 'users#myorders'
 
 	get 'login', to: 'sessions#new'

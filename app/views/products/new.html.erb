@@ -1,24 +1,51 @@
-<%= form_for @product do |f| %>
-	<div class="form-inline">
-		<label>Name</label>
-		<%= f.text_field :name, class: "col-md-2 col form-control"%>
+<div class="container">
+	<div class="row">
+		<div class="col-12 py-4">
+			<h1 class="semi">Edit Product</h1>
+			<hr>
+		</div>
+		<hr>
 	</div>
 
-	<div class="form-inline">
-		<label>Old Price</label>
-		<%= f.text_field :old_price, class: "col-md-2 col form-control"%>
-	</div>
+	<div class="row">
+		<div class="col-md-5 col-12">
+			<%= form_for @product do |f| %>
 
-	<div class="form-inline">
-		<label>Price</label>
-		<%= f.text_field :price, class: "col-md-2 col form-control"%>
-	</div>
+				<div class="form-group row">
+					<label class="col-3 col-form-label">Name</label>
+					<div class="col">
+						<%= f.text_field :name, class: "form-control", :required => true %>
+					</div>
+				</div>
 
-	<div class="form-inline">
-		<label>Status</label>
-		<%= f.text_field :status, class: "col-md-2 col form-control"%>
+				<div class="form-group row">
+					<label class="col-3 col-form-label">Old Price</label>
+					<div class="col">
+						<%= f.text_field :old_price, class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-3 col-form-label">Price</label>
+					<div class="col">
+						<%= f.text_field :price, class: "form-control", :required => true %>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-3 col-form-label">Status</label>
+					<div class="col">
+						<%= f.text_field :status, class: "form-control", list: "product-status", :required => true %>
+			            <datalist id="product-status">
+			                <option value="Available">Available</option>
+			                <option value="Sold Out">Sold Out</option>
+			            </datalist>
+					</div>
+				</div>
+
+				<%= f.submit class: "btn btn-success btn-sm" %>
+
+			<% end %>	
+		</div>
 	</div>
-	
-    <%= f.submit class: "btn btn-success btn-sm" %>
-    <%= link_to "Back", products_path, :class => "btn btn-outline-primary btn-sm" %>
-<% end %>
+</div>

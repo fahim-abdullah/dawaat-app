@@ -1,19 +1,40 @@
-<%= form_for @user do |f| %>
-	<div class="form-inline">
-		<label>Username</label>
-		<%= f.text_field :username, class: "col-md-2 col form-control"%>
+<div class="container">
+	<div class="row">
+		<div class="col-12 py-4">
+			<h1 class="semi">Edit User Details</h1>
+			<hr>
+		</div>
+		<hr>
 	</div>
 
-	<div class="form-inline">
-		<label>Name</label>
-		<%= f.text_field :name, class: "col-md-2 col form-control"%>
-	</div>
+	<div class="row">
+		<div class="col-md-5 col-12">
+			<%= form_for @user do |f| %>
 
-	<div class="form-inline">
-		<label>Password</label>
-		<%= f.password_field :password, class: "col-md-2 col form-control"%>
+				<div class="form-group row">
+					<label class="col-3 col-form-label">Name</label>
+					<div class="col">
+						<%= f.text_field :name, class: "form-control", :required => true %>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-3 col-form-label">Username</label>
+					<div class="col">
+						<%= f.text_field :username, class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-3 col-form-label">Password</label>
+					<div class="col">
+						<%= f.password_field :password, class: "form-control", :required => true %>
+					</div>
+				</div>
+
+				<%= f.submit class: "btn btn-success btn-sm" %>
+
+			<% end %>	
+		</div>
 	</div>
-	
-    <%= f.submit class: "btn btn-success btn-sm" %>
-    <%= link_to "Back", users_path, :class => "btn btn-outline-primary btn-sm" %>
-<% end %>
+</div>
