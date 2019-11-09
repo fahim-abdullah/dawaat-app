@@ -45,7 +45,7 @@
 						<% else %>
 							<%= render 'layouts/product-available/firni-lg' %>
 						<% end %>
-                        
+
                     </div>
                 </div>
             </div>
@@ -111,23 +111,23 @@
 
                                 <div class="modal-card">
                                     <div class="row" id="modal-product-1">
-                                        <div class="col-7 text-left">Signature Tehari</div>
+                                        <div class="col-7 text-left"><%= @beef_tehari.name %></div>
                                         <div class="col-5 text-right"><span id="mq-1"></span> x <%= @beef_tehari.price %></div>
                                     </div>
                                     <div class="row" id="modal-product-2">
-                                        <div class="col-7 text-left">Chicken Tehari</div>
+                                        <div class="col-7 text-left"><%= @chicken_tehari.name %></div>
                                         <div class="col-5 text-right"><span id="mq-2"></span> x <%= @chicken_tehari.price %></div>
                                     </div>
                                     <div class="row" id="modal-product-3">
-                                        <div class="col-7 text-left">Polao & Roast</div>
+                                        <div class="col-7 text-left"><%= @polao_roast.name %></div>
                                         <div class="col-5 text-right"><span id="mq-3"></span> x <%= @polao_roast.price %></div>
                                     </div>
                                     <div class="row" id="modal-product-4">
-                                        <div class="col-7 text-left">Shahi Firni (Regular)</div>
+                                        <div class="col-7 text-left"><%= @firni_reg.name %></div>
                                         <div class="col-5 text-right"><span id="mq-4"></span> x <%= @firni_reg.price %></div>
                                     </div>
                                     <div class="row" id="modal-product-5">
-                                        <div class="col-7 text-left">Shahi Firni (Large)</div>
+                                        <div class="col-7 text-left"><%= @firni_lg.name %></div>
                                         <div class="col-5 text-right"><span id="mq-5"></span> x <%= @firni_lg.price %></div>
                                     </div>
                                     <hr class="card-hr">
