@@ -12,7 +12,7 @@ set :repo_url, "git@github.com:fahim-abdullah/dawaat-app.git"
 
 set :deploy_to, "/home/deployer/apps/dawaat"
 
-append :linked_files, "config/database.yml", "config/master.key", "config/config.yml"
+append :linked_files, "config/database.yml", "config/master.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
 # Default value for :format is :airbrussh.
