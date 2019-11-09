@@ -63,6 +63,8 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-passenger'
   gem 'capistrano-rvm'
+  gem "sshkit", "1.10.0"
+
 end
 
 group :test do
