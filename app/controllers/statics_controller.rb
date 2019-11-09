@@ -1,5 +1,6 @@
 class StaticsController < ApplicationController
 	def coming_soon
+		redirect_to root_path
 	end
 
 	def order
