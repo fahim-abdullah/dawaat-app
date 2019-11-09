@@ -6,7 +6,12 @@
                 <div class="col-7">
                     <div class="item-details">
                         <p class="item-title"><span id="product-3"><%= @polao_roast.name %></span></p>
-                        <p class="item-price">TK <span id="price-3"><%= @polao_roast.price %></span></p>
+                        <p class="item-price">
+                            <% if @polao_roast.old_price != "" %>
+                            <del class="regular">TK <%= @polao_roast.old_price %></del> 
+                            <% end %>
+                            TK <span id="price-3"><%= @polao_roast.price %></span>
+                        </p>
                     </div>
                 </div>
 
