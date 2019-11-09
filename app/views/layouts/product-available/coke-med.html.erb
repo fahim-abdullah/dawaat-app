@@ -1,0 +1,37 @@
+<div class="col-md-6">
+    <div class="card">
+        <img src="https://rebrand.ly/u7c0xn" class="card-img card-img-top">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-7">
+                    <div class="item-details">
+                        <p class="item-title"><span id="product-2"><%= @coke_med.name %></span></p>
+                        <p class="item-price">
+                            <% if @chicken_tehari.old_price != "" %>
+                            <del class="regular">TK <%= @coke_med.old_price %></del> 
+                            <% end %>
+                            TK <span id="price-2"><%= @coke_med.price %></span>
+                        </p>
+                    </div>
+                </div>
+
+                <!--Counter-->
+                <div class="col-5 pl-0 my-auto">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn counter-btn" id="minus-6">
+                                <img src="http://bit.ly/2r1QXWq" width="20px" />
+                            </button>
+                        </div>
+                        <input type="text" class="form-control counter" value="0" min="0" id="quantity-6">
+                        <div class="input-group-append">
+                            <button type="button" class="btn counter-btn" id="plus-6">
+                                <img src="http://bit.ly/2PIIUbC" width="20px" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
