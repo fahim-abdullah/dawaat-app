@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 	get 'ourstory', to: 'statics#ourstory'
 	get 'thankyou', to: 'statics#thankyou'
 	get 'feedback', to: 'statics#feedback'
-	get 'order', to: 'statics#order'
 
 	resources :products
 	resources :users
@@ -16,6 +15,8 @@ Rails.application.routes.draw do
 	resources :orders do
 		get 'assign', 'deliver', 'cancel'
 	end
+
+  get 'order', to: 'statics#order'
 
 	get 'ongoing', to: 'orders#ongoing'
 

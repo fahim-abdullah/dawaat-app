@@ -47,4 +47,57 @@
 			</table>
 		</div>
 	</div>
+
+
+  <tr id="">
+    <td>anonymous <span class="badge badge-pill badge-primary">New</span></td>
+    <td>
+      Address : Dhaka-anonymous<br> 
+      Flat/House : <br>
+      Road : 
+    </td>
+    <td>
+        <p class="mb-0">2x Signature Tehari</p>
+      <hr class="my-1">
+      <p class="semi m-0">Subtotal : 240</p>
+    </td>
+    <td>On The Way</td>
+    <td>
+      <a class="btn btn-sm btn-warning" href="tel:anonymous">Call</a>
+                  
+                <a class="btn btn-sm btn-success" href="/orders/2/deliver">Deliver</a>
+    </td>
+  </tr>
+
 </div>
+
+
+<% content_for :user_javascript do %>
+    <script type="text/javascript" charset="utf-8">
+      <% if logged_in? %>
+        $(document).on('turbolinks:load', function() {
+          <%= init_cable(cable_name: 'order_cable').html_safe %>
+          
+          console.log('-- cable connected --');
+
+          App.order_cable = App.order_cable.subscriptions.create({ channel: "OrderChannel" }, {
+            connected: function() {
+              // $('#connection-status').text('Connection Established');
+              console.log('-- connected --');
+            },
+            disconnected: function() {
+              // $('#connection-status').text('Disconnected');
+              console.log('-- dicconnected --');
+            },
+            received: function(data) {
+              console.log('-- received --', data);
+            }
+          });
+
+
+        });
+      <% else %>
+        console.log('Not logged in');
+      <% end %>
+    </script>
+<% end %>

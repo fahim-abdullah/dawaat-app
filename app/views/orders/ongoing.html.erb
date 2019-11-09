@@ -1,7 +1,7 @@
 <div class="container table-container">
 	<div class="row">
 		<div class="col-12 py-4">
-			<h1 class="semi">Ongoing Orders</h1>
+			<h1 class="semi">Ongoing Orders <span class="realtime-status">Realtime: <i id="realtime-status-message">Connecting...</i></span></h1>
 			<hr>
 		</div>
 		<hr>
@@ -52,3 +52,33 @@
 		</div>
 	</div>
 </div>
+
+<% content_for :user_javascript do %>
+    <script type="text/javascript" charset="utf-8">
+      <% if logged_in? %>
+        $(document).on('turbolinks:load', function() {
+          <%= init_cable(cable_name: 'order_cable').html_safe %>
+          
+          console.log('-- cable connected --');
+
+          App.order_cable = App.order_cable.subscriptions.create({ channel: "OrderChannel" }, {
+            connected: function() {
+              // $('#connection-status').text('Connection Established');
+              console.log('-- connected --');
+            },
+            disconnected: function() {
+              // $('#connection-status').text('Disconnected');
+              console.log('-- dicconnected --');
+            },
+            received: function(data) {
+              console.log('-- received --', data);
+            }
+          });
+
+
+        });
+      <% else %>
+        console.log('Not logged in');
+      <% end %>
+    </script>
+<% end %>

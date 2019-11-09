@@ -2,13 +2,13 @@ class OrderChannel < ApplicationCable::Channel
   def subscribed
     stream_from "order_channel_#{current_user.id}"
 
-    # current_user.connected_to_order!
+    current_user.connected_to_order!
   end
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
 
-    # current_user.not_connected_to_order!
+    current_user.not_connected_to_order!
   end
 
   def receive(data)
