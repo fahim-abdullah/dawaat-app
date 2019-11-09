@@ -36,8 +36,8 @@ class OrdersController < ApplicationController
 		@polao_roast = Product.where(:name => "Fried Chicken Roast & Pulao")[0]
 		@firni_reg = Product.where(:name => "Firni (Regular)")[0]
 		@firni_lg = Product.where(:name => "Firni (Large)")[0]
-		@coke_med = Product.where(:name => "Coke (600 ml)")[0]
-		@coke_lg = Product.where(:name => "Coke (1.25L)")[0]
+		# @coke_med = Product.where(:name => "Coke (600 ml)")[0]
+		# @coke_lg = Product.where(:name => "Coke (1.25L)")[0]
 
 		@order = Order.new
 	end

@@ -4,10 +4,6 @@ class StaticsController < ApplicationController
     @disable_navbar = true
 	end
 
-	def order
-		redirect_to root_path
-	end
-
 	def ourstory
 	end
 
