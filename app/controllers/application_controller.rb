@@ -16,4 +16,12 @@ class ApplicationController < ActionController::Base
 
 	end
 
+  def require_admin
+    if logged_in? && current_user.admin
+      # admin can acces this action
+    else  
+      redirect_to root_path
+    end
+  end
+
 end

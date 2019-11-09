@@ -12,7 +12,7 @@ if Rails.env.development?
 
   Product.create(name: 'Signature Tehari', price: 120, status: 'Available')
   Product.create(name: 'Chicken Tehari', price: 100, status: 'Available')
-  Product.create(name: 'Polao & Roast', price: 110, status: 'Available')
+  Product.create(name: 'Fried Chicken Roast & Pulao', price: 110, status: 'Available')
   Product.create(name: 'Firni (Regular)', price: 130, status: 'Available')
   Product.create(name: 'Firni (Large)', price: 150, status: 'Available')
   
