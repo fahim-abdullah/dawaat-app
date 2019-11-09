@@ -5,6 +5,8 @@ class Order < ApplicationRecord
   after_create :broadcast_to_admins
   after_update :broadcast_to_admins, :broadcast_to_delivery_man
 
+  attribute :delivery_man_notified, default: false
+
 	def user_check
 		Order.all.each do |order|
 			if self.phone.last(11) == order.phone.last(11)
@@ -23,11 +25,17 @@ class Order < ApplicationRecord
     admin_users = User.where(admin: true, order_connection_status: 1)
     admin_users.each do |user|
       ActionCable.server.broadcast "order_channel_#{user.id}", order: self.as_json
+      self.delivery_man_notified = true if user.id == self.user_id
       sleep 1
     end
   end
 
   def broadcast_to_delivery_man
+    if self.delivery_man_notified
+      puts '-- delivery_man_notified --'
+      return
+    end
+
     if User.where(id: self.user_id, order_connection_status: 1).present?
       ActionCable.server.broadcast "order_channel_#{self.user_id}", order: self.as_json
     end

@@ -1,3 +1,3 @@
 $( document ).on('turbolinks:load', function() {
-  $('#all-orders-table').DataTable();
+  window.all_orders_table = $('#all-orders-table').DataTable();
 } );

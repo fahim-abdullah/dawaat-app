@@ -1,7 +1,7 @@
 <div class="container table-container">
 	<div class="row">
 		<div class="col-12 py-4">
-			<h1 class="semi">Ongoing Orders <span class="realtime-status">Realtime: <i id="realtime-status-message">Connecting...</i></span></h1>
+			<h1 class="semi">Ongoing Orders <span class="realtime-status">Realtime: <span id="realtime-status-message">Connecting...</span></span></h1>
 			<hr>
 		</div>
 		<hr>
@@ -65,13 +65,16 @@
             connected: function() {
               // $('#connection-status').text('Connection Established');
               console.log('-- connected --');
+              $('#realtime-status-message').html('Connected');
             },
             disconnected: function() {
               // $('#connection-status').text('Disconnected');
               console.log('-- dicconnected --');
+              $('#realtime-status-message').html('Not connected');
             },
             received: function(data) {
               console.log('-- received --', data);
+              notify_and_reload_page();
             }
           });
 

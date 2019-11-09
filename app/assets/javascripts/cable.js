@@ -7,7 +7,7 @@
 
 (function() {
   this.App || (this.App = {});
-
   // App.cable = ActionCable.createConsumer();
-
+  console.log('App.user_api_token', $('#user_api_token').val());
+  // App.order_cable = ActionCable.createConsumer('/cable?api_token=#{current_user.get_api_token}');
 }).call(this);

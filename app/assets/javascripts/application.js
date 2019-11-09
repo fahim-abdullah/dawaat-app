@@ -45,3 +45,18 @@ $(document).on('turbolinks:load', function() {
 //      return false;
 //   }
 // }
+
+function notify_and_reload_page() {
+  var notify_sound = new Audio('/definite.ogg');
+  notify_sound.play();
+  notify_sound.onended = function() {
+    if($('reload-page').length > 0) {
+      Turbolinks.visit(location.toString());
+    }
+  };
+}
+
+// function update_realtime_message(elem, connected) {
+//   var msg = connected ? 'Connected' : 'Not connected';
+//   $('#realtime-status-message').html(msg);
+// }
