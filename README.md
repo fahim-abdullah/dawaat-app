@@ -13,6 +13,8 @@ Things you may want to cover:
 
 * Database creation
 
+$ rake db:setup
+
 * Database initialization
 
 * How to run the test suite
