@@ -3,6 +3,7 @@ class StaticsController < ApplicationController
 	end
 
 	def order
+		redirect_to root_path
 	end
 
 	def ourstory

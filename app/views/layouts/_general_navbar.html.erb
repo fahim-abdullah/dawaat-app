@@ -15,6 +15,31 @@
           <li class="nav-item">
               <a class="nav-link" href="/feedback">Feedback</a>
           </li>
+          <% if logged_in? %>
+              <li class="nav-item">
+                  <%= link_to 'My Orders', myorders_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                  <%= link_to 'Log out', logout_path, class: "nav-link", method: :delete %>
+              </li>
+          <% end %>
+
+          <% if logged_in? && (current_user.admin?) %>
+              <li>
+                <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+                </button>
+                <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+                </div>
+              </li>
+          <% end %>
       </ul>
   </div>
 </nav>

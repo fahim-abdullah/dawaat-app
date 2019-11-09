@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
 	before_action :set_timezone
+	before_action :require_user, except: [:new]
 
 	def index
 		@orders = Order.all

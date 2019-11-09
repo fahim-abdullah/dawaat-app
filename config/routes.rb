@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	get 'ourstory', to: 'statics#ourstory'
 	get 'thankyou', to: 'statics#thankyou'
 	get 'feedback', to: 'statics#feedback'
+	get 'order', to: 'statics#order'
 
 	resources :products
 	resources :users

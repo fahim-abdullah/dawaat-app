@@ -12,6 +12,7 @@
 						<th>Name</th>
 						<th>Address</th>
 						<th>Order Details</th>
+						<th>Status</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -19,7 +20,6 @@
 					<% @myorders.each do |order| %>
 					<tr>
 						<td><%= order.fullname %> <span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
-						
 						<td>
 							Address : <%= order.address %><br> 
 							Flat/House : <%= order.flathouse %><br>
@@ -32,6 +32,7 @@
 							<hr class="my-1">
 							<p class="semi m-0">Subtotal : <%= order.subtotal %></p>
 						</td>
+						<td><%= order.status %></td>
 						<td>
 							<%= link_to 'Call', "tel:#{order.phone}", class: 'btn btn-sm btn-warning' %>
 	                        

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_timezone
+	before_action :require_user, except: [:new]
 
 	def index
 		@users = User.all
