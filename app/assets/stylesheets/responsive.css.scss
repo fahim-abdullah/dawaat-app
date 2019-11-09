@@ -27,7 +27,7 @@
         display: none;
     }
     
-    .navbar {
+    .right-holder .navbar {
         width: calc(100% - 8%);
         position: fixed;
         top: 3%;
@@ -35,6 +35,15 @@
         padding-left: 15px;
     }
     
+    .right-holder .navbar-brand {
+        display: block;
+    }
+    
+    .right-holder .nav-link {
+        text-align: right;
+        margin-right: 0;
+    }
+
     .navbar-brand {
         display: block;
     }

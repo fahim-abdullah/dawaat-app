@@ -27,6 +27,7 @@ class OrdersController < ApplicationController
 
 	def new
 		@disable_footer = true
+		@disable_navbar = true
 
 		@beef_tehari = Product.where(:name => "Signature Tehari")[0]
 		@chicken_tehari = Product.where(:name => "Chicken Tehari")[0]

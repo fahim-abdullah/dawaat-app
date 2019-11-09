@@ -20,11 +20,11 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-  $(window).on("load", function(){
-    $('.loader').fadeOut('fast', function() {
-      $(this).remove();
-    });
-  });
+  
+	$('.loader').fadeOut('fast', function() {
+		$(this).remove();
+	});
+  
 });
 
 // document.onkeydown = function(e) {

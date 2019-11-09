@@ -8,4 +8,10 @@ class StaticsController < ApplicationController
 	def ourstory
 	end
 
+	def thankyou
+	end
+
+	def feedback
+	end
+
 end

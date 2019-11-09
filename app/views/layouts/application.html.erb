@@ -27,7 +27,7 @@
       Just kidding but hey, you code Ruby? Email us at fahim@dawaat.co and let's change how people thinks food!
  -->
   <body oncontextmenu="return false;">
-
+    <%= render 'layouts/general_navbar' unless @disable_navbar %>
     <%= yield %>
 
 
