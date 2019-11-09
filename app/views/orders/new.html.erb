@@ -13,7 +13,7 @@
                 </div>
 
 
-                <% if Time.now.hour > 0 && Time.now.hour < 13 %>
+                <% if ( Time.zone.now.hour + 6 ) > 0 && ( Time.zone.now.hour + 6 ) < 13 %>
 
 
                 <div class="jumbotron my-4 closed">
