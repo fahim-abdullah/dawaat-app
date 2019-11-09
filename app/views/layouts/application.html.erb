@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% if Rails.env.production? %>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107358166-6"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-107358166-6');
+      </script>
+    <% end %>
+
     <title>Dawaat</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,8 +23,14 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <% user_api_token = current_user.present? ? current_user.get_api_token : '' %>
+    <input type="hidden" id="user_api_token" value="<%= user_api_token %>">
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= yield :user_javascript %>
+
     <%= yield :head -%>
 
     <meta name="turbolinks-cache-control" content="no-cache">
@@ -28,7 +46,7 @@
 
       Just kidding but hey, you code Ruby? Email us at fahim@dawaat.co and let's change how people thinks food!
  -->
-  <body oncontextmenu="return false;">
+  <body oncontextmenu="return false;" class="page-<%= controller.controller_name %>-<%= controller.action_name %>">
     <%= render 'layouts/general_navbar' unless @disable_navbar %>
     <%= yield %>
 

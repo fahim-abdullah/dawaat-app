@@ -12,12 +12,18 @@
                     <img src="https://rebrand.ly/7b1e8" class="promo-img" />
                 </div>
 
+
+                <% if ( Time.zone.now.hour + 6 ) > 0 && ( Time.zone.now.hour + 6 ) < 13 %>
+
+
                 <div class="jumbotron my-4 closed">
                     <div class="col-12" align="center">
                         <h2 class="semi">Sorry, we are closed now!</h2>
                         <p class="mb-0 lead">Business Hours : 12PM to 12AM</p>
                     </div>
                 </div>
+
+                <% else %>
 
                 <div id="menu-holder">
                     <h2 class="semi menu-header">Our Menu</h2>
@@ -55,6 +61,11 @@
 
                     </div>
                 </div>
+
+
+                <% end %>
+
+
             </div>
 
             <%= render 'layouts/footer'%>
