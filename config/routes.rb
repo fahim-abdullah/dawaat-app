@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-	# root 'orders#new'
-  root 'statics#coming_soon'
+	root 'orders#new'
+  # root 'statics#coming_soon'
 
   get 'coming_soon', to: 'statics#coming_soon'
 	get 'ourstory', to: 'statics#ourstory'
