@@ -50,7 +50,9 @@ function notify_and_reload_page() {
   var notify_sound = new Audio('/definite.ogg');
   notify_sound.play().catch(function(e) {
     console.log('-- can not play sound --', e);
-    Turbolinks.visit(location.toString());
+    if($('.reload-page').length > 0) {
+      Turbolinks.visit(location.toString());
+    }
   });;
   notify_sound.onended = function() {
     if($('.reload-page').length > 0) {
