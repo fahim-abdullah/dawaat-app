@@ -2,6 +2,9 @@ class User < ApplicationRecord
 	has_many :orders
 	has_secure_password
 
+  validates :name, :username, presence: true
+  validates :username, uniqueness: true
+
   enum order_connection_status: { connected_to_order: 1, not_connected_to_order: 0 }
 
   def get_api_token

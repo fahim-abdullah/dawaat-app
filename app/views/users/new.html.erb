@@ -7,6 +7,20 @@
 		<hr>
 	</div>
 
+  <div>
+    <% if @user.errors.any? %>
+    <div class="text-danger">
+      <h6><%= pluralize(@user.errors.count, "error") %>:</h6>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  </div>
+
 	<div class="row">
 		<div class="col-md-5 col-12">
 			<%= form_for @user do |f| %>
