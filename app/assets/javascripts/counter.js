@@ -78,7 +78,7 @@ $(document).on('turbolinks:load', function() {
 
 
 	// Subtotal
-	$("#checkout").click(function(){
+	$("#cart-btn").click(function(){
 
 	    totalone = $("#quantity-1").val() * parseInt($("#price-1").text());
 	    totaltwo = $("#quantity-2").val() * parseInt($("#price-2").text());
