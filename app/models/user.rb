@@ -25,6 +25,6 @@ class User < ApplicationRecord
   end
 
   def set_order_connection_status(online:)
-    self.update_attribute(order_connection_status, online)
+    self.update_attribute(:order_connection_status, online)
   end
 end
