@@ -23,4 +23,8 @@ class User < ApplicationRecord
       break token unless User.where(api_token: token).exists?
     end
   end
+
+  def set_order_connection_status(online:)
+    self.update_attribute(order_connection_status: online)
+  end
 end
