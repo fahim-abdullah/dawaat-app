@@ -48,9 +48,13 @@ $(document).on('turbolinks:load', function() {
 
 function notify_and_reload_page() {
   var notify_sound = new Audio('/definite.ogg');
-  notify_sound.play();
+  notify_sound.play().catch(function(e) {
+    console.log('-- can not play sound --', e);
+    Turbolinks.visit(location.toString());
+  });;
   notify_sound.onended = function() {
-    if($('reload-page').length > 0) {
+    if($('.reload-page').length > 0) {
+      console.log('-- reload page with turbolink --');
       Turbolinks.visit(location.toString());
     }
   };
