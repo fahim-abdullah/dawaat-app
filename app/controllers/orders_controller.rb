@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 	end
 
 	def ongoing
-		@orders = Order.all
+		@orders = Order.where('status=? OR status=?', 'Pending', 'On The Way')
 	end
 
 	def edit
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
 
 		@beef_tehari = Product.where(:name => "Signature Tehari")[0]
 		@chicken_tehari = Product.where(:name => "Chicken Tehari")[0]
-		@polao_roast = Product.where(:name => "Fried Chicken Roast & Pulao")[0]
+		@polao_roast = Product.where(:name => "Fried Chicken Roast & Polao")[0]
 		@firni_reg = Product.where(:name => "Firni (Regular)")[0]
 		@firni_lg = Product.where(:name => "Firni (Large)")[0]
 		# @coke_med = Product.where(:name => "Coke (600 ml)")[0]
@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
 		@order = Order.find(params[:id])
 		if @order.update(order_params)
 			# flash[:notice] = "Updated"
-			redirect_to orders_path
+			redirect_to ongoing_path
 		else
 			render 'new'
 		end

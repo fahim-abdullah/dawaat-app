@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get 'order', to: 'statics#order'
 
-	get 'ongoing', to: 'orders#ongoing'
+	get 'ongoing', to: 'orders#ongoing', as: :ongoing
 
 	get 'myorders', to: 'users#myorders'
 

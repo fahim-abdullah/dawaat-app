@@ -13,6 +13,7 @@
 				<h4 class="semi">Order Details</h4>
 				<div class="jumbtron bg-light p-4 rounded">
 					<p class="mb-0">Name : <%= @order.fullname %></p>
+					<p class="mb-0">Phone : <%= @order.phone %></p>
 					<p class="mb-0">Address : <%= @order.address %></p>
 					<p class="mb-0">Subtotal : <%= @order.subtotal %></p>
 				</div>
@@ -44,7 +45,7 @@
 					</div>
 				</div>
 
-				<div style="display: block;">
+				<div style="display: none;">
 					<%= f.text_field :status, class: "form-control", id: "otw-status", :required => true, placeholder: "Status" %>
 					<%= f.text_field :ontheway_time, class: "form-control", id: "otw-time", :required => true, placeholder: "OTW Time" %>
 				</div>

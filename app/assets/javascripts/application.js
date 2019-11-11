@@ -25,6 +25,8 @@ $(document).on('turbolinks:load', function() {
 		$(this).remove();
 	});
   
+  $('.dropdown-toggle').dropdown()
+  
 });
 
 // document.onkeydown = function(e) {

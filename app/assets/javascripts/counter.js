@@ -85,12 +85,21 @@ $(document).on('turbolinks:load', function() {
 	    totalthree = $("#quantity-3").val() * parseInt($("#price-3").text());
 	    totalfour = $("#quantity-4").val() * parseInt($("#price-4").text());
 	    totalfive = $("#quantity-5").val() * parseInt($("#price-5").text());
+
+	    if (isNaN(totalone)) { totalone = 0}
+	    if (isNaN(totaltwo)) { totaltwo = 0}
+	    if (isNaN(totalthree)) { totalthree = 0}
+    	if (isNaN(totalfour)) { totalfour = 0}
+		if (isNaN(totalfive)) { totalfive = 0}
+
 	    subtotal = totalone + totaltwo + totalthree + totalfour + totalfive;
 
 		$("#subtotal-field").val(subtotal);
 		$("#subtotal").text(subtotal);
 		// Item Quantity Refresh
 		itemquantity = $("#itemquantity");
+		itemquantity.val("");
+
 		// Modal View
 		if (totalone > 1) {
 			$("#modal-product-1").show();

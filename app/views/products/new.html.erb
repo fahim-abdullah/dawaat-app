@@ -35,11 +35,7 @@
 				<div class="form-group row">
 					<label class="col-3 col-form-label">Status</label>
 					<div class="col">
-						<%= f.text_field :status, class: "form-control", list: "product-status", :required => true %>
-			            <datalist id="product-status">
-			                <option value="Available">Available</option>
-			                <option value="Sold Out">Sold Out</option>
-			            </datalist>
+						<%= f.select(:status, options_for_select([['Available', "Available"], ['Sold Out', "Sold Out"]]), {}, {class: "form-control"}) %>
 					</div>
 				</div>
 

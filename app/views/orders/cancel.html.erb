@@ -36,12 +36,11 @@
 				<div class="form-group row">
 					<label class="col-2 col-form-label">Status</label>
 					<div class="col-10">
-						<%= f.text_field :status, class: "form-control", list: "otw-status", :required => true, value: "" %>
-			            <datalist id="otw-status">
-							<option value="Cancelled">Cancelled</option>
-			            </datalist>
+						<%= f.select(:status, options_for_select([['Cancelled', "Cancelled"]]), {}, {class: "form-control"}) %>
 					</div>
 				</div>
+
+				
 
 				<%= f.submit class: "btn btn-success btn-sm" %>
 

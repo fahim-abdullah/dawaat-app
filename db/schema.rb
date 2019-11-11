@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2019_11_09_105408) do
     t.string "itemquantity"
     t.string "existing"
     t.string "status"
-    t.datetime "ontheway_time"
-    t.datetime "delivery_time"
+    t.timestamp "ontheway_time"
+    t.timestamp "delivery_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
