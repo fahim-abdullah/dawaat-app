@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 	def myorders
 		@user = User.find(session[:user_id]) if session[:user_id]
-		@myorders = @user.orders
+		@myorders = @user.orders.where('status=? OR status=?', 'Pending', 'On The Way')
 	end
 
 	def edit

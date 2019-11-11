@@ -39,7 +39,7 @@
 							<p class="semi m-0">Subtotal : <%= order.subtotal %></p>
 						</td>
 						<td><%= order.status %></td>
-						<td><%= order.user_id %></td>
+						<td><%= order.user.name if order.user.present? %></td>
 						<td><%= order.created_at.strftime("%I:%M %p") %></td>
 						<td>
 							<%= link_to 'Assign', order_assign_path(order), class: 'btn btn-sm btn-warning' %>

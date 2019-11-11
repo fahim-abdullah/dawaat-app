@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
 
 	def deliver 
 		@order = Order.find(params[:order_id])
+		
 	end
 
 	def new

@@ -1,3 +1,5 @@
 $( document ).on('turbolinks:load', function() {
-  window.all_orders_table = $('#all-orders-table').DataTable();
+  window.all_orders_table = $('#all-orders-table').DataTable({
+  	"order": [[0, "desc" ]]
+  });
 } );
