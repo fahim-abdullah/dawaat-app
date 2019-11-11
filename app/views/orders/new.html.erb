@@ -12,7 +12,13 @@
                     <img src="<%= asset_path 'promo.jpg' %>" class="promo-img" />
                 </div>
 
-                <% if ( Time.zone.now.hour + 6 ) > 0 && ( Time.zone.now.hour + 6 ) < 13 %>
+
+                <%
+                hide_menu = ( Time.zone.now.hour + 6 ) > 0 && ( Time.zone.now.hour + 6 ) < 13
+                hide_menu = false if params[:show_menu]
+                %>
+
+                <% if hide_menu %>
 
                 <div class="jumbotron my-4 closed">
                     <div class="col-12" align="center">
