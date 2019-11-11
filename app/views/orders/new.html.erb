@@ -12,9 +12,7 @@
                     <img src="<%= asset_path 'promo.jpg' %>" class="promo-img" />
                 </div>
 
-
                 <% if ( Time.zone.now.hour + 6 ) > 0 && ( Time.zone.now.hour + 6 ) < 13 %>
-
 
                 <div class="jumbotron my-4 closed">
                     <div class="col-12" align="center">
@@ -61,7 +59,13 @@
 
                     </div>
                 </div>
-
+                <button class="col-md-7 offset-md-5 offset-0 fixed-bottom btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="cart-btn" style="display: none;">
+                    <span class="col text-left">
+                        <i class="fas fa-shopping-cart"></i> 
+                        View Cart 
+                        <span class="btn-success" id="cart-number">0</span>
+                    </span>
+                </button>
 
                 <% end %>
 
@@ -70,7 +74,7 @@
 
             <%= render 'layouts/footer'%>
 
-            <button class="col-md-7 offset-md-5 offset-0 fixed-bottom btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="cart-btn"><span class="col text-left"><i class="fas fa-shopping-cart"></i> View Cart</span></button>
+            
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModalCenter">

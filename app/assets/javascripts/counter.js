@@ -1,11 +1,25 @@
 // mq = modal quantity
 
 $(document).on('turbolinks:load', function() {
+	function updateCartNumber(quantity) {
+		var cart_num = parseInt($("#cart-number").html());
+		cart_num = cart_num + quantity;
+		$("#cart-number").html(cart_num);
+
+		if (cart_num = 0) {
+			$("#cart-btn").hide();
+		} else {
+			$("footer").css('margin-bottom','50px');
+			$("#cart-btn").show();
+
+		}
+	}
 	$("#plus-1").click(function(){
 		num = parseInt($("#quantity-1").val());
 	    if (num < 12) {
 	    	$("#quantity-1").val(num+1);
 	    	$("#mq-1").text(num+1);
+	    	updateCartNumber(1);
 	    }
 	})
 	$("#minus-1").click(function(){
@@ -13,6 +27,7 @@ $(document).on('turbolinks:load', function() {
 	    if (num > 0) {
 	    	$("#quantity-1").val(num-1);
 	    	$("#mq-1").text(num-1);
+	    	updateCartNumber(-1);
 	    }
 	})
 
@@ -21,6 +36,7 @@ $(document).on('turbolinks:load', function() {
 	    if (num < 12) {
 	    	$("#quantity-2").val(num+1);
 	    	$("#mq-2").text(num+1);
+	    	updateCartNumber(1);
 	    }
 	})
 	$("#minus-2").click(function(){
@@ -28,6 +44,7 @@ $(document).on('turbolinks:load', function() {
 	    if (num > 0) {
 	    	$("#quantity-2").val(num-1);
 	    	$("#mq-2").text(num-1);
+	    	updateCartNumber(-1);
 	    } 
 	})
 
@@ -36,6 +53,7 @@ $(document).on('turbolinks:load', function() {
 	    if (num < 12) {
 	    	$("#quantity-3").val(num+1);
 	    	$("#mq-3").text(num+1);
+	    	updateCartNumber(1);
 	    }
 	})
 	$("#minus-3").click(function(){
@@ -43,6 +61,7 @@ $(document).on('turbolinks:load', function() {
 	    if (num > 0) {
 	    	$("#quantity-3").val(num-1);
 	    	$("#mq-3").text(num-1);
+	    	updateCartNumber(-1);
 	    } 
 	})
 
@@ -51,6 +70,7 @@ $(document).on('turbolinks:load', function() {
 	    if (num < 12) {
 	    	$("#quantity-4").val(num+1);
 	    	$("#mq-4").text(num+1);
+	    	updateCartNumber(1);
 	    }
 	})
 	$("#minus-4").click(function(){
@@ -58,6 +78,7 @@ $(document).on('turbolinks:load', function() {
 	    if (num > 0) {
 	    	$("#quantity-4").val(num-1);
 	    	$("#mq-4").text(num-1);
+	    	updateCartNumber(-1);
 	    } 
 	})
 
@@ -66,6 +87,7 @@ $(document).on('turbolinks:load', function() {
 	    if (num < 12) {
 	    	$("#quantity-5").val(num+1);
 	    	$("#mq-5").text(num+1);
+	    	updateCartNumber(1);
 	    }
 	})
 	$("#minus-5").click(function(){
@@ -73,6 +95,7 @@ $(document).on('turbolinks:load', function() {
 	    if (num > 0) {
 	    	$("#quantity-5").val(num-1);
 	    	$("#mq-5").text(num-1);
+	    	updateCartNumber(-1);
 	    } 
 	})
 
