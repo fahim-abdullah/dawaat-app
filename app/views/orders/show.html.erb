@@ -42,8 +42,13 @@
 	</div>
 
 	<div class="row col-md-6">
-		<p class="col-md-4">Subtotal : </p>
+		<p class="col-md-4">Items/Quantity : </p>
 		<p class="col"><%= @order.itemquantity %></p>
+	</div>
+
+	<div class="row col-md-6">
+		<p class="col-md-4">Subtotal : </p>
+		<p class="col"><%= @order.subtotal %></p>
 	</div>
 
 	<div class="row col-md-6">
@@ -72,8 +77,8 @@
 	</div>
 
 	<div class="row col-md-6">
-		<p class="col-md-4">User ID : </p>
-		<p class="col"><%= @order.user_id %></p>
+		<p class="col-md-4">Assigned to : </p>
+		<p class="col"><%= @order.user %></p>
 	</div>
 
 	<div class="row col-md-6">
