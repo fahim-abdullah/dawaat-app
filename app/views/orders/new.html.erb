@@ -10,14 +10,16 @@
 
                 <div class="promo-banner col-12">
                     <img src="<%= asset_path 'promo.jpg' %>" class="promo-img" />
-                    <input type="hidden" name="zone_now_hour" value="<%= Time.zone.now.hour %>">
                 </div>
 
 
                 <%
-                hide_menu = ( Time.zone.now.hour + 6 ) > 0 && ( Time.zone.now.hour + 6 ) < 13
+                six_zone_hour = Time.new.getlocal("+06:00").hour
+                hide_menu = ( six_zone_hour > 0 && ( six_zone_hour < 13
                 hide_menu = false if params[:show_menu]
                 %>
+
+                <input type="hidden" name="" value="<%= six_zone_hour %>">
 
                 <% if hide_menu %>
 
