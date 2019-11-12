@@ -7,20 +7,20 @@
   <div class="collapse navbar-collapse semi" id="navbarSupportedContent2">
       <ul class="navbar-nav ml-auto" align="right">
           <li class="nav-item">
-              <a class="nav-link" href="/">Menu</a>
+              <a class="nav-link color-black-important" href="/">Menu</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/ourstory">Our Story</a>
+              <a class="nav-link color-black-important" href="/ourstory">Our Story</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/feedback">Feedback</a>
+              <a class="nav-link " href="/feedback">Feedback</a>
           </li>
           <% if logged_in? %>
               <li class="nav-item">
-                  <%= link_to 'My Orders', myorders_path, class: "nav-link" %>
+                  <%= link_to 'My Orders', myorders_path, class: "nav-link color-black-important" %>
               </li>
               <li class="nav-item">
-                  <%= link_to 'Log out', logout_path, class: "nav-link", method: :delete %>
+                  <%= link_to 'Log out', logout_path, class: "nav-link color-black-important", method: :delete %>
               </li>
           <% end %>
 
