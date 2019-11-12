@@ -27,8 +27,8 @@
 			<%= form_for @order do |f| %>
 
 				<div class="form-group row">
-					<label class="col-2 col-form-label">Name</label>
-					<div class="col-10">
+					<label class="col-3 col-form-label">Name</label>
+					<div class="col">
 						<%= f.text_field :user_id, class: "form-control", list: "assign-user", value: "", :required => true %>
 			            <datalist id="assign-user">
 			            	<% User.all.each do |user| %>

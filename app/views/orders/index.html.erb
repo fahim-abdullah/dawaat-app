@@ -5,7 +5,7 @@
 			<hr>
 		</div>
 		<hr>
-		<div class="col-12">
+		<div class="col-12" style="overflow-x: scroll;">
 			<table id="all-orders-table" class="display">
 				<thead>
 					<tr>
@@ -37,7 +37,7 @@
 						<td><%= order.user.name %></td>
 						<td>
 							<%= link_to 'Show', order_path(order), class: 'btn btn-sm btn-primary' %>
-	                        <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger disabled' %>
+	                        <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger' %>
 						</td>
 					</tr>
 					<% end %>
