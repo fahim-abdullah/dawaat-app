@@ -15,6 +15,9 @@ class Order < ApplicationRecord
 				self.existing = "New"
 			end
 		end
+  rescue => e
+    Rails.logger.error "Exception in app/models/order.rb: user_check callback, order_id: #{self.id}"
+    Rails.logger.error e.message
 	end
 
 	def status_fill
@@ -28,6 +31,9 @@ class Order < ApplicationRecord
       self.delivery_man_notified = true if user.id == self.user_id
       sleep 1
     end
+  rescue => e
+    Rails.logger.error "Exception in app/models/order.rb: broadcast_to_admins callback, order_id: #{self.id}"
+    Rails.logger.error e.message
   end
 
   def broadcast_to_delivery_man
@@ -39,6 +45,9 @@ class Order < ApplicationRecord
     if User.where(id: self.user_id, order_connection_status: 1).present?
       ActionCable.server.broadcast "order_channel_#{self.user_id}", order: self.as_json
     end
+  rescue => e
+    Rails.logger.error "Exception in app/models/order.rb: broadcast_to_delivery_man callback, order_id: #{self.id}"
+    Rails.logger.error e.message
   end
 
 end
