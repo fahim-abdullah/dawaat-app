@@ -25,8 +25,19 @@ $(document).on('turbolinks:load', function() {
 		$(this).remove();
 	});
   
-  $('.dropdown-toggle').dropdown()
-  
+  $('.dropdown-toggle').dropdown();
+
+
+  // find domain, if domain is dawaat.co -> redirect to https
+  var domain_prefix_length = window.location.protocol.length + 2;
+  var site_domain = window.location.href.substring(domain_prefix_length, domain_prefix_length+9)
+  if(site_domain == 'dawaat.co') { // force https
+    if (location.protocol != 'https:')
+    {
+      location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    }
+  }
+
 });
 
 // document.onkeydown = function(e) {
