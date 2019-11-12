@@ -6,10 +6,10 @@
 		</div>
 		<hr>
 		<div class="col-12" style="overflow-x: scroll;">
-			<table id="ongoing-orders-table" class="display">
+			<table id="all-orders-table" class="display">
 				<thead>
 					<tr>
-            <th>ID</th>
+			            <th>ID</th>
 						<th>Name</th>
 						<th>Phone</th>
 						<th>Location</th>
@@ -24,7 +24,7 @@
 					<% @orders.each do |order| %>
 
 					<tr>
-            <td><%= order.id %></td>
+			            <td><%= order.id %></td>
 						<td><%= order.fullname %> <span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
 						<td><%= order.phone %></td>
 						<td>
