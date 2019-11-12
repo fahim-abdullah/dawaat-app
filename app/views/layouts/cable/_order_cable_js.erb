@@ -1,0 +1,48 @@
+<script type="text/javascript" charset="utf-8">
+  <% if logged_in? %>
+    $(document).on('turbolinks:load', function() {
+
+      function order_cable_realtime_message(msg) {
+        $('#realtime-status-message').html(msg);
+      }
+
+      // -----------------------------------
+
+      if(typeof(App.order_cable) == 'undefined') {
+        <%= init_cable(cable_name: 'order_cable').html_safe %>  
+
+        App.order_cable = App.order_cable.subscriptions.create({ channel: "OrderChannel" }, {
+          connected: function() {
+            // $('#connection-status').text('Connection Established');
+            console.log('-- order_cable: connected --');
+            order_cable_realtime_message('Connected')
+            App.order_cable_connected = true;
+          },
+          disconnected: function() {
+            // $('#connection-status').text('Disconnected');
+            console.log('-- order_cable: dicconnected --');
+            order_cable_realtime_message('Not connected');
+            App.order_cable_connected = false;
+          },
+          received: function(data) {
+            console.log('-- received --', data);
+            notify_and_reload_page();
+          }
+        });
+
+      } else {
+
+        if(App.order_cable_connected == true) {
+          order_cable_realtime_message('Connected');
+        } else {
+          order_cable_realtime_message('Not connected');
+        }
+      
+      }
+
+
+    });
+  <% else %>
+    console.log('Not logged in');
+  <% end %>
+</script>
