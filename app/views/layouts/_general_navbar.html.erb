@@ -15,28 +15,35 @@
           <li class="nav-item">
               <a class="nav-link " href="/feedback">Feedback</a>
           </li>
-          <% if logged_in? %>
+          <% if logged_in? && (current_user.admin == false) %>
               <li class="nav-item">
-                  <%= link_to 'My Orders', myorders_path, class: "nav-link color-black-important" %>
-              </li>
-              <li class="nav-item">
-                  <%= link_to 'Log out', logout_path, class: "nav-link color-black-important", method: :delete %>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="action-btn">
+                    Admin
+                    </button>
+                    <div class="dropdown-menu">
+                        <%= link_to 'My Orders', myorders_path, class: "dropdown-item color-black-important" %>
+                        <%= link_to 'Logout', logout_path, class: "dropdown-item color-black-important" %>
+                    </div>
+                  </div>
               </li>
           <% end %>
 
           <% if logged_in? && (current_user.admin?) %>
               <li class="nav-item">
                   <div class="btn-group">
-                      <button type="button" class="btn btn-primary dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="action-btn">
-                      Admin
-                      </button>
-                      <div class="dropdown-menu">
-                          <a class="dropdown-item" href="/ongoing">Ongoing Orders</a>
-                          <a class="dropdown-item" href="/products">Products Table</a>
-                          <a class="dropdown-item" href="/orders">All Orders</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="/users">Users</a>
-                      </div>
+                    <button type="button" class="btn btn-primary dropdown-toggle nav-link px-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="action-btn">
+                    Admin
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/ongoing">Ongoing Orders</a>
+                        <a class="dropdown-item" href="/products">All Products</a>
+                        <a class="dropdown-item" href="/orders">All Orders</a>
+                        <a class="dropdown-item" href="/users">All Users</a>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to 'My Orders', myorders_path, class: "dropdown-item color-black-important" %>
+                        <%= link_to 'Logout', logout_path, class: "dropdown-item color-black-important" %>
+                    </div>
                   </div>
               </li>
           <% end %>
