@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% if Rails.env.production? %>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107358166-6"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-107358166-6');
-      </script>
-    <% end %>
+    <%= render 'layouts/google_analytics' %>
 
     <title>Dawaat</title>
     <meta charset="utf-8">
