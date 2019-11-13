@@ -15,7 +15,7 @@
 
                 <%
                 six_zone_hour = Time.new.getlocal("+06:00").hour
-                hide_menu = ( six_zone_hour >= 0 && six_zone_hour < 13 )
+                hide_menu = ( six_zone_hour >= 0 && six_zone_hour < 12 )
                 hide_menu = false if params[:show_menu]
                 %>
 
