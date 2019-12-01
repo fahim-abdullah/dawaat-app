@@ -65,7 +65,7 @@
     position: relative;
     color: black;
     font-size: 16px;
-
+    transition: 0.1s;
 }
 
 .navbar-toggler {
@@ -77,4 +77,8 @@
 
 #action-btn {
     color: white;
+}
+
+.nav-link:hover {
+    color: #ffdd00 !important;
 }

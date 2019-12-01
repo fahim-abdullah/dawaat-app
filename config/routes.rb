@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'coming_soon', to: 'statics#coming_soon'
 	get 'ourstory', to: 'statics#ourstory'
 	get 'thankyou', to: 'statics#thankyou', as: :thankyou
-	get 'feedback', to: 'statics#feedback'
+	get 'contactus', to: 'statics#contactus'
 
 	resources :products
 	resources :users

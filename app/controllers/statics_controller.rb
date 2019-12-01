@@ -10,7 +10,7 @@ class StaticsController < ApplicationController
 	def thankyou
 	end
 
-	def feedback
+	def contactus
 	end
 
 end
