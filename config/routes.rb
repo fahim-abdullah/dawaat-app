@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
 	resources :products
 	resources :users
+	resources :expenses
 	
 	resources :orders do
 		get 'assign', 'deliver', 'cancel'
