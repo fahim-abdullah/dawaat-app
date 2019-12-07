@@ -3,7 +3,7 @@ development:
   encoding: utf8
   database: dawaat_development
   username: root
-  password: lamborghini9
+  password: root
   host: 127.0.0.1
   port: 3306
 
