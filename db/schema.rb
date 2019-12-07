@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_12_07_152506) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
+    t.string "available_image"
     t.string "soldout_image"
     t.integer "sequence"
   end
