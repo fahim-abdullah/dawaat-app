@@ -25,6 +25,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     'no-image-450x450.jpg'
   end
 
+  version :thumb do
+    process resize_to_fit: [100, 100]
+  end
+
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #

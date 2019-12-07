@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12 py-4">
-			<h1 class="semi">Edit Product</h1>
+			<h1 class="semi">New Product</h1>
 			<hr>
 		</div>
 		<hr>
@@ -25,12 +25,26 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
-					<label class="col-3 col-form-label">Price</label>
-					<div class="col">
-						<%= f.text_field :price, class: "form-control", :required => true %>
-					</div>
-				</div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Price</label>
+          <div class="col">
+            <%= f.text_field :price, class: "form-control", :required => true %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Available image</label>
+          <div class="col">
+            <%= f.file_field :available_image, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Soldout image</label>
+          <div class="col">
+            <%= f.file_field :soldout_image, class: "form-control" %>
+          </div>
+        </div>
 
 				<div class="form-group row">
 					<label class="col-3 col-form-label">Status</label>

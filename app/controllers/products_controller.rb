@@ -45,7 +45,8 @@ class ProductsController < ApplicationController
 
 	private
 	def product_params 
-		params.require(:product).permit(:name, :price, :old_price, :status)
+		params.require(:product).permit(:name, :price, :old_price, :status,
+      :available_image, :soldout_image, :sequence)
 	end
 	def set_timezone
 		Time.zone = "Dhaka"
