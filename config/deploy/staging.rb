@@ -7,6 +7,8 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
+set :branch, 'dev'
+
 set :deploy_to, "/home/deployer/apps/demo-dawaat"
 
 server '134.209.151.87', user: 'deployer', roles: %w{app db web}
