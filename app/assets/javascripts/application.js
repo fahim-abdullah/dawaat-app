@@ -31,7 +31,8 @@ $(document).on('turbolinks:load', function() {
   // find domain, if domain is dawaat.co -> redirect to https
   var domain_prefix_length = window.location.protocol.length + 2;
   var site_domain = window.location.href.substring(domain_prefix_length, domain_prefix_length+9)
-  if(site_domain == 'dawaat.co') { // force https
+  var demo_site_domain = window.location.href.substring(domain_prefix_length, domain_prefix_length+14)
+  if(site_domain == 'dawaat.co' || demo_site_domain == 'demo.dawaat.co') { // force https
     if (location.protocol != 'https:')
     {
       location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
