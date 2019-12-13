@@ -7,6 +7,8 @@ class Order < ApplicationRecord
 
   attribute :delivery_man_notified, default: false
 
+  has_many :order_items
+
 	def user_check
 		Order.all.each do |order|
 			if self.phone.last(11) == order.phone.last(11)
