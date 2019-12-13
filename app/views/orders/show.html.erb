@@ -65,9 +65,9 @@
       <table class="table table-responsive table-right-align">
         <tbody>
           <tr><th colspan="3" class="text-center">Invoice summary</th></tr>
-          <tr><td>Subtotal</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right">500</td></tr>
-          <tr><td>DOscount</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right">40</td></tr>
-          <tr><td>Subtotal</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right">460</td></tr>
+          <tr><td>Subtotal</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right"><%= @order.subtotal %></td></tr>
+          <tr><td>Discount</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right">0</td></tr>
+          <tr><td>Total</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right"><%= @order.subtotal %></td></tr>
         </tbody>
       </table>
     </div>  

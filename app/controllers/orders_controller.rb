@@ -47,7 +47,26 @@ class OrdersController < ApplicationController
 
 	def create
 		@order = Order.new(order_params)
+
 		if @order.save
+
+      #--insert-order-items
+      total_price = 0
+      order_items_string = params[:order_items_string]
+      order_items_string.split('---').each do |item_info|
+        info_arr = item_info.split('...')
+        product_id = info_arr[0]
+        product_quantity = info_arr[1]
+        product = Product.find(product_id)
+
+        total_price += product.price.to_i * product_quantity.to_i
+
+        @order.order_items.create(product_id: product_id,
+          product_name: product.name, price: product.price, quantity: product_quantity)
+      end
+
+      @order.update_attribute(:subtotal, total_price)
+
 			redirect_to thankyou_path
 		else
 			render 'new'
@@ -77,7 +96,7 @@ class OrdersController < ApplicationController
 	private
 	def order_params 
 		params.require(:order).permit(:fullname, :phone, :address, :flathouse, 
-      :road, :latlng, :subtotal, :itemquantity, :existing, :status, 
+      :road, :latlng, :subtotal, :itemquantity, :existing, :status, :lat, :lng,
       :ontheway_time, :delivery_time, :instructions, :user_id)
 	end
 	def set_timezone
