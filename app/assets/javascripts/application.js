@@ -10,28 +10,36 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
-//= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require jquery.dataTables.min
+//= require turbolinks
+//= require imagesloaded.pkgd
 //= require_tree .
 
+
+function hideLoader() {
+  // console.log('-- hideLoader --');
+  $('.loader').fadeOut('fast', function() {
+    $(this).remove();
+  });
+}
+
 $(document).on('turbolinks:load', function() {
-  
-	$('.loader').fadeOut('fast', function() {
-		$(this).remove();
-	});
-  
+ 
+  $('#orders-new-page').imagesLoaded(hideLoader);
+
   $('.dropdown-toggle').dropdown();
 
 
   // find domain, if domain is dawaat.co -> redirect to https
   var domain_prefix_length = window.location.protocol.length + 2;
   var site_domain = window.location.href.substring(domain_prefix_length, domain_prefix_length+9)
-  if(site_domain == 'dawaat.co') { // force https
+  var demo_site_domain = window.location.href.substring(domain_prefix_length, domain_prefix_length+14)
+  if(site_domain == 'dawaat.co' || demo_site_domain == 'demo.dawaat.co') { // force https
     if (location.protocol != 'https:')
     {
       location.href = 'https:' + window.location.href.substring(window.location.protocol.length);

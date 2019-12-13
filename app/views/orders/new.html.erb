@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" id="orders-new-page">
     <div class="row">
         <div class="col-md-5 col-12 bg-warning left" style="position:fixed;">
             <img src="http://bit.ly/2MKVeWC" class="logo-web"/>
@@ -36,35 +36,14 @@
                     <h2 class="semi menu-header">Our Menu</h2>
 
                     <div class="row">
-						<% if @beef_tehari.status == "Sold Out" %>
-							<%= render 'layouts/product-soldout/signature-tehari' %>
-						<% else %>
-							<%= render 'layouts/product-available/signature-tehari' %>
-						<% end %>
 
-						<% if @chicken_tehari.status == "Sold Out" %>
-							<%= render 'layouts/product-soldout/chicken-tehari' %>
-						<% else %>
-							<%= render 'layouts/product-available/chicken-tehari' %>
-						<% end %>
-
-						<% if @polao_roast.status == "Sold Out" %>
-							<%= render 'layouts/product-soldout/polao-roast' %>
-						<% else %>
-							<%= render 'layouts/product-available/polao-roast' %>
-						<% end %>
-
-						<% if @firni_reg.status == "Sold Out" %>
-							<%= render 'layouts/product-soldout/firni-reg' %>
-						<% else %>
-							<%= render 'layouts/product-available/firni-reg' %>
-						<% end %>
-
-						<% if @firni_lg.status == "Sold Out" %>
-							<%= render 'layouts/product-soldout/firni-lg' %>
-						<% else %>
-							<%= render 'layouts/product-available/firni-lg' %>
-						<% end %>
+                      <% @products.each do |product| %>
+                        <% if product.status == "Sold Out" %>
+                          <%= render 'layouts/product_soldout', product: product %>
+                        <% else %>
+                          <%= render 'layouts/product_available', product: product %>
+                        <% end %>
+                      <% end %>
 
                     </div>
                 </div>
@@ -143,26 +122,14 @@
                                 </div>
 
                                 <div class="modal-card">
-                                    <div class="row" id="modal-product-1">
-                                        <div class="col-7 text-left"><%= @beef_tehari.name %></div>
-                                        <div class="col-5 text-right"><span id="mq-1"></span> x <%= @beef_tehari.price %></div>
-                                    </div>
-                                    <div class="row" id="modal-product-2">
-                                        <div class="col-7 text-left"><%= @chicken_tehari.name %></div>
-                                        <div class="col-5 text-right"><span id="mq-2"></span> x <%= @chicken_tehari.price %></div>
-                                    </div>
-                                    <div class="row" id="modal-product-3">
-                                        <div class="col-7 text-left"><%= @polao_roast.name %></div>
-                                        <div class="col-5 text-right"><span id="mq-3"></span> x <%= @polao_roast.price %></div>
-                                    </div>
-                                    <div class="row" id="modal-product-4">
-                                        <div class="col-7 text-left"><%= @firni_reg.name %></div>
-                                        <div class="col-5 text-right"><span id="mq-4"></span> x <%= @firni_reg.price %></div>
-                                    </div>
-                                    <div class="row" id="modal-product-5">
-                                        <div class="col-7 text-left"><%= @firni_lg.name %></div>
-                                        <div class="col-5 text-right"><span id="mq-5"></span> x <%= @firni_lg.price %></div>
-                                    </div>
+
+                                    <% @products.each do |product| %>
+                                      <div class="row" id="modal-product-<%= product.id %>">
+                                        <div class="col-7 text-left"><%= product.name %></div>
+                                        <div class="col-5 text-right"><span id="mq-<%= product.id %>"></span> x <%= product.price %></div>
+                                      </div>
+                                    <% end %>
+
                                     <hr class="card-hr">
                                     <div class="row">
                                         <div class="col-7 text-left sub">Subtotal</div>

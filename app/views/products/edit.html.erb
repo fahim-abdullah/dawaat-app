@@ -32,6 +32,28 @@
 					</div>
 				</div>
 
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Available image</label>
+          <div class="col">
+            <%= f.file_field :available_image, class: "form-control" %>
+          </div>
+
+          <div class="col-9 offset-3">
+            <%= image_tag @product.available_image.url(:thumb), class: 'mini-image-100' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Soldout image</label>
+          <div class="col">
+            <%= f.file_field :soldout_image, class: "form-control" %>
+          </div>
+
+          <div class="col-9 offset-3">
+            <%= image_tag @product.soldout_image.url(:thumb), class: 'mini-image-100' %>
+          </div>
+        </div>
+
 				<div class="form-group row">
 					<label class="col-3 col-form-label">Status</label>
 					<div class="col">

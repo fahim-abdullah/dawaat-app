@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv='cache-control' content='no-cache'>
     <meta property="og:image" content="https://lh5.googleusercontent.com/ytbNpSKrt-WoW3xNZjwFk3YmzdfK482XtXEcv-Xbv0oGvDmqUVBl8V2Dt9B_kRJPbZFxgdoLgqOqjZv82xKt6zM8AKZFSDTI1bRG7SeVuvtNafzmiAl08B_SIuxU68x_UuUicL1EE" />
-    <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
+    <!-- <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16"> -->
 
 
     <%= csrf_meta_tags %>
@@ -18,9 +18,9 @@
     <input type="hidden" id="user_api_token" value="<%= user_api_token %>">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= yield :user_javascript %>
+    <%#= yield :user_javascript %>
 
     <%= yield :head -%>
 
@@ -43,5 +43,8 @@
 
 
     <%= render 'layouts/footer' unless @disable_footer %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-eval' => false %>
+    <%= yield :user_javascript %>
   </body>
 </html>

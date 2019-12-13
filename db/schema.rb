@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_144255) do
+ActiveRecord::Schema.define(version: 2019_12_07_152506) do
 
   create_table "expenses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "purpose"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 2019_12_04_144255) do
     t.string "itemquantity"
     t.string "existing"
     t.string "status"
-    t.timestamp "ontheway_time"
-    t.timestamp "delivery_time"
+    t.datetime "ontheway_time"
+    t.datetime "delivery_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 2019_12_04_144255) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "available_image"
+    t.string "soldout_image"
+    t.integer "sequence"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

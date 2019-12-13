@@ -32,13 +32,15 @@ class OrdersController < ApplicationController
 		@disable_footer = true
 		@disable_navbar = true
 
-		@beef_tehari = Product.where(:name => "Signature Tehari")[0]
-		@chicken_tehari = Product.where(:name => "Chicken Tehari")[0]
-		@polao_roast = Product.where(:name => "Fried Chicken Roast & Polao")[0]
-		@firni_reg = Product.where(:name => "Firni (Regular)")[0]
-		@firni_lg = Product.where(:name => "Firni (Large)")[0]
+		# @beef_tehari = Product.where(:name => "Signature Tehari")[0]
+		# @chicken_tehari = Product.where(:name => "Chicken Tehari")[0]
+		# @polao_roast = Product.where(:name => "Fried Chicken Roast & Polao")[0]
+		# @firni_reg = Product.where(:name => "Firni (Regular)")[0]
+		# @firni_lg = Product.where(:name => "Firni (Large)")[0]
 		# @coke_med = Product.where(:name => "Coke (600 ml)")[0]
 		# @coke_lg = Product.where(:name => "Coke (1.25L)")[0]
+
+    @products = Product.all
 
 		@order = Order.new
 	end
@@ -74,7 +76,9 @@ class OrdersController < ApplicationController
 
 	private
 	def order_params 
-		params.require(:order).permit(:fullname, :phone, :address, :flathouse, :road, :latlng, :subtotal, :itemquantity, :existing, :status, :ontheway_time, :delivery_time, :instructions, :user_id)
+		params.require(:order).permit(:fullname, :phone, :address, :flathouse, 
+      :road, :latlng, :subtotal, :itemquantity, :existing, :status, 
+      :ontheway_time, :delivery_time, :instructions, :user_id)
 	end
 	def set_timezone
 		Time.zone = "Dhaka"

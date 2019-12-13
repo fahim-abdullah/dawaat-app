@@ -1,0 +1,20 @@
+<div class="col-md-6 menu-product-item" dataid="<%= product.id %>">
+    <div class="card">
+        <img src="<%= asset_path product.soldout_image.url %>" class="card-img card-img-top">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12" align="center">
+                    <div class="item-details">
+                        <p class="item-title"><%= product.name %></p>
+                        <p class="item-price">
+                            <% if product.old_price != "" %>
+                            <del class="regular">TK <%= product.old_price %></del> 
+                            <% end %>
+                            TK <%= product.price %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
