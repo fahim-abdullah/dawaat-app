@@ -46,6 +46,10 @@ $(document).on('turbolinks:load', function() {
     }
   }
 
+  $('.print-current-page').on('click', function(){
+    window.print();
+  });
+
 });
 
 // document.onkeydown = function(e) {
