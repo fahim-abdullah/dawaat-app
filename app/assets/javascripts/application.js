@@ -17,14 +17,21 @@
 //= require bootstrap-sprockets
 //= require jquery.dataTables.min
 //= require turbolinks
+//= require imagesloaded.pkgd
 //= require_tree .
 
+
+function hideLoader() {
+  // console.log('-- hideLoader --');
+  $('.loader').fadeOut('fast', function() {
+    $(this).remove();
+  });
+}
+
 $(document).on('turbolinks:load', function() {
-  
-	$('.loader').fadeOut('fast', function() {
-		$(this).remove();
-	});
-  
+ 
+  $('#orders-new-page').imagesLoaded(hideLoader);
+
   $('.dropdown-toggle').dropdown();
 
 
