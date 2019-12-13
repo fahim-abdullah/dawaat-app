@@ -44,8 +44,17 @@
 						<td><%= order.user.name if order.user.present? %></td>
 						<td><%= order.created_at.strftime("%I:%M %p") %></td>
 						<td>
-							<%= link_to 'Assign', order_assign_path(order), class: 'btn btn-sm btn-warning' %>
-	                        <%= link_to 'Cancel', order_cancel_path(order), class: 'btn btn-sm btn-danger' %>
+							<div class="mb-2">
+                <%= link_to 'Assign', order_assign_path(order), class: 'btn btn-sm btn-warning' %>
+              </div>
+              
+              <div class="mb-2">
+                <%= link_to 'Cancel', order_cancel_path(order), class: 'btn btn-sm btn-danger' %>
+              </div>
+
+              <div class="mb-2">
+                <%= link_to 'Show', order_path(order, back_url: request.path), class: 'btn btn-sm btn-primary' %>
+              </div>
 						</td>
 					</tr>
 

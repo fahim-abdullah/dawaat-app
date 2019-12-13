@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
 	get 'ongoing', to: 'orders#ongoing', as: :ongoing
 
-	get 'myorders', to: 'users#myorders'
+	get 'myorders', to: 'users#myorders', as: :myorders
 
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'

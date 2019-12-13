@@ -1,11 +1,87 @@
 <div class="container table-container">
 	<div class="row">
 		<div class="col-12 py-4">
-			<h1 class="semi">View Order</h1>
+			<h1 class="semi">Invoice</h1>
 			<hr>
 		</div>
 		<hr>
 	</div>
+
+
+
+  <div class="row">
+    <div class="col-6">
+      <h4 class="pl-2">&nbsp;Dawaat.co</h4>
+      <table class="table table-borderless table-responsive">
+        <tr><td>Order id</td> <td>:</td> <td><%= @order.id %></td></tr>
+        <tr><td>Date</td> <td>:</td> <td><%= @order.created_at.strftime("%d-%m-%Y") %></td></tr>
+      </table>
+    </div>
+    <div class="col-6">
+      <h5 class="pl-2">&nbsp;Customer details</h5>
+      <table class="table table-borderless table-responsive table-right-align">
+        <tbody>
+          <tr><td>Name</td>         <td>:</td> <td><%= @order.fullname %></td></tr>
+          <tr><td>Phone</td>        <td>:</td> <td><%= @order.phone %></td></tr>
+          <tr>
+            <td>Address</td>      
+            <td>:</td> 
+            <td>
+              Flat/house: <%= @order.flathouse %>,
+              Road: <%= @order.road %>,
+              <%= @order.address %>
+                
+            </td>
+          </tr>
+          
+          <tr><td>Instructions</td> <td>:</td> <td><%= @order.instructions %></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <tr><th>Item</th> <th>Quantity</th> <th>Rate</th> <th>Subtotal</th></tr>
+
+        <% @order.order_items.each do |item| %>
+          <tr>
+            <td><%= item.product_name %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.price %></td>
+            <td><%= item.price * item.quantity %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="col-5 offset-7">
+      <table class="table">
+        <tr><th colspan="2">Invoice summary</th></tr>
+        <tr><td>Subtotal</td> <td>500</td></tr>
+        <tr><td>DOscount</td> <td>40</td></tr>
+        <tr><td>Subtotal</td> <td>460</td></tr>
+      </table>
+    </div>  
+  </div>
+  
+
+
+
+  <style type="text/css">
+    .table-right-align {
+      overflow: auto;
+    }
+    .table-right-align tbody {
+      /*float: right;*/
+    }
+  </style>
+
+
+
+
 	<div class="row col-md-6">
 		<p class="col-md-4">Full Name : </p>
 		<p class="col"><%= @order.fullname %></p>
@@ -82,7 +158,8 @@
 	</div>
 
 	<div class="row col-md-6">
-		<%= link_to "Back", orders_path, class: "btn btn-primary" %>
+    <% back_url = params[:back_url].present? ? params[:back_url] : myorders_path %>
+		<%= link_to "Back", back_url, class: "btn btn-primary" %>
 	</div>
 	
 </div>
