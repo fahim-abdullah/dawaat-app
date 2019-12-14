@@ -24,6 +24,24 @@ body {
 	font-family: "Medium";
 }
 
+.print-space-h250 {
+  display: none;
+  width: 100%;
+  height: 250px;
+}
+
+@media print {
+  footer {
+    visibility: hidden;
+  }
+  .do-not-print {
+    visibility: hidden; 
+  }
+  .print-space-h250 {
+    display: block;
+  }
+}
+
 .loader {
     position: fixed;
     left: 0px;

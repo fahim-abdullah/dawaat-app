@@ -115,8 +115,13 @@
                                     <div class="form-group col-12" style="display: none;">
                                     	<hr>
                                     	<%= f.text_field :user_id, class: "col-md-2 col form-control", value: "1" %>
-                                    	<%= f.text_field :latlng, class: "form-control", :id => "latlng", placeholder: "lat/lng" %>
-                                    	<%= f.text_field :itemquantity, id:"itemquantity", class: "form-control", placeholder: "item/quantity"%>
+                                      <%= f.text_field :latlng, class: "form-control", :id => "latlng", placeholder: "lat/lng" %>
+                                    	
+                                      <%= f.text_field :lat, class: 'form-control', placeholder: 'lat' %>
+                                      <%= f.text_field :lng, class: 'form-control', placeholder: 'lng' %>
+                                      <input type="text" name="order_items_string" id="order_items_string">
+                                    	
+                                      <%= f.text_field :itemquantity, id:"itemquantity", class: "form-control", placeholder: "item/quantity"%>
                                     	<%= f.text_field :subtotal, :id => "subtotal-field", class: "form-control", value: "0", min: "1", placeholder: "subtotal" %>
                                     </div>
                                 </div>
