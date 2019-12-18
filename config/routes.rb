@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 	root 'orders#new'
   # root 'statics#coming_soon'
 
+  resources :delivery_points
+
   get 'coming_soon', to: 'statics#coming_soon'
 	get 'ourstory', to: 'statics#ourstory'
 	get 'thankyou', to: 'statics#thankyou', as: :thankyou

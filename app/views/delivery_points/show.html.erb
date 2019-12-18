@@ -1,0 +1,21 @@
+<div class="container">
+
+  <div class="py-4">
+    <h1 class="semi">Show Delivery Point</h1>
+    <hr>
+  </div>
+
+  <p>
+    <strong>Id:</strong>
+    <%= @delivery_point.id %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @delivery_point.name %>
+  </p>
+
+  <%= link_to 'Edit', edit_delivery_point_path(@delivery_point) %> |
+  <%= link_to 'Back', delivery_points_path %>
+
+</div>

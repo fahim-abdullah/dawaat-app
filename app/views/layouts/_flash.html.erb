@@ -1,0 +1,22 @@
+<div class="container">
+  <div id="flash">
+    <% flash.each do |key, value| %>
+      <% 
+        css_class = ' alert-warning'
+        if key == 'notice'
+          css_class = ' alert-success'
+        elsif key == 'error' || key == 'alert'
+          css_class = ' alert-danger'
+        end
+      %>
+
+      <div class="alert<%= css_class %> alert-dismissible fade show" role="alert">
+        <%= value %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    <% end %>
+  </div>
+</div>

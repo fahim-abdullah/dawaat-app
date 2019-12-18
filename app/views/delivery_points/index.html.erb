@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="py-4">
+    <h1 class="semi">Delivery Points</h1>
+    <hr>
+  </div>
+
+  <table id="all-orders-table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @delivery_points.each do |delivery_point| %>
+        <tr>
+          <td><%= delivery_point.id %></td>
+          <td><%= delivery_point.name %></td>
+          <td>
+            <%= link_to 'Edit', edit_delivery_point_path(delivery_point), class: 'btn btn-sm btn-warning' %>
+            <%= link_to 'Destroy', delivery_point, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Delivery Point', new_delivery_point_path, class: 'btn btn-sm btn-primary' %>
+
+</div>

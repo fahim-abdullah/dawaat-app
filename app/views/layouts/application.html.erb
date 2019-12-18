@@ -39,6 +39,8 @@
  -->
   <body oncontextmenu="return false;" class="page-<%= controller.controller_name %>-<%= controller.action_name %>">
     <%= render 'layouts/general_navbar' unless @disable_navbar %>
+
+    <%= render partial: 'layouts/flash' %>
     <%= yield %>
 
 

@@ -1,0 +1,2 @@
+class DeliveryPoint < ApplicationRecord
+end
