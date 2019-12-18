@@ -5,6 +5,12 @@
 			<hr>
 		</div>
 		<hr>
+    
+    <div class="col-12 mb-3">
+      <h5>Delivery point: <%= @delivery_point.name %></h5>
+      <hr>
+    </div>
+
 		<div class="col-12">
 			<table id="all-orders-table" class="display">
 				<thead>
@@ -29,6 +35,8 @@
 					<% end %>
 				</tbody>
 			</table>
+
+      <%= link_to 'New Product', new_product_path(delivery_point_id: params[:delivery_point_id]), class: 'btn btn-sm btn-primary' %>
 		</div>
 	</div>
 </div>

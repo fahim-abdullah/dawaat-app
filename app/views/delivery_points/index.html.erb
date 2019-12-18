@@ -33,7 +33,7 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <%= link_to 'Products', products_path(delivery_point_id: delivery_point.id) %>
-                <span class="badge badge-info badge-pill">8</span>
+                <span class="badge badge-info badge-pill"><%= delivery_point.products.count %></span>
               </li>
               <li class="list-group-item"><%= link_to 'Expenditure', expenses_path(delivery_point_id: delivery_point.id) %></li>
               

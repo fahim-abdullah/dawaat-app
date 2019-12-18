@@ -33,7 +33,16 @@ class ApplicationController < ActionController::Base
   end
 
   def delivery_point_id_required
-    unless params[:delivery_point_id]
+    if params[:delivery_point_id]
+      # TODO: check if user is manager of this delivery_point or admin
+      
+      # if is_admin? || DeliveryPoint.find(params[:delivery_point_id]).manager_id == current_user.id
+      # 
+      # else
+      #  flash[:error] = 'Only manager can access this page'
+      #  redirect_to delivery_points_url
+      # end
+    else
       flash[:error] = 'delivery_point_id is required'
       redirect_to delivery_points_url
     end

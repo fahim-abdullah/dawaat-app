@@ -1,10 +1,11 @@
 class ProductsController < ApplicationController
 	before_action :set_timezone
 	before_action :require_user
-  before_action :delivery_point_id_required, only: :index
+  before_action :delivery_point_id_required, only: [:index, :new, :create]
 
 	def index
-		@products = Product.all
+    @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
+		@products = @delivery_point.products
 	end
 
 	def edit
@@ -17,8 +18,9 @@ class ProductsController < ApplicationController
 
 	def create
 		@product = Product.new(product_params)
+    @product.delivery_point_id = params[:delivery_point_id]
 		if @product.save
-			redirect_to products_path
+			redirect_to products_url(delivery_point_id: params[:delivery_point_id])
 		else
 			render 'new'
 		end

@@ -11,6 +11,8 @@
 		<div class="col-md-5 col-12">
 			<%= form_for @product do |f| %>
 
+        <%= hidden_field_tag :delivery_point_id, params[:delivery_point_id] %>
+
 				<div class="form-group row">
 					<label class="col-3 col-form-label">Name</label>
 					<div class="col">
