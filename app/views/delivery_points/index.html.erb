@@ -5,12 +5,16 @@
     <hr>
   </div>
 
-  <table id="all-orders-table">
+  <table id="all-orders-table" class="table">
     <thead>
       <tr>
         <th>Id</th>
         <th>Name</th>
         <th></th>
+
+        <% if is_admin? %>
+        <th></th>
+        <% end %>
       </tr>
     </thead>
 
@@ -19,10 +23,29 @@
         <tr>
           <td><%= delivery_point.id %></td>
           <td><%= delivery_point.name %></td>
+          
           <td>
-            <%= link_to 'Edit', edit_delivery_point_path(delivery_point), class: 'btn btn-sm btn-warning' %>
-            <%= link_to 'Destroy', delivery_point, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <%= link_to 'Ongoing Orders', ongoing_path(delivery_point_id: delivery_point.id),
+                      class: 'btn btn-sm btn-primary' %>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <%= link_to 'Products', products_path(delivery_point_id: delivery_point.id) %>
+                <span class="badge badge-info badge-pill">8</span>
+              </li>
+              <li class="list-group-item"><%= link_to 'Expenditure', expenses_path(delivery_point_id: delivery_point.id) %></li>
+              
+            </ul> 
           </td>
+          
+          <% if is_admin? %>
+            <td class="text-center">
+              <%= link_to 'Edit', edit_delivery_point_path(delivery_point), class: 'btn btn-sm btn-warning' %>
+              <%#= link_to 'Destroy', delivery_point, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

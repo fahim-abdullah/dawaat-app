@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 	before_action :set_timezone
 	before_action :require_user
+  before_action :delivery_point_id_required, only: :index
 
 	def index
 		@products = Product.all

@@ -1,4 +1,5 @@
 class DeliveryPointsController < ApplicationController
+  before_action :require_admin, except: [:index]
   before_action :set_delivery_point, only: [:show, :edit, :update, :destroy]
 
   # GET /delivery_points
@@ -53,13 +54,13 @@ class DeliveryPointsController < ApplicationController
 
   # DELETE /delivery_points/1
   # DELETE /delivery_points/1.json
-  def destroy
-    @delivery_point.destroy
-    respond_to do |format|
-      format.html { redirect_to delivery_points_url, notice: 'Delivery point was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @delivery_point.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to delivery_points_url, notice: 'Delivery point was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
