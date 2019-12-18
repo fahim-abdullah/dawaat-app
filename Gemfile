@@ -31,7 +31,7 @@ gem 'redis', '~> 4.0'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass'
 
 gem 'bcrypt','~> 3.1.7'
 
