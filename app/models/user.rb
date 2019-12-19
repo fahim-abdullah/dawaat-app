@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   enum order_connection_status: { connected_to_order: 1, not_connected_to_order: 0 }
 
+  has_many :delivery_points, foreign_key: :manager_id
+
   def get_api_token
     reset_api_token if self.api_token.nil?
     self.api_token

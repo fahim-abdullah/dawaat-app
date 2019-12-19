@@ -22,7 +22,15 @@
       <% @delivery_points.each do |delivery_point| %>
         <tr>
           <td><%= delivery_point.id %></td>
-          <td><%= delivery_point.name %></td>
+          <td>
+            <div><%= delivery_point.name %></div>
+            
+            <% if delivery_point.manager_id == current_user.id %>
+              <div class="pt-1">
+                <span class="badge badge-info badge-pill">You are manager</span>
+              </div>
+            <% end  %>
+          </td>
           
           <td>
 
@@ -41,7 +49,16 @@
           </td>
           
           <% if is_admin? %>
-            <td class="text-center">
+            <td>
+              <div class="pt-2 pb-2">
+                <strong>Manager:</strong>
+                <% if delivery_point.manager.present? %>
+                  <%= delivery_point.manager.name %>
+                <% else %>
+                  Manager is not assigned
+                <% end %>
+              </div>
+
               <%= link_to 'Edit', edit_delivery_point_path(delivery_point), class: 'btn btn-sm btn-warning' %>
               <%#= link_to 'Destroy', delivery_point, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
             </td>
@@ -51,8 +68,9 @@
     </tbody>
   </table>
 
-  <br>
-
-  <%= link_to 'New Delivery Point', new_delivery_point_path, class: 'btn btn-sm btn-primary' %>
+  <% if is_admin? %>
+    <br> 
+    <%= link_to 'New Delivery Point', new_delivery_point_path, class: 'btn btn-sm btn-primary' %>
+  <% end %>
 
 </div>

@@ -15,31 +15,25 @@
           <li class="nav-item">
               <a class="nav-link " href="/contactus">Contact</a>
           </li>
-          <% if logged_in? && (current_user.admin == false) %>
-              <li class="nav-item">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-1 dropdown-toggle nav-link p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="action-btn">
-                    Admin
-                    </button>
-                    <div class="dropdown-menu">
-                        <%= link_to 'My Orders', myorders_path, class: "dropdown-item color-black-important" %>
-                        <%= link_to 'Logout', logout_path, method: :delete, class: "dropdown-item color-black-important" %>
-                    </div>
-                  </div>
-              </li>
-          <% end %>
 
-          <% if logged_in? && (current_user.admin?) %>
+          <% if logged_in? %>
               <li class="nav-item">
                   <div class="btn-group">
                     <button type="button" class="btn btn-1 dropdown-toggle nav-link p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="action-btn">
                     Admin
                     </button>
                     <div class="dropdown-menu">
+
+                      <% if is_admin? %>
                         <a class="dropdown-item" href="/orders">All Orders</a>
                         <a class="dropdown-item" href="/users">All Users</a>
+                      <% end %>
+                        
+                      <% if is_admin? || current_user.delivery_points.count > 0 %>
                         <a class="dropdown-item" href="<%= delivery_points_path %>">Delivery Points</a>
                         <div class="dropdown-divider"></div>
+                      <% end %>
+
                         <%= link_to 'My Orders', myorders_path, class: "dropdown-item color-black-important" %>
                         <%= link_to 'Logout', logout_path, method: :delete, class: "dropdown-item color-black-important" %>
                     </div>
