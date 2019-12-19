@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
 	before_action :set_timezone
 	before_action :require_user, except: [:new, :create]
-  before_action :require_admin, only: :ongoing
+  
   before_action :delivery_point_id_required, only: [:ongoing]
+  before_action :is_admin_or_delivery_point_manager, only: :ongoing
 
 	def index
 		@orders = Order.all
