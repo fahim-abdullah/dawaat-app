@@ -70,6 +70,6 @@ class DeliveryPointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_point_params
-      params.require(:delivery_point).permit(:name)
+      params.require(:delivery_point).permit(:name, :manager_id)
     end
 end

@@ -16,6 +16,14 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="form-group">
+    <%= form.label :manager_id %>
+
+    <% users_array = User.all.map { |user| [user.name, user.id] } %>
+    <% manager_options = options_for_select(users_array, selected: delivery_point.manager_id) %>
+    <%= form.select :manager_id, manager_options, { prompt: '-- please select --' }, class: '' %>
+  </div>
+
   <div class="actions form-group">
     <%= form.submit class: 'btn btn-sm btn-primary' %>
   </div>
