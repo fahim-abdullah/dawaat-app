@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 	before_action :set_timezone
 	before_action :require_user
   before_action :delivery_point_id_required, only: [:index, :new, :create]
+  before_action :is_admin_or_delivery_point_manager, only: [:index, :new, :create]
 
 	def index
     @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
