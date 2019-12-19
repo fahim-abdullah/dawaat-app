@@ -3,13 +3,15 @@
 		<div class="col-12 py-4">
 			<h1 class="semi">New Expense</h1>
 			<hr>
+      <%= render 'layouts/delivery_point_name', delivery_point: @delivery_point %>
 		</div>
-		<hr>
 	</div>
 
 	<div class="row">
 		<div class="col-md-5 col-12">
 			<%= form_for @expense do |f| %>
+
+        <%= hidden_field_tag :delivery_point_id, params[:delivery_point_id] %>
 
 				<div class="form-group row">
 					<label class="col-3 col-form-label">Purpose</label>
