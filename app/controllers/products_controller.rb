@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
 	end
 
 	def new
+    @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
 		@product = Product.new
 	end
 

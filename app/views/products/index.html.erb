@@ -6,10 +6,7 @@
 		</div>
 		<hr>
     
-    <div class="col-12 mb-3">
-      <h5>Delivery point: <%= @delivery_point.name %></h5>
-      <hr>
-    </div>
+    <%= render 'layouts/delivery_point_name', delivery_point: @delivery_point %>
 
 		<div class="col-12">
 			<table id="all-orders-table" class="display">
@@ -29,7 +26,7 @@
 						<td><%= product.status %></td>
 						<td>
 							<%= link_to 'Edit', edit_product_path(product), class: 'btn btn-sm btn-warning' %>
-	                        <%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger disabled' %>
+	                        <%#= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger disabled' %>
 						</td>
 					</tr>
 					<% end %>
