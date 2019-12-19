@@ -2,14 +2,15 @@ class OrdersController < ApplicationController
 	before_action :set_timezone
 	before_action :require_user, except: [:new, :create]
   before_action :require_admin, only: :ongoing
-  before_action :delivery_point_id_required, only: :ongoing
+  before_action :delivery_point_id_required, only: [:ongoing]
 
 	def index
 		@orders = Order.all
 	end
 
 	def ongoing
-		@orders = Order.where('status=? OR status=?', 'Pending', 'On The Way')
+    @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
+		@orders = @delivery_point.orders.where('status=? OR status=?', 'Pending', 'On The Way')
 	end
 
 	def edit

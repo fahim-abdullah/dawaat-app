@@ -3,8 +3,11 @@
 		<div class="col-12 py-4">
 			<h1 class="semi">Ongoing Orders <span class="realtime-status">Realtime: <span id="realtime-status-message">Connecting...</span></span></h1>
 			<hr>
+
+      <%= render 'layouts/delivery_point_name', delivery_point: @delivery_point %>
 		</div>
-		<hr>
+
+
 		<div class="col-12" style="overflow-x: scroll;">
 			<table id="all-orders-table" class="display">
 				<thead>

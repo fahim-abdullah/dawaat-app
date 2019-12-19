@@ -9,6 +9,8 @@ class Order < ApplicationRecord
 
   has_many :order_items
 
+  belongs_to :delivery_point
+
 	def user_check
 		Order.all.each do |order|
 			if self.phone.last(11) == order.phone.last(11)
