@@ -5,7 +5,11 @@ class DeliveryPointsController < ApplicationController
   # GET /delivery_points
   # GET /delivery_points.json
   def index
-    @delivery_points = DeliveryPoint.all
+    if is_admin?
+      @delivery_points = DeliveryPoint.all
+    else
+      @delivery_points = current_user.delivery_points
+    end
   end
 
   # GET /delivery_points/1
