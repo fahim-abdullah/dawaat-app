@@ -32,6 +32,19 @@
 
                 <% else %>
 
+                <div class="menu-delivey-point mt-4 p-3">
+                  <h5 id="menu-delivey-point-title">Select your delivery area</h5>
+
+                  <div class="delivey-point-select-wrap">
+                    <select id="select-delivery-point" class="select-delivery-point form-control">
+                      <option value="">-- Please select --</option>
+                      <% DeliveryPoint.all.each do |item| %>
+                        <option value="<%= item.id %>"><%= item.name %></option>
+                      <% end %>
+                    </select>  
+                  </div>
+                </div>
+
                 <div id="menu-holder">
                     <h2 class="semi menu-header">Our Menu</h2>
 
