@@ -35,7 +35,7 @@ class ExpensesController < ApplicationController
 		@expense = Expense.find(params[:id])
 		if @expense.update(expense_params)
 			# flash[:notice] = "Updated"
-			redirect_to expenses_path
+			redirect_to expenses_url(delivery_point_id: @expense.delivery_point_id)
 		else
 			render 'new'
 		end

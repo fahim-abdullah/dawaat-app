@@ -3,12 +3,9 @@
 		<div class="col-12 py-4">
 			<h1 class="semi">Edit Product</h1>
 			<hr>
+      <%= render 'layouts/delivery_point_name', delivery_point: @product.delivery_point %>
 		</div>
-		<hr>
-
-    <%= render 'layouts/delivery_point_name', delivery_point: @product.delivery_point %>
 	</div>
-
 
 	<div class="row">
 		<div class="col-md-5 col-12">

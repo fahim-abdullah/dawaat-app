@@ -7,7 +7,7 @@
                     <div class="item-details">
                         <p class="item-title"><span id="product-<%= product.id %>"><%= product.name %></span></p>
                         <p class="item-price">
-                            <% if product.old_price != "" %>
+                            <% if product.old_price != 0 %>
                             <del class="regular">TK <%= product.old_price %></del> 
                             <% end %>
                             TK <span class="product-price"><%= product.price %></span>

@@ -13,6 +13,7 @@
 				<thead>
 					<tr>
 						<th>Name</th>
+            <th>Old price</th>
 						<th>Price</th>
 						<th>Status</th>
 						<th>Actions</th>
@@ -22,6 +23,7 @@
 					<% @products.each do |product| %>
 					<tr>
 						<td><%= product.name %></td>
+            <td> <del><%= product.old_price %></del> </td>
 						<td><%= product.price %></td>
 						<td><%= product.status %></td>
 						<td>
