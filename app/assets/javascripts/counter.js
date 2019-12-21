@@ -20,7 +20,7 @@ $(document).on('turbolinks:load', function() {
       // console.log('-- scroll --');
 
       $('html, body').animate({
-         scrollTop: $("#select-delivery-point").offset().top - 160
+         scrollTop: $("#select-delivery-point").offset().top - parseInt($('#right-holder-div').css('padding-top')) - 160 + 24
       }, 500);
 
       $('#menu-delivey-point-title').addClass('blink');
@@ -60,7 +60,7 @@ $(document).on('turbolinks:load', function() {
       // scroll to menu
       setTimeout(function(){
         $('html, body').animate({
-          scrollTop: $("#menu-holder").offset().top - 180
+          scrollTop: $("#select-delivery-point").offset().top - parseInt($('#right-holder-div').css('padding-top')) - 95 + 24
         }, 500);
       }, 350);
     }
