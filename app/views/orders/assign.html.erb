@@ -29,12 +29,9 @@
 				<div class="form-group row">
 					<label class="col-3 col-form-label">Name</label>
 					<div class="col">
-						<%= f.text_field :user_id, class: "form-control", list: "assign-user", value: "", :required => true %>
-			            <datalist id="assign-user">
-			            	<% User.all.each do |user| %>
-				                <option value="<%= user.id %>"><%= user.name %></option>
-			                <% end %>
-			            </datalist>
+            <% users_array = User.all.map { |user| [user.name, user.id] } %>
+            <% assign_options = options_for_select(users_array, selected: @order.user_id) %>
+            <%= f.select :user_id, assign_options, { prompt: '-- please select --' }, class: 'form-control' %>
 					</div>
 				</div>
 
@@ -45,7 +42,7 @@
 					</div>
 				</div>
 
-				<div style="display: none;">
+				<div style="width:1px;height:1px;overflow:hidden;margin-top: -85px;padding-bottom: 145px;margin-left: 20px;">
 					<%= f.text_field :status, class: "form-control", id: "otw-status", :required => true, placeholder: "Status" %>
 					<%= f.text_field :ontheway_time, class: "form-control", id: "otw-time", :required => true, placeholder: "OTW Time" %>
 				</div>
@@ -57,11 +54,13 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-	$(document).on('turbolinks:load', function() {
-		$("#otw-btn").click(function(){
-			$("#otw-time").val(("<%= Time.now %>"));
-			$("#otw-status").val(("On The Way"));
-		})
-	});
-</script>
+<% content_for :user_javascript do %>
+  <script type="text/javascript" data-turbolinks-eval="false">
+  	$(document).on('turbolinks:load', function() {
+  		$("#otw-btn").click(function(){
+  			$("#otw-time").val(("<%= Time.now %>"));
+  			$("#otw-status").val(("On The Way"));
+  		})
+  	});
+  </script>
+<% end %>

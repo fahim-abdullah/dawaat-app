@@ -82,9 +82,17 @@ class OrdersController < ApplicationController
 	
 	def update
 		@order = Order.find(params[:id])
+    old_user_id = @order.user_id
 		if @order.update(order_params)
+
+      if old_user_id == @order.user_id
+        flash[:warning] = "Order##{@order.id} updated but Delivery man not changed"
+      else
+        flash[:notice] = "Order##{@order.id} is assigned to User##{@order.user_id}"
+      end
+
 			# flash[:notice] = "Updated"
-			redirect_to ongoing_path
+			redirect_to ongoing_url(delivery_point_id: @order.delivery_point_id)
 		else
 			render 'new'
 		end

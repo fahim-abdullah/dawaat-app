@@ -49,8 +49,7 @@
     <%= render 'layouts/footer' unless @disable_footer %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-eval' => false %>
-    <%= yield :user_javascript %>
-
     <%= render partial: 'layouts/cable/order_cable_js' %>
+    <%= yield :user_javascript %>
   </body>
 </html>
