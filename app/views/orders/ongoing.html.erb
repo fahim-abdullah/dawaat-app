@@ -47,7 +47,7 @@
 						<td><%= order.user.name if order.user.present? %></td>
 						<td>
               <div class="mb-1"><%= order.created_at.strftime("%I:%M %p") %></div>
-              <div><%= order.created_at.strftime("%d-%m-%Y") %></div>
+              <div><%= order.created_at.strftime("%a, %d %b %Y") %></div>
             </td>
 						<td>
 							<div class="mb-2">

@@ -25,7 +25,10 @@
 					<tr>
 						<td><%= order.id %></td>
 						<td> <%= order.fullname %> <span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
-						<td><%= order.created_at.strftime("%a, %d %b %Y") %></td>
+						<td>
+              <div class="mb-1"><%= order.created_at.strftime("%I:%M %p") %></div>
+              <div><%= order.created_at.strftime("%a, %d %b %Y") %></div>
+            </td>
 						<!-- <td><%#= order.phone %></td> -->
 						<td><%= order.address %></td>
 						<td>
@@ -34,6 +37,10 @@
 							<% end %>
 							<hr class="my-1">
 							<p class="semi m-0">Subtotal : <%= order.subtotal %></p>
+
+              <% if order.delivery_point.present? %>
+                <h5 class="border-top pt-2 mt-3">Delivery point: <span class="badge badge-pill badge-info"><%= order.delivery_point.name %></span></h5>
+              <% end %>
 						</td>
 						<td><%= order.status %></td>
 						<td>

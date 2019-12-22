@@ -6,5 +6,9 @@ $( document ).on('turbolinks:load', function() {
 } );
 
 $( document ).on('turbolinks:before-cache', function() {
-  window.all_orders_table.destroy();
+  try {
+    window.all_orders_table.destroy();
+  } catch (e) {
+    console.log('DataTable Turbolink Error:', e);
+  }
 } );
