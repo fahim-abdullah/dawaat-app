@@ -116,6 +116,8 @@ $(document).on('turbolinks:load', function() {
       });
     }
 
+    $('#order_delivery_point_id').val($('#select-delivery-point').val());
+
     var subtotal = 0;
     var order_items_string = '';
 
