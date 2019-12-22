@@ -50,5 +50,7 @@
 
     <%= javascript_include_tag 'application', 'data-turbolinks-eval' => false %>
     <%= yield :user_javascript %>
+
+    <%= render partial: 'layouts/cable/order_cable_js' %>
   </body>
 </html>
