@@ -1,8 +1,11 @@
 class OrderChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "order_channel_#{current_user.id}"
-
-    current_user.set_order_connection_status(online: 1)
+    if params[:page] == 'ongoing'
+      stream_from "order_channel_point_#{params[:delivery_point_id]}"
+    elsif params[:page] == 'myorders'
+      stream_from "order_channel_user_#{current_user.id}"
+      current_user.set_order_connection_status(online: 1)
+    end
   end
 
   def unsubscribed

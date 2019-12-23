@@ -71,21 +71,33 @@ $(document).on('turbolinks:load', function() {
 //   }
 // }
 
+var notify_sound = new Audio('/definite.ogg');
+
+function enable_notify() {
+  notify_sound.play();
+}
+
 function notify_and_reload_page() {
-  var notify_sound = new Audio('/definite.ogg');
   notify_sound.play().catch(function(e) {
     console.log('-- can not play sound --', e);
-    if($('.reload-page').length > 0) {
+    // if($('.reload-page').length > 0) {
       Turbolinks.visit(location.toString());
-    }
+    // }
   });;
   notify_sound.onended = function() {
-    if($('.reload-page').length > 0) {
+    // if($('.reload-page').length > 0) {
       console.log('-- reload page with turbolink --');
       Turbolinks.visit(location.toString());
-    }
+    // }
   };
 }
+
+$(document).on('turbolinks:load', function() {
+  $('#enable-notification-sound').on('click', function(){
+    enable_notify();
+    $(this).removeClass('btn-warning').addClass('btn-success').html('Notification Sound Enabled');
+  });
+});
 
 // function update_realtime_message(elem, connected) {
 //   var msg = connected ? 'Connected' : 'Not connected';

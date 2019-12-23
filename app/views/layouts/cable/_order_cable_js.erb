@@ -16,7 +16,11 @@
         <%= init_cable(cable_name: 'order_cable').html_safe %> 
       // }
 
-        App.order_cable = App.order_cable.subscriptions.create({ channel: "OrderChannel" }, {
+        App.order_cable = App.order_cable.subscriptions.create({
+         channel: "OrderChannel",
+         page: $('.order-cable-here').attr('datapage'),
+         delivery_point_id: $('.order-cable-here').attr('datapointid'),
+        }, {
           connected: function() {
             // $('#connection-status').text('Connection Established');
             console.log('-- order_cable: connected --');
