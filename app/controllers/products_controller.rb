@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
 	before_action :set_timezone
 	before_action :require_user
+  before_action :delivery_point_id_required, only: [:index, :new, :create]
+  before_action :is_admin_or_delivery_point_manager, only: [:index, :new, :create]
 
 	def index
-		@products = Product.all
+    @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
+		@products = @delivery_point.products
 	end
 
 	def edit
@@ -11,13 +14,15 @@ class ProductsController < ApplicationController
 	end
 
 	def new
+    @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
 		@product = Product.new
 	end
 
 	def create
 		@product = Product.new(product_params)
+    @product.delivery_point_id = params[:delivery_point_id]
 		if @product.save
-			redirect_to products_path
+			redirect_to products_url(delivery_point_id: params[:delivery_point_id])
 		else
 			render 'new'
 		end
@@ -31,7 +36,7 @@ class ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 		if @product.update(product_params)
 			# flash[:notice] = "Updated"
-			redirect_to products_path
+			redirect_to products_url(delivery_point_id: @product.delivery_point_id)
 		else
 			render 'new'
 		end

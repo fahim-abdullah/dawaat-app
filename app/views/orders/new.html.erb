@@ -5,7 +5,7 @@
         </div>
 
         <div class="col-md-7 offset-md-5 col-12 bg-white right">
-            <div class="right-holder">
+            <div class="right-holder" id="right-holder-div">
                 <%= render 'layouts/navbar-order' %>
 
                 <div class="promo-banner col-12">
@@ -31,6 +31,19 @@
                 </div>
 
                 <% else %>
+
+                <div class="menu-delivey-point mt-4 p-3">
+                  <h5 id="menu-delivey-point-title">Select your delivery area</h5>
+
+                  <div class="delivey-point-select-wrap">
+                    <select id="select-delivery-point" class="select-delivery-point form-control">
+                      <option value="">-- Please select --</option>
+                      <% DeliveryPoint.all.each do |item| %>
+                        <option value="<%= item.id %>"><%= item.name %></option>
+                      <% end %>
+                    </select>  
+                  </div>
+                </div>
 
                 <div id="menu-holder">
                     <h2 class="semi menu-header">Our Menu</h2>
@@ -81,6 +94,8 @@
                                 <div class="row">
                                 	
                                     <div class="form-group col-12">
+                                        <%= f.hidden_field :delivery_point_id %>
+
                                         <p>Full Name</p>
                                         <%= f.text_field :fullname, class: "form-control", :required => true %>
                                     </div>

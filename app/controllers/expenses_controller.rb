@@ -1,9 +1,11 @@
 class ExpensesController < ApplicationController
 	before_action :set_timezone
 	before_action :require_user
+  before_action :delivery_point_id_required, only: [:index, :new, :create]
 
 	def index
-		@expenses = Expense.all
+    @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
+		@expenses = @delivery_point.expenses
 	end
 
 	def edit
@@ -11,13 +13,15 @@ class ExpensesController < ApplicationController
 	end
 
 	def new
+    @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
 		@expense = Expense.new
 	end
 
 	def create
 		@expense = Expense.new(expense_params)
+    @expense.delivery_point_id = params[:delivery_point_id]
 		if @expense.save
-			redirect_to expenses_path
+			redirect_to expenses_url(delivery_point_id: params[:delivery_point_id])
 		else
 			render 'new'
 		end
@@ -31,7 +35,7 @@ class ExpensesController < ApplicationController
 		@expense = Expense.find(params[:id])
 		if @expense.update(expense_params)
 			# flash[:notice] = "Updated"
-			redirect_to expenses_path
+			redirect_to expenses_url(delivery_point_id: @expense.delivery_point_id)
 		else
 			render 'new'
 		end

@@ -1,0 +1,76 @@
+<div class="container">
+
+  <div class="py-4">
+    <h1 class="semi">Delivery Points</h1>
+    <hr>
+  </div>
+
+  <table id="all-orders-table" class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th></th>
+
+        <% if is_admin? %>
+        <th></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @delivery_points.each do |delivery_point| %>
+        <tr>
+          <td><%= delivery_point.id %></td>
+          <td>
+            <div><%= delivery_point.name %></div>
+            
+            <% if delivery_point.manager_id == current_user.id %>
+              <div class="pt-1">
+                <span class="badge badge-info badge-pill">You are manager</span>
+              </div>
+            <% end  %>
+          </td>
+          
+          <td>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <%= link_to 'Ongoing Orders', ongoing_path(delivery_point_id: delivery_point.id),
+                      class: 'btn btn-sm btn-primary' %>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <%= link_to 'Products', products_path(delivery_point_id: delivery_point.id) %>
+                <span class="badge badge-info badge-pill"><%= delivery_point.products.count %></span>
+              </li>
+              <li class="list-group-item"><%= link_to 'Expenditure', expenses_path(delivery_point_id: delivery_point.id) %></li>
+              
+            </ul> 
+          </td>
+          
+          <% if is_admin? %>
+            <td>
+              <div class="pt-2 pb-2">
+                <strong>Manager:</strong>
+                <% if delivery_point.manager.present? %>
+                  <%= delivery_point.manager.name %>
+                <% else %>
+                  Not assigned
+                <% end %>
+              </div>
+
+              <%= link_to 'Edit', edit_delivery_point_path(delivery_point), class: 'btn btn-sm btn-warning' %>
+              <%#= link_to 'Destroy', delivery_point, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if is_admin? %>
+    <br> 
+    <%= link_to 'New Delivery Point', new_delivery_point_path, class: 'btn btn-sm btn-primary' %>
+  <% end %>
+
+</div>

@@ -1,14 +1,17 @@
 class OrdersController < ApplicationController
 	before_action :set_timezone
 	before_action :require_user, except: [:new, :create]
-  before_action :require_admin, only: :ongoing
+  
+  before_action :delivery_point_id_required, only: [:ongoing]
+  before_action :is_admin_or_delivery_point_manager, only: :ongoing
 
 	def index
 		@orders = Order.all
 	end
 
 	def ongoing
-		@orders = Order.where('status=? OR status=?', 'Pending', 'On The Way')
+    @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
+		@orders = @delivery_point.orders.where('status=? OR status=?', 'Pending', 'On The Way')
 	end
 
 	def edit
@@ -79,9 +82,17 @@ class OrdersController < ApplicationController
 	
 	def update
 		@order = Order.find(params[:id])
+    old_user_id = @order.user_id
 		if @order.update(order_params)
+
+      if old_user_id == @order.user_id
+        flash[:warning] = "Order##{@order.id} updated but Delivery man not changed"
+      else
+        flash[:notice] = "Order##{@order.id} is assigned to User##{@order.user_id}"
+      end
+
 			# flash[:notice] = "Updated"
-			redirect_to ongoing_path
+			redirect_to ongoing_url(delivery_point_id: @order.delivery_point_id)
 		else
 			render 'new'
 		end
@@ -97,7 +108,7 @@ class OrdersController < ApplicationController
 	def order_params 
 		params.require(:order).permit(:fullname, :phone, :address, :flathouse, 
       :road, :latlng, :subtotal, :itemquantity, :existing, :status, :lat, :lng,
-      :ontheway_time, :delivery_time, :instructions, :user_id)
+      :ontheway_time, :delivery_time, :instructions, :user_id, :delivery_point_id)
 	end
 	def set_timezone
 		Time.zone = "Dhaka"

@@ -2,10 +2,12 @@
 	<div class="row">
 		<div class="col-12 py-4">
 			<h1 class="semi">All Expenditure</h1>
-			<%= link_to "New Expense", new_expense_path, :class => "btn btn-outline-primary" %>
+			<%= link_to "New Expense", new_expense_path(delivery_point_id: params[:delivery_point_id]), :class => "btn btn-outline-primary" %>
 			<hr>
 		</div>
-		<hr>
+		
+    <%= render 'layouts/delivery_point_name', delivery_point: @delivery_point %>
+
 		<div class="col-12">
 			<table id="all-orders-table" class="display">
 				<thead>

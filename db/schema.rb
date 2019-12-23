@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_165620) do
+ActiveRecord::Schema.define(version: 2019_12_20_120913) do
+
+  create_table "delivery_points", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "manager_id"
+  end
 
   create_table "expenses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "purpose"
@@ -18,6 +25,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_165620) do
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "delivery_point_id"
   end
 
   create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -37,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_165620) do
     t.string "flathouse"
     t.string "road"
     t.string "latlng"
-    t.string "subtotal"
+    t.integer "subtotal"
     t.string "itemquantity"
     t.string "existing"
     t.string "status"
@@ -49,18 +57,21 @@ ActiveRecord::Schema.define(version: 2019_12_13_165620) do
     t.text "instructions"
     t.decimal "lat", precision: 30, scale: 25
     t.decimal "lng", precision: 30, scale: 25
+    t.integer "delivery_point_id"
+    t.integer "subtotal_integer"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "price"
-    t.string "old_price"
+    t.integer "price"
+    t.integer "old_price"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "available_image"
     t.string "soldout_image"
     t.integer "sequence"
+    t.integer "delivery_point_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -1,4 +1,4 @@
-<div class="col-md-6 menu-product-item" dataid="<%= product.id %>">
+<div class="col-md-6 menu-product-item" datapointid="<%= product.delivery_point_id %>" dataid="<%= product.id %>">
     <div class="card">
         <img src="<%= asset_path product.available_image.url %>" class="card-img card-img-top">
         <div class="card-body">
@@ -7,7 +7,7 @@
                     <div class="item-details">
                         <p class="item-title"><span id="product-<%= product.id %>"><%= product.name %></span></p>
                         <p class="item-price">
-                            <% if product.old_price != "" %>
+                            <% if product.old_price != 0 %>
                             <del class="regular">TK <%= product.old_price %></del> 
                             <% end %>
                             TK <span class="product-price"><%= product.price %></span>

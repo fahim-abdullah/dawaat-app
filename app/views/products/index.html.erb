@@ -5,11 +5,15 @@
 			<hr>
 		</div>
 		<hr>
+    
+    <%= render 'layouts/delivery_point_name', delivery_point: @delivery_point %>
+
 		<div class="col-12">
 			<table id="all-orders-table" class="display">
 				<thead>
 					<tr>
 						<th>Name</th>
+            <th>Old price</th>
 						<th>Price</th>
 						<th>Status</th>
 						<th>Actions</th>
@@ -19,16 +23,19 @@
 					<% @products.each do |product| %>
 					<tr>
 						<td><%= product.name %></td>
+            <td> <del><%= product.old_price %></del> </td>
 						<td><%= product.price %></td>
 						<td><%= product.status %></td>
 						<td>
 							<%= link_to 'Edit', edit_product_path(product), class: 'btn btn-sm btn-warning' %>
-	                        <%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger disabled' %>
+	                        <%#= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger disabled' %>
 						</td>
 					</tr>
 					<% end %>
 				</tbody>
 			</table>
+
+      <%= link_to 'New Product', new_product_path(delivery_point_id: params[:delivery_point_id]), class: 'btn btn-sm btn-primary' %>
 		</div>
 	</div>
 </div>

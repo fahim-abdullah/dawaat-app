@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	helper_method :current_user, :logged_in?
+	helper_method :current_user, :logged_in?, :is_admin?
 
   USER_NAME, PASSWORD = 'demo', 'mango'
   before_action :http_basic_authenticate
@@ -19,11 +19,34 @@ class ApplicationController < ActionController::Base
 
 	end
 
+  def is_admin?
+    logged_in? && current_user.admin
+  end
+
   def require_admin
-    if logged_in? && current_user.admin
+    if is_admin?
       # admin can acces this action
-    else  
+    else
+      flash[:error] = 'Only admin can access this page'
       redirect_to root_path
+    end
+  end
+
+  def delivery_point_id_required
+    if params[:delivery_point_id]
+      # can access this page
+    else
+      flash[:error] = 'delivery_point_id is required'
+      redirect_to delivery_points_url
+    end
+  end
+
+  def is_admin_or_delivery_point_manager
+    if is_admin? || DeliveryPoint.find(params[:delivery_point_id]).manager_id == current_user.id
+      # can access this page
+    else
+     flash[:error] = 'Only manager can access this page'
+     redirect_to delivery_points_url
     end
   end
 

@@ -1,6 +1,10 @@
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8" data-turbolinks-eval="false">
   <% if logged_in? %>
     $(document).on('turbolinks:load', function() {
+
+      if( $('.order-cable-here').length == 0 ) {
+        return;
+      }
 
       function order_cable_realtime_message(msg) {
         $('#realtime-status-message').html(msg);
@@ -8,10 +12,15 @@
 
       // -----------------------------------
 
-      if(typeof(App.order_cable) == 'undefined') {
-        <%= init_cable(cable_name: 'order_cable').html_safe %>  
+      // if(typeof(App.order_cable) == 'undefined') {
+        <%= init_cable(cable_name: 'order_cable').html_safe %> 
+      // }
 
-        App.order_cable = App.order_cable.subscriptions.create({ channel: "OrderChannel" }, {
+        App.order_cable = App.order_cable.subscriptions.create({
+         channel: "OrderChannel",
+         page: $('.order-cable-here').attr('datapage'),
+         delivery_point_id: $('.order-cable-here').attr('datapointid'),
+        }, {
           connected: function() {
             // $('#connection-status').text('Connection Established');
             console.log('-- order_cable: connected --');
@@ -30,18 +39,26 @@
           }
         });
 
-      } else {
+      // } else {
 
-        if(App.order_cable_connected == true) {
-          order_cable_realtime_message('Connected');
-        } else {
-          order_cable_realtime_message('Not connected');
-        }
+      //   if(App.order_cable_connected == true) {
+      //     order_cable_realtime_message('Connected');
+      //   } else {
+      //     order_cable_realtime_message('Not connected');
+      //   }
       
-      }
+      // }
 
 
     });
+
+    $( document ).on('turbolinks:before-cache', function() {
+      try {
+        App.order_cable.consumer.disconnect();
+      } catch (e) {
+        console.log('order_cable_js Error:', e);
+      }
+    } );
   <% else %>
     console.log('Not logged in');
   <% end %>

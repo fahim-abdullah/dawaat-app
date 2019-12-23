@@ -15,7 +15,65 @@ $(document).on('turbolinks:load', function() {
 		}
 	}
 
+  function scrollToDeliveryPoint() {
+    if($('#select-delivery-point').val() == '') {
+      // console.log('-- scroll --');
+
+      $('html, body').animate({
+         scrollTop: $("#select-delivery-point").offset().top - parseInt($('#right-holder-div').css('padding-top')) - 160 + 24
+      }, 500);
+
+      $('#menu-delivey-point-title').addClass('blink');
+
+      return true;
+    } else {
+      // console.log('-- selected --');
+      return false;
+    }
+  }
+
+  $('#select-delivery-point').on('change', function(){
+    // reset menu plus minus quantity
+    $('#menu-holder').find('input').val(0);
+    // reset cart quantity 
+    $('#cart-number').html(0);
+    $("#cart-btn").hide();
+
+
+    var delivery_point_id = $('#select-delivery-point').val();
+
+    if(delivery_point_id == '') {
+      $('#menu-delivey-point-title').addClass('blink');
+    } else {
+      // stop blink
+      $('#menu-delivey-point-title').removeClass('blink');
+
+      // show hide product item
+      $('.menu-product-item').each(function(index){
+        if($(this).attr('datapointid') == delivery_point_id) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+
+      // scroll to menu
+      setTimeout(function(){
+        $('html, body').animate({
+          scrollTop: $("#select-delivery-point").offset().top - parseInt($('#right-holder-div').css('padding-top')) - 95 + 24
+        }, 500);
+      }, 350);
+    }
+  });
+
   $('.plus-quantity').on('click', function(){
+
+    if(scrollToDeliveryPoint()) {
+      // console.log('++ plus: stop here ++');
+      return false;
+    }
+
+
     var id = $(this).parent().parent().attr('dataid');
     var input = $(this).parent().parent().find('input');
 
@@ -28,6 +86,12 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.minus-quantity').on('click', function(){
+
+    if(scrollToDeliveryPoint()) {
+      // console.log('++ minus: stop here ++');
+      return false;
+    }
+
     var id = $(this).parent().parent().attr('dataid');
     var input = $(this).parent().parent().find('input');
 
@@ -51,6 +115,8 @@ $(document).on('turbolinks:load', function() {
         $('#order_lng').val(position.coords.longitude);
       });
     }
+
+    $('#order_delivery_point_id').val($('#select-delivery-point').val());
 
     var subtotal = 0;
     var order_items_string = '';
