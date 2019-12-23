@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # root 'statics#coming_soon'
 
   resources :delivery_points
+  resources :promo_codes
 
   get 'coming_soon', to: 'statics#coming_soon'
 	get 'ourstory', to: 'statics#ourstory'

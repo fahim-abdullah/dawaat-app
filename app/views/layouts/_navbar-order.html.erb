@@ -26,6 +26,7 @@
                         <% if is_admin? %>
                           <a class="dropdown-item" href="/orders">All Orders</a>
                           <a class="dropdown-item" href="/users">All Users</a>
+                          <a class="dropdown-item" href="<%= promo_codes_url %>">Promo Codes</a>
                         <% end %>
 
                         <% if is_admin? || current_user.delivery_points.count > 0 %>

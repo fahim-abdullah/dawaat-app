@@ -1,0 +1,177 @@
+<div class="container-fluid" id="orders-new-page">
+    <div class="row">
+        <div class="col-md-5 col-12 bg-warning left" style="position:fixed;">
+            <img src="http://bit.ly/2MKVeWC" class="logo-web"/>
+        </div>
+
+        <div class="col-md-7 offset-md-5 col-12 bg-white right">
+            <div class="right-holder" id="right-holder-div">
+                <%= render 'layouts/navbar-order' %>
+
+                <div class="promo-banner col-12">
+                    <img src="<%= asset_path 'promo.png' %>" class="promo-img" />
+                </div>
+
+
+                <%
+                six_zone_hour = Time.new.getlocal("+06:00").hour
+                hide_menu = ( six_zone_hour >= 0 && six_zone_hour < 12 )
+                hide_menu = false if params[:show_menu]
+                %>
+
+                <input type="hidden" name="" value="<%= six_zone_hour %>">
+
+                <% if hide_menu %>
+
+                <div class="jumbotron my-4 closed">
+                    <div class="col-12" align="center">
+                        <h2 class="semi">Sorry, we are closed now!</h2>
+                        <p class="mb-0 lead">Business Hours : 12PM to 12AM</p>
+                    </div>
+                </div>
+
+                <% else %>
+
+                <div class="menu-delivey-point mt-4 p-3">
+                  <h5 id="menu-delivey-point-title">Select your delivery area</h5>
+
+                  <div class="delivey-point-select-wrap">
+                    <select id="select-delivery-point" class="select-delivery-point form-control">
+                      <option value="">-- Please select --</option>
+                      <% DeliveryPoint.all.each do |item| %>
+                        <option value="<%= item.id %>"><%= item.name %></option>
+                      <% end %>
+                    </select>  
+                  </div>
+                </div>
+
+                <div id="menu-holder">
+                    <h2 class="semi menu-header">Our Menu</h2>
+
+                    <div class="row">
+
+                      <% @products.each do |product| %>
+                        <% if product.status == "Sold Out" %>
+                          <%= render 'layouts/product_soldout', product: product %>
+                        <% else %>
+                          <%= render 'layouts/product_available', product: product %>
+                        <% end %>
+                      <% end %>
+
+                    </div>
+                </div>
+                <button class="col-md-7 offset-md-5 offset-0 fixed-bottom btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="cart-btn" style="display: none;">
+                    <span class="col text-left">
+                        <i class="fas fa-shopping-cart"></i> 
+                        View Cart 
+                        <span class="btn-success" id="cart-number">0</span>
+                    </span>
+                </button>
+
+                <% end %>
+
+
+            </div>
+
+            <%= render 'layouts/footer'%>
+
+            
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Checkout</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body px-0">
+                        	<%= form_for @order do |f| %>
+                            <div class="modal-form">
+                                <div class="row">
+                                	
+                                    <div class="form-group col-12">
+                                        <%= f.hidden_field :delivery_point_id %>
+
+                                        <p>Full Name</p>
+                                        <%= f.text_field :fullname, class: "form-control", :required => true %>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <p>Phone</p>
+                                        <%= f.text_field :phone, class: "form-control", :required => true %>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <p>Address <span class="text-danger regular">(Delivery to Gulshan, Banani & Niketon)</span></p>
+                                        <%= f.text_field :address, class: "form-control", :required => true, :onclick => "getLocation()" %>
+                                    </div>
+
+                                    <div class="form-group col-12 m-0">
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <p>Flat/House No.</p>
+                                                <%= f.text_field :flathouse, class: "form-control", placeholder: "optional" %>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <p>Road No.</p>
+                                                <%= f.text_field :road, class: "form-control", placeholder: "optional" %>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <p>Additional Location Instruction</p>
+                                        <%= f.text_area :instructions, class: "form-control", placeholder: "eg : come to block D and give me a call" %>
+                                    </div>
+
+                                    <div class="form-group col-12" style="display: none;">
+                                    	<hr>
+                                    	<%= f.text_field :user_id, class: "col-md-2 col form-control", value: "1" %>
+                                      <%= f.text_field :latlng, class: "form-control", :id => "latlng", placeholder: "lat/lng" %>
+                                    	
+                                      <%= f.text_field :lat, class: 'form-control', placeholder: 'lat' %>
+                                      <%= f.text_field :lng, class: 'form-control', placeholder: 'lng' %>
+                                      <input type="text" name="order_items_string" id="order_items_string">
+                                    	
+                                      <%= f.text_field :itemquantity, id:"itemquantity", class: "form-control", placeholder: "item/quantity"%>
+                                    	<%= f.text_field :subtotal, :id => "subtotal-field", class: "form-control", value: "0", min: "1", placeholder: "subtotal" %>
+                                    </div>
+                                </div>
+
+                                <div class="modal-card">
+
+                                    <% @products.each do |product| %>
+                                      <div class="row" id="modal-product-<%= product.id %>">
+                                        <div class="col-7 text-left"><%= product.name %></div>
+                                        <div class="col-5 text-right"><span id="mq-<%= product.id %>"></span> x <%= product.price %></div>
+                                      </div>
+                                    <% end %>
+
+                                    <hr class="card-hr">
+                                    <div class="row">
+                                        <div class="col-7 text-left sub">Subtotal</div>
+                                        <div class="col-5 text-right sub">TK <span id="subtotal"></span></div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <%= f.submit class: "btn-1 col-12", value: "Confirm Order" %>
+                                    </div>
+                                </div>    
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="loader"></div>
