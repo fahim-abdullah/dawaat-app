@@ -172,7 +172,7 @@ $(document).on('turbolinks:load', function() {
       data: {
         authenticity_token: $('meta[name=csrf-token]').attr('content'),
         promo_code: promo_code,
-        subtotal_amount: $('#subtotal_amount').val()
+        subtotal_amount: $('#subtotal_amount').text()
       },
       success: function(res){
         console.log('-- success --', res);
