@@ -30,4 +30,6 @@ Rails.application.routes.draw do
 	post 'login', to: 'sessions#create'
 	delete 'logout', to: 'sessions#destroy'
 
+  post 'promo_codes/apply', to: 'promo_codes#apply', as: :promo_codes_apply
+
 end

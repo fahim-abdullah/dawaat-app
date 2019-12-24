@@ -12,6 +12,22 @@ class PromoCodesController < ApplicationController
   def show
   end
 
+  # POST /promo_codes/apply
+  def apply
+    @promo_code = PromoCode.find_by_name(params[:promo_code])
+    error_messages = []
+
+    error_messages << 'Please input promo code' if params[:promo_code].empty?
+    error_messages << 'Promo code not found' if @promo_code.nil?
+    error_messages << 'Promo code expired' if @promo_code.present? && @promo_code.expiration_date < Time.now
+
+    if error_messages.empty?
+      render json: { promo_code: @promo_code.as_json, status: 200 }, status: :ok
+    else
+      render json: { error_messages: error_messages, status: 202 }, status: 202
+    end
+  end
+
   # GET /promo_codes/new
   def new
     @promo_code = PromoCode.new

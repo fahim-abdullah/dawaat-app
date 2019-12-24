@@ -148,7 +148,79 @@ $(document).on('turbolinks:load', function() {
 
     $('#order_items_string').val(order_items_string);
     $("#subtotal-field").val(subtotal);
-    $("#subtotal").text(subtotal);
+    $("#subtotal_amount").text(subtotal);
+    $("#total_amount").text(subtotal);
+  });
+
+  $('#apply-promo-code').on('click', function(){
+    var message = $('#promo-code-message').find('small');
+    message.removeClass('text-danger').addClass('text-info').html('Loading...').parent().show();
+
+    var promo_code = $('#promo-code-value').val();
+
+    $('#promo-code-name').val('');
+
+    $.ajax({
+      method: 'post',
+      url: $(this).attr('dataurl'),
+      dataType: 'json',
+      data: {
+        authenticity_token: $('meta[name=csrf-token]').attr('content'),
+        promo_code: promo_code,
+        subtotal_amount: $('#subtotal_amount').val()
+      },
+      success: function(res){
+        console.log('-- success --', res);
+
+
+        if(res['status'] == 200) {
+          //-------- apply promo code -------------------------------------------------------------------
+          $('#promo-code-name').val(res['promo_code']['name']);
+          var subtotal_amount = parseInt($('#subtotal_amount').text());
+          var discount_amount = 0;
+          var total_amount = 0;
+
+          if(res['promo_code']['promo_type'] == 'flat_discount') {
+            discount_amount = res['promo_code'].discount_value;
+            $('#discount_percentage').hide();
+          } else if(res['promo_code']['promo_type'] == 'percentage_discount') {
+            discount_amount = ( subtotal_amount * (res['promo_code'].discount_value / 100) );
+            $('#discount_percentage').text('(' + res['promo_code'].discount_value + '% )').show();
+          }
+          total_amount = subtotal_amount - discount_amount;
+          $('#discount_amount').text(discount_amount);
+          $("#total_amount").text(total_amount);
+
+          $('#discount-wrap').show('slow');
+          //-------- ./apply promo code -----------------------------------------------------------------
+
+          // show success message
+          message.removeClass('text-info').addClass('text-success').html('Promo code applied').parent().show();
+          // setTimeout(function(){ message.parent().hide(); }, 3000);
+
+        } else if(res['status'] == 202) {
+          $("#total_amount").text($("#subtotal_amount").text());
+          $('#discount-wrap').hide('slow');
+
+          message.removeClass('text-info').addClass('text-danger').html(res['error_messages'][0]).parent().show();
+        }
+      },
+      error: function (xhr) {
+        console.log('-- error --', xhr);
+
+        $("#total_amount").text($("#subtotal_amount").text());
+        $('#discount-wrap').hide('slow');
+
+        var error_message = ''; xhr.status + ' ' + xhr.statusText;
+        if(xhr.status == 0) { 
+          error_message = 'May be, internet connection error'
+        } else {
+          error_message = xhr.status + ' ' + xhr.statusText;
+        }
+        message.removeClass('text-info').addClass('text-danger').html(error_message).parent().show();
+      }
+    });
+
   });
 
 
