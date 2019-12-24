@@ -18,9 +18,11 @@ $(document).on('turbolinks:load', function() {
   function scrollToDeliveryPoint() {
     if($('#select-delivery-point').val() == '') {
       // console.log('-- scroll --');
-
+      var point_top = $("#select-delivery-point").offset().top;
+      var right_holder_top = parseInt($('#right-holder-div').css('padding-top'));
+      var navbar_height = parseFloat($('#navbar-order-wrap').css('height'));
       $('html, body').animate({
-         scrollTop: $("#select-delivery-point").offset().top - parseInt($('#right-holder-div').css('padding-top')) - 160 + 24
+         scrollTop: point_top - right_holder_top - navbar_height - 71
       }, 500);
 
       $('#menu-delivey-point-title').addClass('blink');
@@ -59,8 +61,11 @@ $(document).on('turbolinks:load', function() {
 
       // scroll to menu
       setTimeout(function(){
+        var point_top = $("#select-delivery-point").offset().top;
+        var right_holder_top = parseInt($('#right-holder-div').css('padding-top'));
+        var navbar_height = parseFloat($('#navbar-order-wrap').css('height'));
         $('html, body').animate({
-          scrollTop: $("#select-delivery-point").offset().top - parseInt($('#right-holder-div').css('padding-top')) - 95 + 24
+          scrollTop: point_top - right_holder_top - navbar_height - 9
         }, 500);
       }, 350);
     }
