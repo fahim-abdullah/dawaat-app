@@ -21,7 +21,7 @@ class PromoCodesController < ApplicationController
     error_messages << 'Promo code not found' if @promo_code.nil?
     error_messages << 'Promo code expired' if @promo_code.present? && @promo_code.expiration_date < Time.now
 
-    if @promo_code.present? && @promo_code.minimum_amount > 0 && params[:subtotal_amount].to_i < @promo_code.minimum_amount
+    if @promo_code.present? && params[:subtotal_amount].to_i < @promo_code.minimum_amount
       # error_messages << "Minimum order amount for this promo code is #{@promo_code.minimum_amount} TK"
       error_messages << "Please order minimum #{@promo_code.minimum_amount} TK to use this promo code"
     end

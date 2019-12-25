@@ -22,7 +22,7 @@
       <% @promo_codes.each do |promo_code| %>
         <tr>
           <td><h3><span class="text-info"><%= promo_code.name %></span></h3></td>
-          <td><%= promo_code.promo_type %></td>
+          <td><%= promo_code.promo_type.humanize %></td>
           <td><%= promo_code.discount_value %></td>
           <td><%= promo_code.minimum_amount %></td>
           <td>

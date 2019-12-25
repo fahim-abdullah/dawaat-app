@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_155156) do
+ActiveRecord::Schema.define(version: 2019_12_25_040648) do
 
   create_table "delivery_points", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -59,6 +59,11 @@ ActiveRecord::Schema.define(version: 2019_12_23_155156) do
     t.decimal "lng", precision: 30, scale: 25
     t.integer "delivery_point_id"
     t.integer "subtotal_integer"
+    t.string "promo_name"
+    t.integer "promo_type"
+    t.integer "promo_discount_value"
+    t.integer "discount"
+    t.integer "total"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
