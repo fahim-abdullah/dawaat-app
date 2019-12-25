@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 2019_12_25_040648) do
     t.integer "subtotal_integer"
     t.string "promo_name"
     t.integer "promo_type"
-    t.integer "promo_discount_value"
-    t.integer "discount"
+    t.integer "promo_discount_value", default: 0
+    t.integer "discount", default: 0
     t.integer "total"
   end
 

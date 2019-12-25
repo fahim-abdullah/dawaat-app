@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   after_create :brodcast_to_ongoing
   after_update :brodcast_to_ongoing, :broadcast_to_delivery_man
 
-  attribute :delivery_man_notified, default: false
+  enum promo_type: { flat_discount: 0, percentage_discount: 1 }
 
   has_many :order_items
 
