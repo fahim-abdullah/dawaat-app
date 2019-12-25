@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
 		if @order.save
 
       #--insert-order-items
-      total_price = 0
+      subtotal = 0
       order_items_string = params[:order_items_string]
       order_items_string.split('---').each do |item_info|
         info_arr = item_info.split('...')
@@ -62,13 +62,24 @@ class OrdersController < ApplicationController
         product_quantity = info_arr[1]
         product = Product.find(product_id)
 
-        total_price += product.price.to_i * product_quantity.to_i
+        subtotal += product.price.to_i * product_quantity.to_i
 
         @order.order_items.create(product_id: product_id,
           product_name: product.name, price: product.price, quantity: product_quantity)
       end
 
-      @order.update_attribute(:subtotal, total_price)
+      #-----------------------------------------------------------------------------------
+
+      if params['promo_code'].present?
+        @order.apply_promo_code(promo_code_name: params['promo_code'], subtotal_amount: subtotal)
+      else
+        @order.subtotal = subtotal
+        @order.discount = 0
+        @order.total = 0
+        @order.save(validate: false)
+      end
+
+      #-----------------------------------------------------------------------------------
 
 			redirect_to thankyou_path
 		else

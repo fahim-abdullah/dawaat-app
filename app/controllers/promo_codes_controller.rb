@@ -14,20 +14,25 @@ class PromoCodesController < ApplicationController
 
   # POST /promo_codes/apply
   def apply
-    @promo_code = PromoCode.find_by_name(params[:promo_code])
-    error_messages = []
+    # @promo_code = PromoCode.find_by_name(params[:promo_code])
+    # error_messages = []
 
-    error_messages << 'Please input promo code' if params[:promo_code].empty?
-    error_messages << 'Promo code not found' if @promo_code.nil?
-    error_messages << 'Promo code expired' if @promo_code.present? && @promo_code.expiration_date < Time.now
+    # error_messages << 'Please input promo code' if params[:promo_code].empty?
+    # error_messages << 'Promo code not found' if @promo_code.nil?
+    # error_messages << 'Promo code expired' if @promo_code.present? && @promo_code.expiration_date < Time.now
 
-    if @promo_code.present? && params[:subtotal_amount].to_i < @promo_code.minimum_amount
-      # error_messages << "Minimum order amount for this promo code is #{@promo_code.minimum_amount} TK"
-      error_messages << "Please order minimum #{@promo_code.minimum_amount} TK to use this promo code"
-    end
+    # if @promo_code.present? && params[:subtotal_amount].to_i < @promo_code.minimum_amount
+    #   # error_messages << "Minimum order amount for this promo code is #{@promo_code.minimum_amount} TK"
+    #   error_messages << "Please order minimum #{@promo_code.minimum_amount} TK to use this promo code"
+    # end
+
+    subtotal = params[:subtotal_amount].to_i
+    promo_hash = { promo_code_name: params[:promo_code], subtotal: subtotal }
+    @promo_code, error_messages, discount, total = PromoCode.calculate(promo_hash)
 
     if error_messages.empty?
-      render json: { promo_code: @promo_code.as_json, status: 200 }, status: :ok
+      render json: { promo_code: @promo_code.as_json, subtotal: subtotal, 
+                     discount: discount, total: total, status: 200 }, status: :ok
     else
       render json: { error_messages: error_messages, status: 202 }, status: 202
     end

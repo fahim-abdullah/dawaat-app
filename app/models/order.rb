@@ -24,6 +24,21 @@ class Order < ApplicationRecord
     Rails.logger.error e.message
 	end
 
+  def apply_promo_code(promo_code_name:, subtotal_amount:)
+    promo_hash = { promo_code_name: promo_code_name, subtotal: subtotal_amount }
+    promo_code, error_message_arr, discount_amount, total_amount = PromoCode.calculate(promo_hash)
+
+    if error_message_arr.empty?
+      self.subtotal = subtotal_amount
+      self.promo_name = promo_code_name
+      self.promo_type = promo_code.promo_type
+      self.promo_discount_value = promo_code.discount_value
+      self.discount = discount_amount
+      self.total = total_amount
+      self.save(validate: false)
+    end
+  end
+
 	def status_fill
 		self.status = "Pending"
 	end

@@ -186,15 +186,15 @@ $(document).on('turbolinks:load', function() {
           var total_amount = 0;
 
           if(res['promo_code']['promo_type'] == 'flat_discount') {
-            discount_amount = res['promo_code'].discount_value;
+            // discount_amount = res['promo_code'].discount_value;
             $('#discount_percentage').hide();
           } else if(res['promo_code']['promo_type'] == 'percentage_discount') {
-            discount_amount = ( subtotal_amount * (res['promo_code'].discount_value / 100) );
+            // discount_amount = ( subtotal_amount * (res['promo_code'].discount_value / 100) );
             $('#discount_percentage').text('(' + res['promo_code'].discount_value + '% )').show();
           }
-          total_amount = subtotal_amount - discount_amount;
-          $('#discount_amount').text(discount_amount);
-          $("#total_amount").text(total_amount);
+          // total_amount = subtotal_amount - discount_amount;
+          $('#discount_amount').text(res['discount']);
+          $("#total_amount").text(res['total']);
 
           $('#discount-wrap').show('slow');
           //-------- ./apply promo code -----------------------------------------------------------------
