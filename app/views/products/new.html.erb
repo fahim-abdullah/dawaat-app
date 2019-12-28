@@ -7,6 +7,18 @@
 		</div>
 	</div>
 
+  <% if @product.errors.any? %>
+    <div id="error_explanation" class="text-danger">
+      <h5><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h5>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 	<div class="row">
 		<div class="col-md-5 col-12">
 			<%= form_for @product do |f| %>
