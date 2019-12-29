@@ -4,6 +4,12 @@ class Product < ApplicationRecord
   mount_uploader :available_image, ImageUploader
   mount_uploader :soldout_image, ImageUploader
 
+  validates :name, uniqueness: { scope: :delivery_point,
+    message: 'has already been taken in this delivery point' }
+
+  validates :old_price, numericality: { allow_nil: true }
+  validates :price, numericality: { greater_than: 0 }
+
   belongs_to :delivery_point
 
   private

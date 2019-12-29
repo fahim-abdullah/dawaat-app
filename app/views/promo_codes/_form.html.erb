@@ -1,0 +1,46 @@
+<%= form_with(model: promo_code, local: true) do |form| %>
+  <% if promo_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(promo_code.errors.count, "error") %> prohibited this promo_code from being saved:</h2>
+
+      <ul>
+      <% promo_code.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :promo_type %>
+    <%#= form.number_field :promo_type %>
+    <% promo_types = [] %>
+    <% PromoCode.promo_types.each { |item, key| promo_types << [item.humanize, item] } %>
+    <% promo_types_options = options_for_select(promo_types, selected: promo_code.promo_type) %>
+    <%= form.select(:promo_type, promo_types_options, { prompt: '-- please select --' }, {}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discount_value %>
+    <%= form.number_field :discount_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :minimum_amount %>
+    <%= form.number_field :minimum_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expiration_date %>
+    <%= form.datetime_select :expiration_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

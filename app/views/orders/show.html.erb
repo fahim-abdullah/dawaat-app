@@ -66,9 +66,16 @@
       <table class="table table-responsive table-right-align">
         <tbody>
           <tr><th colspan="3" class="text-center">Invoice summary</th></tr>
-          <tr><td>Subtotal</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right"><%= @order.subtotal %></td></tr>
-          <tr><td>Discount</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right">0</td></tr>
-          <tr><td>Total</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right"><%= @order.subtotal %></td></tr>
+          <tr>
+            <td>Subtotal</td> 
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td class="text-right"><%= @order.subtotal %></td>
+          </tr>
+          <tr>
+            <td>Discount <%= "( #{@order.promo_discount_value}% )" if @order.percentage_discount? %> </td> 
+            <td></td> 
+            <td class="text-right"><%= @order.discount %></td></tr>
+          <tr><td>Total</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td class="text-right"><%= @order.total %></td></tr>
         </tbody>
       </table>
     </div>  
@@ -80,7 +87,7 @@
   <hr>
   <div class="row">
     <div class="col-6">
-      <% back_url = params[:back_url].present? ? params[:back_url] : myorders_path %>
+      <% back_url = params[:back_url].present? ? "#{params[:back_url]}?delivery_point_id=#{@order.delivery_point_id}" : myorders_path %>
       <%= link_to "Back", back_url, class: "btn btn-primary" %>
     </div>
     <div class="col-6 text-right">

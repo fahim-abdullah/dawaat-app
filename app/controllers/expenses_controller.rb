@@ -23,6 +23,7 @@ class ExpensesController < ApplicationController
 		if @expense.save
 			redirect_to expenses_url(delivery_point_id: params[:delivery_point_id])
 		else
+      @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
 			render 'new'
 		end
 	end
@@ -37,7 +38,7 @@ class ExpensesController < ApplicationController
 			# flash[:notice] = "Updated"
 			redirect_to expenses_url(delivery_point_id: @expense.delivery_point_id)
 		else
-			render 'new'
+			render 'edit'
 		end
 	end
 	

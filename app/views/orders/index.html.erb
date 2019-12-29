@@ -33,10 +33,20 @@
 						<td><%= order.address %></td>
 						<td>
 							<% order.itemquantity.split("-").each do |i| %>
-								<p class="mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
+								<p class="semi mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
 							<% end %>
+
+              <hr class="my-1">
+              <% if order.promo_name.present? %>
+                <p class="m-0">Promo code : <%= order.promo_name %></p>
+                <p class="m-0">Subtotal : <%= order.subtotal %></p>
+                <p class="m-0">Discount <%= "( #{order.promo_discount_value}% )" if order.percentage_discount? %> : <%= order.discount %></p>
+              <% else %>
+                <p class="m-0">Promo code : none</p>
+              <% end %>
+
 							<hr class="my-1">
-							<p class="semi m-0">Subtotal : <%= order.subtotal %></p>
+							<p class="semi m-0">Total : <%= order.total %></p>
 
               <% if order.delivery_point.present? %>
                 <h5 class="border-top pt-2 mt-3">Delivery point: <span class="badge badge-pill badge-info"><%= order.delivery_point.name %></span></h5>

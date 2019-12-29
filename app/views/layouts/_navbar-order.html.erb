@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light" id="navbar-order-wrap">
     <a class="navbar-brand" href="#"><img src="http://bit.ly/31WmmGG" width="90px" /></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <img src="<%= asset_path 'menu.png' %>" width="30px;">
@@ -26,13 +26,16 @@
                         <% if is_admin? %>
                           <a class="dropdown-item" href="/orders">All Orders</a>
                           <a class="dropdown-item" href="/users">All Users</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="<%= promo_codes_url %>">Promo Codes</a>
+                          <div class="dropdown-divider"></div>
                         <% end %>
 
                         <% if is_admin? || current_user.delivery_points.count > 0 %>
                           <a class="dropdown-item" href="<%= delivery_points_path %>">Delivery Points</a>
+                          <div class="dropdown-divider"></div>
                         <% end %>
 
-                          <div class="dropdown-divider"></div>
                           <%= link_to 'My Orders', myorders_path, class: "dropdown-item color-black-important" %>
                           <%= link_to 'Logout', logout_path, method: :delete, class: "dropdown-item color-black-important" %>
                       </div>

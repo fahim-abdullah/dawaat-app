@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="py-4">
+    <h1 class="semi">Promo Codes</h1>
+    <hr>
+  </div>
+
+  <table id="all-orders-table" class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Promo type</th>
+        <th>Discount value</th>
+        <th>Minimum amount</th>
+        <th>Expiration date</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @promo_codes.each do |promo_code| %>
+        <tr>
+          <td><h3><span class="text-info"><%= promo_code.name %></span></h3></td>
+          <td><%= promo_code.promo_type.humanize %></td>
+          <td><%= promo_code.discount_value %></td>
+          <td><%= promo_code.minimum_amount %></td>
+          <td>
+            <div class="mb-1"><%= promo_code.expiration_date.strftime("%I:%M %p") %></div>
+            <div><%= promo_code.expiration_date.strftime("%a, %d %b %Y") %></div>    
+          </td>
+          <td><%= link_to 'Show', promo_code, class: 'btn btn-sm btn-warning' %></td>
+          <td><%= link_to 'Edit', edit_promo_code_path(promo_code), class: 'btn btn-sm btn-info' %></td>
+          <td>
+            <%= link_to 'Destroy', promo_code, method: :delete, 
+                data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Promo Code', new_promo_code_path, class: 'btn btn-sm btn-primary' %>
+
+</div>

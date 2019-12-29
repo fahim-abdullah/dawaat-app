@@ -18,9 +18,11 @@ $(document).on('turbolinks:load', function() {
   function scrollToDeliveryPoint() {
     if($('#select-delivery-point').val() == '') {
       // console.log('-- scroll --');
-
+      var point_top = $("#select-delivery-point").offset().top;
+      var right_holder_top = parseInt($('#right-holder-div').css('padding-top'));
+      var navbar_height = parseFloat($('#navbar-order-wrap').css('height'));
       $('html, body').animate({
-         scrollTop: $("#select-delivery-point").offset().top - parseInt($('#right-holder-div').css('padding-top')) - 160 + 24
+         scrollTop: point_top - right_holder_top - navbar_height - 71
       }, 500);
 
       $('#menu-delivey-point-title').addClass('blink');
@@ -59,8 +61,11 @@ $(document).on('turbolinks:load', function() {
 
       // scroll to menu
       setTimeout(function(){
+        var point_top = $("#select-delivery-point").offset().top;
+        var right_holder_top = parseInt($('#right-holder-div').css('padding-top'));
+        var navbar_height = parseFloat($('#navbar-order-wrap').css('height'));
         $('html, body').animate({
-          scrollTop: $("#select-delivery-point").offset().top - parseInt($('#right-holder-div').css('padding-top')) - 95 + 24
+          scrollTop: point_top - right_holder_top - navbar_height - 9
         }, 500);
       }, 350);
     }
@@ -148,7 +153,79 @@ $(document).on('turbolinks:load', function() {
 
     $('#order_items_string').val(order_items_string);
     $("#subtotal-field").val(subtotal);
-    $("#subtotal").text(subtotal);
+    $("#subtotal_amount").text(subtotal);
+    $("#total_amount").text(subtotal);
+  });
+
+  $('#apply-promo-code').on('click', function(){
+    var message = $('#promo-code-message').find('small');
+    message.removeClass('text-danger').addClass('text-info').html('Loading...').parent().show();
+
+    var promo_code = $('#promo-code-value').val();
+
+    $('#promo-code-name').val('');
+
+    $.ajax({
+      method: 'post',
+      url: $(this).attr('dataurl'),
+      dataType: 'json',
+      data: {
+        authenticity_token: $('meta[name=csrf-token]').attr('content'),
+        promo_code: promo_code,
+        subtotal_amount: $('#subtotal_amount').text()
+      },
+      success: function(res){
+        console.log('-- success --', res);
+
+
+        if(res['status'] == 200) {
+          //-------- apply promo code -------------------------------------------------------------------
+          $('#promo-code-name').val(res['promo_code']['name']);
+          var subtotal_amount = parseInt($('#subtotal_amount').text());
+          var discount_amount = 0;
+          var total_amount = 0;
+
+          if(res['promo_code']['promo_type'] == 'flat_discount') {
+            // discount_amount = res['promo_code'].discount_value;
+            $('#discount_percentage').hide();
+          } else if(res['promo_code']['promo_type'] == 'percentage_discount') {
+            // discount_amount = ( subtotal_amount * (res['promo_code'].discount_value / 100) );
+            $('#discount_percentage').text('(' + res['promo_code'].discount_value + '% )').show();
+          }
+          // total_amount = subtotal_amount - discount_amount;
+          $('#discount_amount').text(res['discount']);
+          $("#total_amount").text(res['total']);
+
+          $('#discount-wrap').show('slow');
+          //-------- ./apply promo code -----------------------------------------------------------------
+
+          // show success message
+          message.removeClass('text-info').addClass('text-success').html('Promo code applied').parent().show();
+          // setTimeout(function(){ message.parent().hide(); }, 3000);
+
+        } else if(res['status'] == 202) {
+          $("#total_amount").text($("#subtotal_amount").text());
+          $('#discount-wrap').hide('slow');
+
+          message.removeClass('text-info').addClass('text-danger').html(res['error_messages'][0]).parent().show();
+        }
+      },
+      error: function (xhr) {
+        console.log('-- error --', xhr);
+
+        $("#total_amount").text($("#subtotal_amount").text());
+        $('#discount-wrap').hide('slow');
+
+        var error_message = ''; xhr.status + ' ' + xhr.statusText;
+        if(xhr.status == 0) { 
+          error_message = 'May be, internet connection error'
+        } else {
+          error_message = xhr.status + ' ' + xhr.statusText;
+        }
+        message.removeClass('text-info').addClass('text-danger').html(error_message).parent().show();
+      }
+    });
+
   });
 
 

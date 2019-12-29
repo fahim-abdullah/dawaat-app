@@ -50,11 +50,19 @@
 
                     <div class="row">
 
+                      <% visible_products_name = [] %>
                       <% @products.each do |product| %>
+                        <%
+                        product_hidden = true 
+                        unless visible_products_name.include? product.name 
+                          visible_products_name << product.name
+                          product_hidden = false
+                        end
+                        %>
                         <% if product.status == "Sold Out" %>
-                          <%= render 'layouts/product_soldout', product: product %>
+                          <%= render 'layouts/product_soldout', product: product, product_hidden: product_hidden %>
                         <% else %>
-                          <%= render 'layouts/product_available', product: product %>
+                          <%= render 'layouts/product_available', product: product, product_hidden: product_hidden %>
                         <% end %>
                       <% end %>
 
@@ -150,15 +158,54 @@
                                       </div>
                                     <% end %>
 
+                                    <div id="discount-wrap" style="display:none;">
+                                      <hr class="card-hr">
+                                      <div class="row">
+                                        <div class="col-7 text-left sub">Subtotal</div>
+                                        <div class="col-5 text-right sub">TK <span id="subtotal_amount"></span></div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-7 text-left sub">Discount <span id="discount_percentage"></span></div>
+                                        <div class="col-5 text-right sub">TK <span id="discount_amount"></span></div>
+                                      </div>
+                                    </div>
+
                                     <hr class="card-hr">
                                     <div class="row">
-                                        <div class="col-7 text-left sub">Subtotal</div>
-                                        <div class="col-5 text-right sub">TK <span id="subtotal"></span></div>
+                                        <div class="col-7 text-left sub">Total</div>
+                                        <div class="col-5 text-right sub">TK <span id="total_amount"></span></div>
                                     </div>
 
                                 </div>
 
-                                <div class="row">
+                                <div class="promo-code-wrapper">
+                                  <div class="new-order-promo-code">
+                                    <div class="promo-code-label pt-2 mr-2 text-success text-nowrap">Promo code:</div>
+
+                                    <div class="promo-code-input-wrap">
+                                      
+                                      <div class="promo-code-input-inner">
+                                        <span class="promo-code-input">
+                                          <input type="hidden" name="promo_code" id="promo-code-name">
+                                          <input type="text" autocomplete="off" id="promo-code-value" class="form-control text-success">
+                                        </span>
+                                        <span class="promo-code-apply ml-2">
+                                          <span class="btn btn-outline-success" id="apply-promo-code" 
+                                              dataurl="<%= promo_codes_apply_url %>">Apply</span>
+                                        </span>
+                                      </div>
+
+                                      <div id="promo-code-message" style="display:none;">
+                                        <small class="text-danger"></small>
+                                      </div>
+
+                                    </div>
+                                  </div>
+
+                                  
+                                </div>
+
+                                <div class="row mt-2">
                                     <div class="form-group col-12">
                                         <%= f.submit class: "btn-1 col-12", value: "Confirm Order" %>
                                     </div>

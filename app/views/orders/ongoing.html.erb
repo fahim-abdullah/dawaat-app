@@ -15,7 +15,7 @@
 			<table id="all-orders-table" class="display">
 				<thead>
 					<tr>
-			            <th>ID</th>
+			      <th>ID</th>
 						<th>Name</th>
 						<th>Phone</th>
 						<th>Location</th>
@@ -30,7 +30,7 @@
 					<% @orders.each do |order| %>
 
 					<tr>
-			            <td><%= order.id %></td>
+			      <td><%= order.id %></td>
 						<td><%= order.fullname %> <span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
 						<td><%= order.phone %></td>
 						<td>
@@ -41,10 +41,20 @@
 						</td>
 						<td>
 							<% order.itemquantity.split("-").each do |i| %>
-								<p class="mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
+								<p class="semi mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
 							<% end %>
+
+              <hr class="my-1">
+              <% if order.promo_name.present? %>
+                <p class="m-0">Promo code : <%= order.promo_name %></p>
+                <p class="m-0">Subtotal : <%= order.subtotal %></p>
+                <p class="m-0">Discount <%= "( #{order.promo_discount_value}% )" if order.percentage_discount? %> : <%= order.discount %></p>
+              <% else %>
+                <p class="m-0">Promo code : none</p>
+              <% end %>
+
 							<hr class="my-1">
-							<p class="semi m-0">Subtotal : <%= order.subtotal %></p>
+							<p class="semi m-0">Total : <%= order.total %></p>
 						</td>
 						<td><%= order.status %></td>
 						<td><%= order.user.name if order.user.present? %></td>

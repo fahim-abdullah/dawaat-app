@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
 		if @product.save
 			redirect_to products_url(delivery_point_id: params[:delivery_point_id])
 		else
+      @delivery_point = DeliveryPoint.find(params[:delivery_point_id])
 			render 'new'
 		end
 	end
@@ -38,7 +39,7 @@ class ProductsController < ApplicationController
 			# flash[:notice] = "Updated"
 			redirect_to products_url(delivery_point_id: @product.delivery_point_id)
 		else
-			render 'new'
+			render 'edit'
 		end
 	end
 	

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # root 'statics#coming_soon'
 
   resources :delivery_points
+  resources :promo_codes
 
   get 'coming_soon', to: 'statics#coming_soon'
 	get 'ourstory', to: 'statics#ourstory'
@@ -28,5 +29,7 @@ Rails.application.routes.draw do
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'
 	delete 'logout', to: 'sessions#destroy'
+
+  post 'promo_codes/apply', to: 'promo_codes#apply', as: :promo_codes_apply
 
 end

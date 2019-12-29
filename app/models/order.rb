@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   after_create :brodcast_to_ongoing
   after_update :brodcast_to_ongoing, :broadcast_to_delivery_man
 
-  attribute :delivery_man_notified, default: false
+  enum promo_type: { flat_discount: 0, percentage_discount: 1 }
 
   has_many :order_items
 
@@ -23,6 +23,21 @@ class Order < ApplicationRecord
     Rails.logger.error "Exception in app/models/order.rb: user_check callback, order_id: #{self.id}"
     Rails.logger.error e.message
 	end
+
+  def apply_promo_code(promo_code_name:, subtotal_amount:)
+    promo_hash = { promo_code_name: promo_code_name, subtotal: subtotal_amount }
+    promo_code, error_message_arr, discount_amount, total_amount = PromoCode.calculate(promo_hash)
+
+    if error_message_arr.empty?
+      self.subtotal = subtotal_amount
+      self.promo_name = promo_code_name
+      self.promo_type = promo_code.promo_type
+      self.promo_discount_value = promo_code.discount_value
+      self.discount = discount_amount
+      self.total = total_amount
+      self.save(validate: false)
+    end
+  end
 
 	def status_fill
 		self.status = "Pending"
