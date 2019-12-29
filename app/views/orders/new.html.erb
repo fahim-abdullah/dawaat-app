@@ -50,11 +50,19 @@
 
                     <div class="row">
 
+                      <% visible_products_name = [] %>
                       <% @products.each do |product| %>
+                        <%
+                        product_hidden = true 
+                        unless visible_products_name.include? product.name 
+                          visible_products_name << product.name
+                          product_hidden = false
+                        end
+                        %>
                         <% if product.status == "Sold Out" %>
-                          <%= render 'layouts/product_soldout', product: product %>
+                          <%= render 'layouts/product_soldout', product: product, product_hidden: product_hidden %>
                         <% else %>
-                          <%= render 'layouts/product_available', product: product %>
+                          <%= render 'layouts/product_available', product: product, product_hidden: product_hidden %>
                         <% end %>
                       <% end %>
 
