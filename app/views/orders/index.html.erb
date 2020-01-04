@@ -13,49 +13,69 @@
 						<th>ID</th>
 						<th>Name</th>
 						<th>Created</th>
+						<th>D.P & Address</th>
 						<!-- <th>Phone</th> -->
-						<th>Address</th>
 						<th>Order Details</th>
-						<th>Status</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<% @orders.each do |order| %>
 					<tr>
+						<!-- ID -->
 						<td><%= order.id %></td>
-						<td> <%= order.fullname %> <span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
+						<!-- Name -->
+						<td> <%= order.fullname %><br><span class="badge badge-pill badge-primary"><%= order.existing %></span></td>
+						<!-- Created -->
 						<td>
-              <div class="mb-1"><%= order.created_at.strftime("%I:%M %p") %></div>
-              <div><%= order.created_at.strftime("%a, %d %b %Y") %></div>
-            </td>
+							<div class="mb-1">
+								<%= order.created_at.strftime("%a • %I:%M %p") %><br>
+								<%= order.created_at.strftime("%d %b %Y") %>
+							</div>
+						</td>
+						<!-- D.P & Address -->
+						<td>
+							<div>
+							<% if order.delivery_point.present? %>
+								<strong class="medium"><%= order.delivery_point.name %></strong>
+								<hr class="my-1">
+							<% end %>
+								Address : <%= order.address %><br>
+								Flat/House : <%= order.address %><br>
+								Road : <%= order.road %>
+							</div>
+						</td>
 						<!-- <td><%#= order.phone %></td> -->
-						<td><%= order.address %></td>
+
+						<!-- Order Details -->
 						<td>
 							<% order.itemquantity.split("-").each do |i| %>
-								<p class="semi mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
+								<p class="mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
 							<% end %>
 
-              <hr class="my-1">
-              <% if order.promo_name.present? %>
-                <p class="m-0">Promo code : <%= order.promo_name %></p>
-                <p class="m-0">Subtotal : <%= order.subtotal %></p>
-                <p class="m-0">Discount <%= "( #{order.promo_discount_value}% )" if order.percentage_discount? %> : <%= order.discount %></p>
-              <% else %>
-                <p class="m-0">Promo code : none</p>
-              <% end %>
-
 							<hr class="my-1">
+
+							<% if order.promo_name.present? %>
+							<span class="badge badge-pill badge-success">PROMO : <%= order.promo_name %> <%="(#{order.promo_discount_value}%)" if order.percentage_discount?%></span>
+							<p class="m-0">
+								Subtotal : <%= "#{order.subtotal} (-#{order.discount} TK)" %>
+							</p>
+
+
+							<!-- <p class="m-0">Discount <%#="( #{order.promo_discount_value}% )" if order.percentage_discount? %> : <%#= order.discount %></p> -->
+							<% else %>
+							<span class="badge badge-pill badge-dark">PROMO : NONE</span>
+							<% end %>
 							<p class="semi m-0">Total : <%= order.total %></p>
 
-              <% if order.delivery_point.present? %>
-                <h5 class="border-top pt-2 mt-3">Delivery point: <span class="badge badge-pill badge-info"><%= order.delivery_point.name %></span></h5>
-              <% end %>
 						</td>
-						<td><%= order.status %></td>
+
 						<td>
-							<%= link_to 'Show', order_path(order), class: 'btn btn-sm btn-primary' %>
-	                        <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger' %>
+							<%= link_to 'Show', order_path(order), class: 'btn btn-sm btn-primary my-1' %>
+	                        <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger' %><br>
+							<p class="semi my-1">
+								<%= order.status %>
+							</p>
 						</td>
 					</tr>
 					<% end %>
