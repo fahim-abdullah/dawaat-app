@@ -18,7 +18,24 @@
 //= require jquery.dataTables.min
 //= require turbolinks
 //= require imagesloaded.pkgd
-//= require_tree .
+
+//= require address
+//= require analytics
+//= require assign_delivery
+//= require action_cable
+//= require cable
+//= require channels/order
+//= require counter
+//= require delivery_points
+//= require google_analytics
+//= require imagesloaded.pkgd
+//= require jquery.dataTables.min
+//= require loader
+//= require tables
+//= require moment
+//= require Chart
+
+//= require_self
 
 
 function hideLoader() {

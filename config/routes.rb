@@ -32,4 +32,5 @@ Rails.application.routes.draw do
 
   post 'promo_codes/apply', to: 'promo_codes#apply', as: :promo_codes_apply
 
+  get 'analytics/date_range', to: 'analytics#date_range', as: :analytics_date_range
 end
