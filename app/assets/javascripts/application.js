@@ -12,28 +12,35 @@
 //
 //= require jquery3
 //= require rails-ujs
+//= require jquery-ui
 //= require activestorage
+
 //= require popper
 //= require bootstrap-sprockets
 //= require jquery.dataTables.min
 //= require turbolinks
-//= require imagesloaded.pkgd
 
+//= require imagesloaded.pkgd
 //= require address
 //= require analytics
 //= require assign_delivery
+
 //= require action_cable
 //= require cable
 //= require channels/order
 //= require counter
+
 //= require delivery_points
 //= require google_analytics
 //= require imagesloaded.pkgd
 //= require jquery.dataTables.min
+
 //= require loader
 //= require tables
+
 //= require moment
 //= require Chart
+//= require chartjs-plugin-datalabels
 
 //= require_self
 

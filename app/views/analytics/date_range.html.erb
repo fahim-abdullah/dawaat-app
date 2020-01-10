@@ -5,22 +5,51 @@
     <hr>
   </div>
 
+
+  <%= form_with url: analytics_date_range_path(delivery_point_id: params[:delivery_point_id]), 
+      class: 'form-inline mb-2', local: true do |form| %>
+
+    <div class="input-group mb-2 mr-sm-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">From date</div>
+      </div>
+      <input type="text" class="form-control" name="from_date" id="from_date" autocomplete="off" value="<%= @from_date %>">
+    </div>
+
+    <div class="input-group mb-2 mr-sm-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">To date</div>
+      </div>
+      <input type="text" class="form-control" from_date="to_date" id="to_date" autocomplete="off" value="<%= @to_date %>">
+    </div>
+
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+  <% end %>
+
+
+  <h4>From: <%= @from_date %> - To: <%= @to_date %></h4>
   
-  <p>Chart:</p>
+  <hr>
 
 
-  <canvas id="myChart"></canvas>
-
-  <%= @orders_total.inspect %> <br>
-  <%= @orders_total.keys.as_json %> <br>
-  <%= @orders_total.values.as_json %> <br>
+  <% if @orders_total.count == 0 %>
+    <h4 class="mt-5 mb-5">No data found. <br> Please change 'date range' and submit.</h4>
+  <% else %>
+   <canvas id="myChart"></canvas>
+  <% end %>
 
 </div>
 
 <% content_for :user_javascript do %>
   <script type="text/javascript">
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
+
+    $(document).on('turbolinks:load', function() {
+
+      <% if @orders_total.count > 0 %>
+
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
 
@@ -28,15 +57,82 @@
         data: {
             labels: <%= @orders_total.keys.as_json.to_s.html_safe %>,
             datasets: [{
-                label: 'Daily sell',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: <%= @orders_total.values.as_json.to_s.html_safe %>
+              datalabels: {
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                color: '#333333',
+                formatter: function (value) {
+                  return Math.round(value) + ' Taka';
+                },
+                font: {
+                  weight: 'bold',
+                  size: 18,
+                },
+              },
+              label: 'Daily sell',
+              // backgroundColor: 'rgb(255, 99, 132)',
+              // borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgba(75, 192, 192, 0.5)',
+              borderColor: 'rgb(75, 192, 192)',
+              data: <%= @orders_total.values.as_json.to_s.html_safe %>
             }]
         },
 
         // Configuration options go here
-        options: {}
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                fontSize: 20
+              }
+            }],
+            xAxes: [{
+              ticks: {
+                fontSize: 20,
+                padding: 5
+              }
+            }],
+          }
+        }
+      });
+
+      <% end %>
+
+      //================================================
+
+      var dateFormat = "yy-mm-dd";
+      from = $( "#from_date" )
+        .datepicker({
+          dateFormat: dateFormat
+          // defaultDate: "+1w",
+          // changeMonth: true
+          // numberOfMonths: 3
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        });
+      to = $( "#to_date" ).datepicker({
+        dateFormat: dateFormat
+        // defaultDate: "+1w",
+        // changeMonth: false
+        // numberOfMonths: 3
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+
+      function getDate( element ) {
+        var date;
+        try {
+          // date = $.datepicker.parseDate( dateFormat, element.value );
+          date = element.value;
+        } catch( error ) {
+          date = null;
+        }
+   
+        return date;
+      }
+
     });
+
   </script>
 <% end %>

@@ -3,15 +3,13 @@ class AnalyticsController < ApplicationController
   before_action :is_admin_or_delivery_point_manager
 
   def date_range
-    @start_date = 10.days.ago
-    @end_date = Time.now
+    @from_date = params[:from_date].present? ? params[:from_date] : 10.days.ago.strftime("%Y-%m-%d")
+    @to_date = params[:to_date].present? ? params[:to_date] : Time.now.strftime("%Y-%m-%d")
 
-    @orders_total = {}
-
-    #///////////////#
-
-    @orders_total = Order.where(delivery_point_id: params[:delivery_point_id]).group("DATE(created_at)").sum(:total)
-
-
+    @orders_total = Order.where(delivery_point_id: params[:delivery_point_id])
+                         .where("created_at >= '#{@from_date}'")
+                         .where("created_at <= '#{@to_date}'")
+                         .group("DATE(created_at)")
+                         .sum(:total)
   end
 end
