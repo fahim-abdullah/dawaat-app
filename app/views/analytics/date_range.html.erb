@@ -1,45 +1,149 @@
 <div class="container">
 
-  <div class="py-4">
-    <h1 class="semi">Analytics - Date range</h1>
-    <hr>
+  <div class="row">
+    <div class="col-12 py-4">
+      <h1 class="semi">Analytics Dashboard</h1>
+      <hr>
+    </div>
   </div>
 
 
   <%= form_with url: analytics_date_range_path(delivery_point_id: params[:delivery_point_id]), 
-      class: 'form-inline mb-2', local: true do |form| %>
+      class: 'form-inline mb-5', local: true do |form| %>
 
-    <div class="input-group mb-2 mr-sm-2">
+    <div class="input-group mr-sm-2">
       <div class="input-group-prepend">
-        <div class="input-group-text">From date</div>
+        <div class="input-group-text">From</div>
       </div>
       <input type="text" class="form-control" name="from_date" id="from_date" autocomplete="off" value="<%= @from_date %>">
     </div>
 
-    <div class="input-group mb-2 mr-sm-2">
+    <div class="input-group mr-sm-2">
       <div class="input-group-prepend">
-        <div class="input-group-text">To date</div>
+        <div class="input-group-text">To</div>
       </div>
       <input type="text" class="form-control" from_date="to_date" id="to_date" autocomplete="off" value="<%= @to_date %>">
     </div>
 
-    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    <button type="submit" class="btn btn-dark regular">Submit</button>
 
   <% end %>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5 class="mb-2 bold">ANALYTICS OVERVIEW</h5>
+        </div>
+
+        <div class="col-md-4 mb-2">
+            <div class="radius-10 shadow p-5 burning-orange">
+                <div class="text-center">
+                    <p class="semi mb-0">Total Orders</p>
+                    <h1 class="display-4 mb-0 bold">196</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-2">
+            <div class="radius-10 shadow p-5 messenger-blue">
+                <div class="text-center">
+                    <p class="semi mb-0">Sales (TK)</p>
+                    <h1 class="display-4 mb-0 bold">110,450</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-2">
+            <div class="radius-10 shadow p-5 green-grad">
+                <div class="text-center">
+                    <p class="semi mb-0">Avg. Ticket Size (TK)</p>
+                    <h1 class="display-4 mb-0 bold">563.5</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-8 mb-2">
+            <div class="radius-10 shadow p-4 bg-white">
+                <h5 class="semi">Peak Hours</h5>
+                <p>BARCHART : 12pm to 12am. <br> Labels : Hours vs. number of orders</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="radius-10 shadow p-4 bg-white">
+                <h5 class="semi">Top Locations</h5>
+                <p>PIE CHART : Gulshan, Banani, Niketon, Baridhara</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12 mb-2">
+            <div class="radius-10 shadow p-4 bg-white">
+                <h5 class="semi">Ordering Channels</h5>
+                <p>Multi-line Chart. (Foodpanda vs UberEats vs Pathao vs Direct) VS Days </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4 mb-2">
+            <div class="radius-10 shadow p-4 bg-white">
+                <h5 class="semi">Best Seller Items</h5>
+                <div class="row lead regular">
+                    <span class="text-left col-8">Signature Tehari</span>
+                    <span class="text-right col-4 bold">104</span>
+
+                    <span class="text-left col-8">Firni - Large</span>
+                    <span class="text-right col-4 bold">56</span>
+
+                    <span class="text-left col-8">Fried Chicken Roast & Polao</span>
+                    <span class="text-right col-4 bold">21</span>
+
+                    <span class="text-left col-8">Chicken Tehari</span>
+                    <span class="text-right col-4 bold">15</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="radius-10 shadow p-4 bg-white">
+                <h5 class="semi">Growth Since Inception</h5>
+                <p>LINE CHART : Week by Week Order count</p>
+            </div>
+        </div>
+
+    </div>
 
 
-  <h4>From: <%= @from_date %> - To: <%= @to_date %></h4>
+
+
+
+
+
+
+          <% if @orders_total.count == 0 %>
+            <h4 class="mt-5 mb-5">No data found. <br> Please change 'date range' and submit.</h4>
+          <% else %>
+           <canvas id="myChart"></canvas>
+          <% end %>
+
+        </div>
+
+    </div>
+
   
-  <hr>
+
+  <!-- <h4>From: <%#= @from_date %> - To: <%#= @to_date %></h4> 
+  
+  <hr> -->
 
 
-  <% if @orders_total.count == 0 %>
-    <h4 class="mt-5 mb-5">No data found. <br> Please change 'date range' and submit.</h4>
-  <% else %>
-   <canvas id="myChart"></canvas>
-  <% end %>
 
-</div>
+
 
 <% content_for :user_javascript do %>
   <script type="text/javascript">
