@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_25_040648) do
+ActiveRecord::Schema.define(version: 2020_01_12_220056) do
 
   create_table "delivery_points", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2019_12_25_040648) do
     t.string "itemquantity"
     t.string "existing"
     t.string "status"
-    t.datetime "ontheway_time"
-    t.datetime "delivery_time"
+    t.timestamp "ontheway_time"
+    t.timestamp "delivery_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -58,12 +58,12 @@ ActiveRecord::Schema.define(version: 2019_12_25_040648) do
     t.decimal "lat", precision: 30, scale: 25
     t.decimal "lng", precision: 30, scale: 25
     t.integer "delivery_point_id"
-    t.integer "subtotal_integer"
     t.string "promo_name"
     t.integer "promo_type"
     t.integer "promo_discount_value", default: 0
     t.integer "discount", default: 0
     t.integer "total"
+    t.string "source"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

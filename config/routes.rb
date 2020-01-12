@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 	get 'ourstory', to: 'statics#ourstory'
 	get 'thankyou', to: 'statics#thankyou', as: :thankyou
 	get 'contactus', to: 'statics#contactus'
+	get 'tpi', to: 'statics#tpi'
+
+	get 'admin_order', to: 'orders#admin_order'
 
 	resources :products
 	resources :users

@@ -1,6 +1,9 @@
 // mq = modal quantity
 
 $(document).on('turbolinks:load', function() {
+
+  $("#admin-card").hide();
+
 	function updateCartNumber(quantity) {
 		var cart_num = parseInt($("#cart-number").html());
 		cart_num = cart_num + quantity;
@@ -155,6 +158,7 @@ $(document).on('turbolinks:load', function() {
     $("#subtotal-field").val(subtotal);
     $("#subtotal_amount").text(subtotal);
     $("#total_amount").text(subtotal);
+    $("#admin-card").show();
   });
 
   $('#apply-promo-code').on('click', function(){

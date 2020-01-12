@@ -13,4 +13,9 @@ class StaticsController < ApplicationController
 	def contactus
 	end
 
+	def tpi
+		# @disable_navbar = true
+		@disable_footer = true
+	end
+
 end

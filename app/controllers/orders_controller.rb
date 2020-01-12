@@ -48,6 +48,12 @@ class OrdersController < ApplicationController
 		@order = Order.new
 	end
 
+	def admin_order
+		@disable_footer = true
+		@products = Product.all
+		@order = Order.new
+	end
+
 	def create
 		@order = Order.new(order_params)
 
@@ -119,7 +125,7 @@ class OrdersController < ApplicationController
 	def order_params 
 		params.require(:order).permit(:fullname, :phone, :address, :flathouse, 
       :road, :latlng, :subtotal, :itemquantity, :existing, :status, :lat, :lng,
-      :ontheway_time, :delivery_time, :instructions, :user_id, :delivery_point_id)
+      :ontheway_time, :delivery_time, :instructions, :user_id, :delivery_point_id, :source)
 	end
 	def set_timezone
 		Time.zone = "Dhaka"
