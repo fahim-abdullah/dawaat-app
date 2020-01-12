@@ -59,6 +59,12 @@
                 <% end %>
               </div>
 
+              <div class="pb-3">
+                <a href="<%= analytics_date_range_path(delivery_point_id: delivery_point.id) %>" class="btn btn-sm btn-primary">
+                  <i class="fa fa-chart-line"></i> Analyitics
+                </a>
+              </div>
+
               <%= link_to 'Edit', edit_delivery_point_path(delivery_point), class: 'btn btn-sm btn-warning' %>
               <%#= link_to 'Destroy', delivery_point, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
             </td>
