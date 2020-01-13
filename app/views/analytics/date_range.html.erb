@@ -63,17 +63,25 @@
     </div>
 
     <div class="row mb-4">
-        <div class="col-md-8 mb-2">
+        <div class="col-md-6 mb-2">
             <div class="radius-10 shadow p-4 bg-white">
-                <h5 class="semi">Peak Hours</h5>
-                <p>BARCHART : 12pm to 12am. <br> Labels : Hours vs. number of orders</p>
+                <h5 class="semi">Peak Hours:</h5>
+                <br>
+                <!-- <p>BARCHART : 12pm to 12am. <br> Labels : Hours vs. number of orders</p> -->
+
+                <canvas id="peakHourBarChart"></canvas>
+
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="radius-10 shadow p-4 bg-white">
-                <h5 class="semi">Top Locations</h5>
-                <p>PIE CHART : Gulshan, Banani, Niketon, Baridhara</p>
+                <h5 class="semi">Top Locations:</h5>
+                <p>Orders in each location</p>
+                <br>
+                <!-- <p>PIE CHART : Gulshan, Banani, Niketon, Baridhara</p> -->
+
+                <canvas id="topLocationsPieChart"></canvas>
             </div>
         </div>
 
@@ -83,7 +91,11 @@
         <div class="col-md-12 mb-2">
             <div class="radius-10 shadow p-4 bg-white">
                 <h5 class="semi">Ordering Channels</h5>
-                <p>Multi-line Chart. (Foodpanda vs UberEats vs Pathao vs Direct) VS Days </p>
+                <p>Orders in diffrent channels</p>
+                <!-- <p>Multi-line Chart. (Foodpanda vs UberEats vs Pathao vs Direct) VS Days </p> -->
+                <br>
+
+                <canvas id="orderingChannelMultiLineChart"></canvas>
             </div>
         </div>
 
@@ -112,7 +124,10 @@
         <div class="col-md-8">
             <div class="radius-10 shadow p-4 bg-white">
                 <h5 class="semi">Growth Since Inception</h5>
-                <p>LINE CHART : Week by Week Order count</p>
+                <p>Week by Week Order count</p>
+                <br>
+
+                <canvas id="weeklyGrowthLineChart"></canvas>
             </div>
         </div>
 
@@ -235,6 +250,246 @@
    
         return date;
       }
+
+      //==============================================
+
+      
+      var peakHourChartx = document.getElementById('peakHourBarChart').getContext('2d');
+
+      var peakHourChart = new Chart(peakHourChartx, {
+        type: 'bar',
+        // data: [{x:'2016-12-25', y:20}, {x:'2016-12-26', y:10}],
+
+
+        // data: {
+        //   datasets: [{
+        //     label: 'Hours vs. number of orders',
+        //     // barPercentage: 0.5,
+        //     // barThickness: 6,
+        //     // maxBarThickness: 8,
+        //     // minBarLength: 2,
+        //     data: [ 20, 25, 18, 22 ]
+        //   }]
+        // },
+
+        data: {
+          labels: ['12 pm', '1 am', '2 am', '3 am', '4 am', '5 am', '6 am', '7 am', '8 am', '9 am', '10 am', '11 am'],
+          datasets: [{
+            label: 'Hours vs. number of orders',
+            data: [12, 19, 13, 15, 12, 13, 20, 13, 15, 16, 12, 11],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)',
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+
+        options: {
+          // responsive: false,
+          scales: {
+            xAxes: [{
+              ticks: {
+                // maxRotation: 90,
+                // minRotation: 80
+                fontSize: 16
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontSize: 16,
+                padding: 5
+              }
+            }]
+          }
+        }
+      });
+
+      //========================================================
+
+      var topLocationsChartx = document.getElementById('topLocationsPieChart').getContext('2d');
+      
+      var topLocationsChart = new Chart(topLocationsChartx, {
+        type: 'pie',
+        data: {
+          datasets: [{
+            data: [20, 30, 25, 40],
+            backgroundColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(54, 162, 235)"],
+            label: 'Orders in each area'
+          }],
+          labels: ['Gulshan', 'Banani', 'Niketon', 'Baridhara']
+        },
+        options: {
+          responsive: true
+        }
+      });
+
+      //==========================================================
+
+      var orderingChannelChartx = document.getElementById('orderingChannelMultiLineChart').getContext('2d');
+
+      var orderingChannelChart = new Chart(orderingChannelChartx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['1 - Jan', '2 - Jan', '3 - Jan', '4 - Jan', '5 - Jan'],
+            datasets: [{
+              datalabels: {
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                color: '#333333',
+                // formatter: function (value) {
+                //   return Math.round(value) + ' Taka';
+                // },
+                font: {
+                  weight: 'bold',
+                  size: 18,
+                },
+              },
+              label: 'Foodpanda',
+              // backgroundColor: 'rgb(255, 99, 132)',
+              // borderColor: 'rgb(255, 99, 132)',
+              // backgroundColor: 'rgba(75, 192, 192, 0.5)',
+              backgroundColor: 'rgba(75, 192, 192, 0)',
+              borderColor: 'rgb(75, 192, 192)',
+              data: [20, 25, 22, 20, 30]
+            }, {
+              datalabels: {
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                color: '#333333',
+                // formatter: function (value) {
+                //   return Math.round(value) + ' Taka';
+                // },
+                font: {
+                  weight: 'bold',
+                  size: 18,
+                },
+              },
+              label: 'UberEats',
+              backgroundColor: 'rgba(255, 99, 132, 0)',
+              borderColor: 'rgb(255, 99, 132)',
+              // backgroundColor: 'rgba(75, 192, 192, 0)',
+              // borderColor: 'rgb(75, 192, 192)',
+              data: [15, 16, 18, 16, 22]
+            }, {
+              datalabels: {
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                color: '#333333',
+                // formatter: function (value) {
+                //   return Math.round(value) + ' Taka';
+                // },
+                font: {
+                  weight: 'bold',
+                  size: 18,
+                },
+              },
+              label: 'Pathao',
+              backgroundColor: 'rgba(255, 99, 132, 0)',
+              borderColor: 'rgb(255, 205, 86)',
+              // backgroundColor: 'rgba(75, 192, 192, 0)',
+              // borderColor: 'rgb(75, 192, 192)',
+              data: [12, 10, 12, 10, 18]
+            }
+          ]
+        },
+
+        // Configuration options go here
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontSize: 20
+              }
+            }],
+            xAxes: [{
+              ticks: {
+                fontSize: 20,
+                padding: 5
+              }
+            }],
+          }
+        }
+      });
+
+      //==============================================================
+
+
+      
+      var weeklyGrowthChartx = document.getElementById('weeklyGrowthLineChart').getContext('2d');
+
+      var weeklyGrowthChart = new Chart(weeklyGrowthChartx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+            datasets: [{
+              datalabels: {
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                color: '#333333',
+                // formatter: function (value) {
+                //   return Math.round(value) + ' Taka';
+                // },
+                font: {
+                  weight: 'bold',
+                  size: 18,
+                },
+              },
+              label: 'Weekly sell',
+              // backgroundColor: 'rgb(255, 99, 132)',
+              // borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [140, 120, 150, 180]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontSize: 20
+              }
+            }],
+            xAxes: [{
+              ticks: {
+                fontSize: 20,
+                padding: 5
+              }
+            }],
+          }
+        }
+      });
 
     });
 
