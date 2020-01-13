@@ -76,8 +76,11 @@
 
         <div class="col-md-4">
             <div class="radius-10 shadow p-4 bg-white">
-                <h5 class="semi">Top Locations</h5>
-                <p>PIE CHART : Gulshan, Banani, Niketon, Baridhara</p>
+                <h5 class="semi">Top Locations:</h5>
+                <br>
+                <!-- <p>PIE CHART : Gulshan, Banani, Niketon, Baridhara</p> -->
+
+                <canvas id="topLocationsPieChart"></canvas>
             </div>
         </div>
 
@@ -316,6 +319,25 @@
               }
             }]
           }
+        }
+      });
+
+      //========================================================
+
+      var topLocationsChartx = document.getElementById('topLocationsPieChart').getContext('2d');
+      
+      var topLocationsChart = new Chart(topLocationsChartx, {
+        type: 'pie',
+        data: {
+          datasets: [{
+            data: [20, 30, 25, 40],
+            backgroundColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(54, 162, 235)"],
+            label: 'Orders in each area'
+          }],
+          labels: ['Gulshan', 'Banani', 'Niketon', 'Baridhara']
+        },
+        options: {
+          responsive: true
         }
       });
 
