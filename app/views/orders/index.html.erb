@@ -49,7 +49,15 @@
 
 						<!-- Order Details -->
 						<td>
-							<% order.itemquantity.split("-").each do |i| %>
+              <%
+              itemquantity_arr = []
+              begin
+                itemquantity_arr = order.itemquantity.split("-")
+              rescue
+                itemquantity_arr = []
+              end
+              %>
+							<% itemquantity_arr.each do |i| %>
 								<p class="mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
 							<% end %>
 

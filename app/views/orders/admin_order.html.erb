@@ -6,12 +6,32 @@
 		</div>
 	</div>
 
+  <% if @order.errors.any? %>
+    <div id="error_explanation" class="text-danger">
+      <h5><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h5>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 	<div class="row">
 		<%= form_for @order, html: {class: "col-12"} do |f| %>
-		<div class="row">
-			
+		
+    <div class="row">	
 		
 		<div class="col-7">
+
+      <input type="hidden" name="page_name" value="admin_order">
+
+      <%= f.hidden_field :delivery_point_id %>
+      <%= f.hidden_field :user_id, value: 1 %>
+      <%= f.hidden_field :itemquantity, id: 'itemquantity' %>
+      <%= f.hidden_field :subtotal, id: 'subtotal-field' %>
+      <input type="hidden" name="order_items_string" id="order_items_string">
 
 			<div class="form-group row">
 				<label class="col-3 col-form-label">Delivery Area</label>
@@ -24,6 +44,7 @@
 							<% end %>
 						</select>
 					</div>
+          <div class="small mt-2" id="menu-delivey-point-title">Select your delivery area</div>
 				</div>
 			</div>
 
@@ -82,12 +103,12 @@
 
 				<div class="form-group row">
 					<div class="col-12">
-						<button class="btn btn-primary col rounded" id="cart-btn">
+						<span class="btn btn-primary col rounded cursor-pointer" id="cart-btn">
 							<span class="col text-left">
 								<i class="fas fa-shopping-cart"></i> Calculate 
 								<span class="btn-success" id="cart-number">0</span>
 							</span>
-						</button>
+						</span>
 					</div>
 				</div>
 
@@ -115,8 +136,11 @@
 
 				</div>
 
-				<%= f.submit class: "btn btn-success" %>
-				<%= link_to "Back", orders_path, :class => "btn btn-outline-primary" %>
+				<span style="display:none;" id="admin-order-submit-wrap">
+          <%= f.submit class: "btn btn-success" %>
+
+  				<%= link_to "Back", orders_path, :class => "btn btn-outline-primary" %>
+        </span>
 			
 		</div>
 	</div>

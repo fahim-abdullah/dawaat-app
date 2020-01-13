@@ -81,7 +81,7 @@ class OrdersController < ApplicationController
       else
         @order.subtotal = subtotal
         @order.discount = 0
-        @order.total = 0
+        @order.total = subtotal
         @order.save(validate: false)
       end
 
@@ -89,7 +89,12 @@ class OrdersController < ApplicationController
 
 			redirect_to thankyou_path
 		else
-			render 'new'
+      @products = Product.all
+      if params['page_name'].present? && params['page_name'] == 'admin_order'
+        render 'admin_order'
+      else
+        render 'new'
+      end
 		end
 	end
 

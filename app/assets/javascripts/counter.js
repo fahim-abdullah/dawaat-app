@@ -154,6 +154,10 @@ $(document).on('turbolinks:load', function() {
       subtotal = subtotal + total;
     });
 
+    if(subtotal > 0) {
+      $('#admin-order-submit-wrap').show();
+    }
+
     $('#order_items_string').val(order_items_string);
     $("#subtotal-field").val(subtotal);
     $("#subtotal_amount").text(subtotal);
