@@ -91,10 +91,11 @@
         <div class="col-md-12 mb-2">
             <div class="radius-10 shadow p-4 bg-white">
                 <h5 class="semi">Ordering Channels</h5>
-                <p>Multi-line Chart. (Foodpanda vs UberEats vs Pathao vs Direct) VS Days </p>
+                <p>Orders in diffrent channels</p>
+                <!-- <p>Multi-line Chart. (Foodpanda vs UberEats vs Pathao vs Direct) VS Days </p> -->
                 <br>
 
-                <!-- <canvas id="orderingChannelMultiLineChart"></canvas> -->
+                <canvas id="orderingChannelMultiLineChart"></canvas>
             </div>
         </div>
 
@@ -350,54 +351,92 @@
 
       //==========================================================
 
-      // var orderingChannelChartx = document.getElementById('orderingChannelMultiLineChart').getContext('2d');
+      var orderingChannelChartx = document.getElementById('orderingChannelMultiLineChart').getContext('2d');
 
-      // var orderingChannelChart = new Chart(orderingChannelChartx, {
-      //   // The type of chart we want to create
-      //   type: 'line',
+      var orderingChannelChart = new Chart(orderingChannelChartx, {
+        // The type of chart we want to create
+        type: 'line',
 
-      //   // The data for our dataset
-      //   data: {
-      //       labels: ['Foodpanda', 'UberEats', 'Pathao', 'Direct'],
-      //       datasets: [{
-      //         datalabels: {
-      //           backgroundColor: 'rgba(255, 255, 255, 0.5)',
-      //           color: '#333333',
-      //           formatter: function (value) {
-      //             return Math.round(value) + ' Taka';
-      //           },
-      //           font: {
-      //             weight: 'bold',
-      //             size: 18,
-      //           },
-      //         },
-      //         label: 'Daily sell',
-      //         // backgroundColor: 'rgb(255, 99, 132)',
-      //         // borderColor: 'rgb(255, 99, 132)',
-      //         backgroundColor: 'rgba(75, 192, 192, 0.5)',
-      //         borderColor: 'rgb(75, 192, 192)',
-      //         data: [20, 25, 22, 30]
-      //       }]
-      //   },
+        // The data for our dataset
+        data: {
+            labels: ['1 - Jan', '2 - Jan', '3 - Jan', '4 - Jan', '5 - Jan'],
+            datasets: [{
+              datalabels: {
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                color: '#333333',
+                // formatter: function (value) {
+                //   return Math.round(value) + ' Taka';
+                // },
+                font: {
+                  weight: 'bold',
+                  size: 18,
+                },
+              },
+              label: 'Foodpanda',
+              // backgroundColor: 'rgb(255, 99, 132)',
+              // borderColor: 'rgb(255, 99, 132)',
+              // backgroundColor: 'rgba(75, 192, 192, 0.5)',
+              backgroundColor: 'rgba(75, 192, 192, 0)',
+              borderColor: 'rgb(75, 192, 192)',
+              data: [20, 25, 22, 20, 30]
+            }, {
+              datalabels: {
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                color: '#333333',
+                // formatter: function (value) {
+                //   return Math.round(value) + ' Taka';
+                // },
+                font: {
+                  weight: 'bold',
+                  size: 18,
+                },
+              },
+              label: 'UberEats',
+              backgroundColor: 'rgba(255, 99, 132, 0)',
+              borderColor: 'rgb(255, 99, 132)',
+              // backgroundColor: 'rgba(75, 192, 192, 0)',
+              // borderColor: 'rgb(75, 192, 192)',
+              data: [15, 16, 18, 16, 22]
+            }, {
+              datalabels: {
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                color: '#333333',
+                // formatter: function (value) {
+                //   return Math.round(value) + ' Taka';
+                // },
+                font: {
+                  weight: 'bold',
+                  size: 18,
+                },
+              },
+              label: 'Pathao',
+              backgroundColor: 'rgba(255, 99, 132, 0)',
+              borderColor: 'rgb(255, 205, 86)',
+              // backgroundColor: 'rgba(75, 192, 192, 0)',
+              // borderColor: 'rgb(75, 192, 192)',
+              data: [12, 10, 12, 10, 18]
+            }
+          ]
+        },
 
-      //   // Configuration options go here
-      //   options: {
-      //     scales: {
-      //       yAxes: [{
-      //         ticks: {
-      //           beginAtZero: true,
-      //           fontSize: 20
-      //         }
-      //       }],
-      //       xAxes: [{
-      //         ticks: {
-      //           fontSize: 20,
-      //           padding: 5
-      //         }
-      //       }],
-      //     }
-      //   }
-      // });
+        // Configuration options go here
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontSize: 20
+              }
+            }],
+            xAxes: [{
+              ticks: {
+                fontSize: 20,
+                padding: 5
+              }
+            }],
+          }
+        }
+      });
 
       //==============================================================
 
