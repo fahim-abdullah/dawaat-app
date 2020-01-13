@@ -77,6 +77,7 @@
         <div class="col-md-6">
             <div class="radius-10 shadow p-4 bg-white">
                 <h5 class="semi">Top Locations:</h5>
+                <p>Orders in each location</p>
                 <br>
                 <!-- <p>PIE CHART : Gulshan, Banani, Niketon, Baridhara</p> -->
 
@@ -91,6 +92,9 @@
             <div class="radius-10 shadow p-4 bg-white">
                 <h5 class="semi">Ordering Channels</h5>
                 <p>Multi-line Chart. (Foodpanda vs UberEats vs Pathao vs Direct) VS Days </p>
+                <br>
+
+                <!-- <canvas id="orderingChannelMultiLineChart"></canvas> -->
             </div>
         </div>
 
@@ -119,7 +123,10 @@
         <div class="col-md-8">
             <div class="radius-10 shadow p-4 bg-white">
                 <h5 class="semi">Growth Since Inception</h5>
-                <p>LINE CHART : Week by Week Order count</p>
+                <p>Week by Week Order count</p>
+                <br>
+
+                <canvas id="weeklyGrowthLineChart"></canvas>
             </div>
         </div>
 
@@ -338,6 +345,110 @@
         },
         options: {
           responsive: true
+        }
+      });
+
+      //==========================================================
+
+      // var orderingChannelChartx = document.getElementById('orderingChannelMultiLineChart').getContext('2d');
+
+      // var orderingChannelChart = new Chart(orderingChannelChartx, {
+      //   // The type of chart we want to create
+      //   type: 'line',
+
+      //   // The data for our dataset
+      //   data: {
+      //       labels: ['Foodpanda', 'UberEats', 'Pathao', 'Direct'],
+      //       datasets: [{
+      //         datalabels: {
+      //           backgroundColor: 'rgba(255, 255, 255, 0.5)',
+      //           color: '#333333',
+      //           formatter: function (value) {
+      //             return Math.round(value) + ' Taka';
+      //           },
+      //           font: {
+      //             weight: 'bold',
+      //             size: 18,
+      //           },
+      //         },
+      //         label: 'Daily sell',
+      //         // backgroundColor: 'rgb(255, 99, 132)',
+      //         // borderColor: 'rgb(255, 99, 132)',
+      //         backgroundColor: 'rgba(75, 192, 192, 0.5)',
+      //         borderColor: 'rgb(75, 192, 192)',
+      //         data: [20, 25, 22, 30]
+      //       }]
+      //   },
+
+      //   // Configuration options go here
+      //   options: {
+      //     scales: {
+      //       yAxes: [{
+      //         ticks: {
+      //           beginAtZero: true,
+      //           fontSize: 20
+      //         }
+      //       }],
+      //       xAxes: [{
+      //         ticks: {
+      //           fontSize: 20,
+      //           padding: 5
+      //         }
+      //       }],
+      //     }
+      //   }
+      // });
+
+      //==============================================================
+
+
+      
+      var weeklyGrowthChartx = document.getElementById('weeklyGrowthLineChart').getContext('2d');
+
+      var weeklyGrowthChart = new Chart(weeklyGrowthChartx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+            datasets: [{
+              datalabels: {
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                color: '#333333',
+                // formatter: function (value) {
+                //   return Math.round(value) + ' Taka';
+                // },
+                font: {
+                  weight: 'bold',
+                  size: 18,
+                },
+              },
+              label: 'Weekly sell',
+              // backgroundColor: 'rgb(255, 99, 132)',
+              // borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [140, 120, 150, 180]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontSize: 20
+              }
+            }],
+            xAxes: [{
+              ticks: {
+                fontSize: 20,
+                padding: 5
+              }
+            }],
+          }
         }
       });
 
