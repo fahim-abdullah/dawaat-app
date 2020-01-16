@@ -40,8 +40,8 @@
 							Instruction : <%= order.instructions %>
 						</td>
 						<td>
-							<% order.itemquantity.split("-").each do |i| %>
-								<p class="semi mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] %></p>
+							<% order.itemquantity.to_s.split("-").each do |i| %>
+								<p class="semi mb-0"><%= i.split(".")[1] + "x " + i.split(".")[0] rescue '---' %></p>
 							<% end %>
 
               <hr class="my-1">
